@@ -1,0 +1,23 @@
+menu:
+  主页: /
+  归档: /archives
+  网址收藏: /网址收藏
+sidebar: right
+
+widgets:
+- search
+- category
+- recent_posts
+- tag
+- tagcloud
+
+# Duoshuo
+duoshuo_shortname: 
+
+fancybox: true
+
+google_analytics:
+rss: 
+google_site_verification: 
+baidu_site_verification: 
+icon: 
