@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>C++刷Leetcode笔记之 125. Valid Palindrome | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="C++,Leetcode">
+    <meta name="description" content="在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力 回文是比较简单而经典的一道题，但调了很久的bug，写起来有点像3sum的内部循环 Leetcode传送门">
+<meta name="keywords" content="C++,Leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++刷Leetcode笔记之 125. Valid Palindrome">
+<meta property="og:url" content="https://liuyi12138.github.io/2018/08/25/C++刷Leetcode笔记之 125. Valid Palindrome/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力 回文是比较简单而经典的一道题，但调了很久的bug，写起来有点像3sum的内部循环 Leetcode传送门">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T05:20:44.042Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++刷Leetcode笔记之 125. Valid Palindrome">
+<meta name="twitter:description" content="在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力 回文是比较简单而经典的一道题，但调了很久的bug，写起来有点像3sum的内部循环 Leetcode传送门">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">C++刷Leetcode笔记之 125. Valid Palindrome</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">C++刷Leetcode笔记之 125. Valid Palindrome</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-25T13:07:04.000Z" itemprop="datePublished" class="page-time">
+  2018-08-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Valid-Palindrome-Difficulty-Easy"><span class="post-toc-number">1.</span> <span class="post-toc-text">Valid Palindrome [Difficulty Easy]</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题目"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#我的思路"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">我的思路</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-C++刷Leetcode笔记之 125. Valid Palindrome"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">C++刷Leetcode笔记之 125. Valid Palindrome</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-25 21:07:04" datetime="2018-08-25T13:07:04.000Z"  itemprop="datePublished">2018-08-25</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力</strong></p>
+<p>回文是比较简单而经典的一道题，但调了很久的bug，写起来有点像3sum的内部循环</p>
+<p><a href="https://leetcode.com/problems/valid-palindrome/description/" target="_blank" rel="noopener">Leetcode传送门</a></p>
+<a id="more"></a> 
+<h1 id="Valid-Palindrome-Difficulty-Easy"><a href="#Valid-Palindrome-Difficulty-Easy" class="headerlink" title="Valid Palindrome [Difficulty Easy]"></a>Valid Palindrome [Difficulty Easy]</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ul>
+<li><p>Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.</p>
+</li>
+<li><p>Note: For the purpose of this problem, we define empty string as valid palindrome.</p>
+</li>
+<li>Example:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;A man, a plan, a canal: Panama&quot;</span><br><span class="line">Output: true</span><br><span class="line"></span><br><span class="line">Input: &quot;race a car&quot;</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="我的思路"><a href="#我的思路" class="headerlink" title="我的思路"></a>我的思路</h2><ul>
+<li>就简单的双向循环，又一次beat 100%的简单题，要点就是判断一个字符是否为字母或数字，好像还可以用C++的某方法判读来着<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s.empty()) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        transform(s.begin(),s.end(),s.begin(),::<span class="built_in">tolower</span>);</span><br><span class="line">        <span class="keyword">int</span> begin = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end = s.size()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(begin &lt; end) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!((s[begin]&gt;=<span class="string">'a'</span> &amp;&amp; s[begin]&lt;=<span class="string">'z'</span>) || (s[begin]&gt;=<span class="string">'0'</span> &amp;&amp; s[begin]&lt;=<span class="string">'9'</span>)) &amp;&amp; begin&lt;end)</span><br><span class="line">                begin++;</span><br><span class="line">            <span class="keyword">while</span> (!((s[end]&gt;=<span class="string">'a'</span> &amp;&amp; s[end]&lt;=<span class="string">'z'</span>) || (s[end]&gt;=<span class="string">'0'</span> &amp;&amp; s[end]&lt;=<span class="string">'9'</span>)) &amp;&amp; begin&lt;end)</span><br><span class="line">                end--;</span><br><span class="line">            <span class="comment">// printf("%c %c\n",s[begin],s[end]);</span></span><br><span class="line">            <span class="keyword">if</span> (s[begin] != s[end])</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            begin++;</span><br><span class="line">            end--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2018/08/25/C++刷Leetcode笔记之 125. Valid Palindrome/" target="_blank" rel="external">https://liuyi12138.github.io/2018/08/25/C++刷Leetcode笔记之 125. Valid Palindrome/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/08/25/C++刷Leetcode笔记之 125. Valid Palindrome/&title=《C++刷Leetcode笔记之 125. Valid Palindrome》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/08/25/C++刷Leetcode笔记之 125. Valid Palindrome/&title=《C++刷Leetcode笔记之 125. Valid Palindrome》 — 知君的博客&source=在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力
+回文是比较简单而经典的一道题，但调了很久的b..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/08/25/C++刷Leetcode笔记之 125. Valid Palindrome/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C++刷Leetcode笔记之 125. Valid Palindrome》 — 知君的博客&url=https://liuyi12138.github.io/2018/08/25/C++刷Leetcode笔记之 125. Valid Palindrome/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/08/25/C++刷Leetcode笔记之 125. Valid Palindrome/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/08/27/C++刷Leetcode笔记之 127. Word Ladder/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">C++刷Leetcode笔记之 127. Word Ladder</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/08/25/C++刷Leetcode笔记之 98. Validate Binary Search Tree/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">C++刷Leetcode笔记之 98. Validate Binary Search Tree</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/08/25/C++刷Leetcode笔记之 125. Valid Palindrome/&title=《C++刷Leetcode笔记之 125. Valid Palindrome》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/08/25/C++刷Leetcode笔记之 125. Valid Palindrome/&title=《C++刷Leetcode笔记之 125. Valid Palindrome》 — 知君的博客&source=在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力
+回文是比较简单而经典的一道题，但调了很久的b..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/08/25/C++刷Leetcode笔记之 125. Valid Palindrome/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C++刷Leetcode笔记之 125. Valid Palindrome》 — 知君的博客&url=https://liuyi12138.github.io/2018/08/25/C++刷Leetcode笔记之 125. Valid Palindrome/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/08/25/C++刷Leetcode笔记之 125. Valid Palindrome/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADI0lEQVR42u3aUXLiQAwEUO5/6ewBWEP3CKpAPH+lDLHnTT4UteZ2i6+/uyu5f//z1TOvnnb/ncfvffGFjY2N/SXs5GVnr8m34+pdV8+8upNvHDY2NvY+9uMXtFuQLyVaYllQk83CxsbGxk7KyVlxassnNjY2NnbLzhuPyf15q4ONjY39a+wkVMoD+knLcfbMN2Zp2NjY2B/PzkvF5//8lvk2NjY29gezzyL7SQlJGpJ2GFwrsLGxsRexJ4FRGwnlAdBZQ1IHXtjY2Ngr2GdxzNkxnaTJaQfDh0d5sLGxsRexR0dejka27fghD7balgkbGxt7B3sSGM2Hvnk1yQfDUUSFjY2NvYidxz2P8S3mtc3M4cZhY2NjL2XnIf6kmLXfnDQ/9cEdbGxs7BXsPMQ/az9afBtXRaEYNjY29gp2u+ikCTkb007i/nxDL7M0bGxs7C9n3+IrP4LTbse8DhexFzY2NvZq9l95nW3N2UGcdmue9F7Y2NjYK9hJMWjLQxseTbYyb3suB73Y2NjYi9jzV7Zj4HkpnTQ/2NjY2L/AbscAk6M57Sa2o+Xbq6oiNjY29keyo0i9HAM8XmI76D0bJB/+zbGxsbG/ip0PU/Owft7AtJ+268fGxsbexG6P2uSB0dkS52Pd/I3Y2NjYu9n5YZrJ0s9CqzZaqtsSbGxs7K9iTwDJ9fi3kie/o+HBxsbG3sc++4f+rAhNxr2TQvufAoaNjY29jp2E7HkVSNqDpESdPeHJp9jY2Njr2BPwO2Kjs0YlHxJjY2Njb2JP/ulP4qe2gUm2bD4GxsbGxt7NPitm+RLzAzfzpuXJfWxsbOx17PkBnXmRq88ZBVXpcm3Y2NjYq9l50H826G0L1fyKChg2Njb2F7L/yitfbluuXnUn2jJsbGzsRexR3Yu/Od+OPFpqhwrY2NjYO9h50TqLfl5bGpMyHLU02NjY2OvY7ZmWZCntsKEe1k5KLzY2NvbPs+fdzyQwSkpscVIJGxsb+8fYbbPxqqHCJBvDxsbG/gX2++Ke9jjOBJwPD7CxsbE3sfMCMBnrtkFV8sb2adjY2Njr2P8AnJmRzcjx6xwAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

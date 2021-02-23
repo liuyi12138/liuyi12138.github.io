@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Python学习笔记2--函数 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Python">
+    <meta name="description" content="python与c的比较学习函数你们要的函数库 或者用help(abs)查看函数信息">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python学习笔记2--函数">
+<meta property="og:url" content="https://liuyi12138.github.io/2018/04/08/Python学习笔记2--函数/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="python与c的比较学习函数你们要的函数库 或者用help(abs)查看函数信息">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T05:20:44.138Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python学习笔记2--函数">
+<meta name="twitter:description" content="python与c的比较学习函数你们要的函数库 或者用help(abs)查看函数信息">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Python学习笔记2--函数</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Python学习笔记2--函数</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-08T09:51:26.000Z" itemprop="datePublished" class="page-time">
+  2018-04-08
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编程语言/">编程语言</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#python与c的比较学习"><span class="post-toc-number">1.</span> <span class="post-toc-text">python与c的比较学习</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#函数"><span class="post-toc-number"></span> <span class="post-toc-text">函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#定义函数"><span class="post-toc-number">0.1.</span> <span class="post-toc-text">定义函数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#函数参数"><span class="post-toc-number">0.2.</span> <span class="post-toc-text">函数参数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#参数组合（必选参数、默认参数、可变参数、关键字参数和命名关键字参数）"><span class="post-toc-number">0.3.</span> <span class="post-toc-text">参数组合（必选参数、默认参数、可变参数、关键字参数和命名关键字参数）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#递归函数"><span class="post-toc-number">0.4.</span> <span class="post-toc-text">递归函数</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Python学习笔记2--函数"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Python学习笔记2--函数</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-08 17:51:26" datetime="2018-04-08T09:51:26.000Z"  itemprop="datePublished">2018-04-08</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编程语言/">编程语言</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="python与c的比较学习"><a href="#python与c的比较学习" class="headerlink" title="python与c的比较学习"></a>python与c的比较学习</h3><h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p><a href="http://docs.python.org/3/library/functions.html#abs" target="_blank" rel="noopener"><strong>你们要的函数库</strong></a></p>
+<p><strong>或者用help(abs)查看函数信息</strong></p>
+<a id="more"></a>
+<h4 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h4><ul>
+<li>def function(x):…   －定义一个函数</li>
+<li>from (文件名，不含.py) import function  －从本地导入函数</li>
+<li><p>定义一个空函数</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def nop():</span><br><span class="line"><span class="code">    pass</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>pass可以用来作为占位符</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if age &gt;= 18:</span><br><span class="line"><span class="code">    pass</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据类型检查可以用内置函数isinstance()实现：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def my_abs(x):</span><br><span class="line"><span class="code">    if not isinstance(x, (int, float)):</span></span><br><span class="line"><span class="code">        raise TypeError('bad operand type')</span></span><br><span class="line"><span class="code">    if x &gt;= 0:</span></span><br><span class="line"><span class="code">        return x</span></span><br><span class="line"><span class="code">    else:</span></span><br><span class="line"><span class="code">        return -x</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数可以同时返回多个值，但其实就是一个tuple</p>
+</li>
+</ul>
+<h4 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h4><ul>
+<li><p>默认参数</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def power(x, n=2):</span><br><span class="line"><span class="code">    s = 1</span></span><br><span class="line"><span class="code">    while n &gt; 0:</span></span><br><span class="line"><span class="code">        n = n - 1</span></span><br><span class="line"><span class="code">        s = s * x</span></span><br><span class="line"><span class="code">    return s</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义默认参数要牢记一点：默认参数必须指向不变对象,不能有[　],可以这样操作一波</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def add_end(L=None):</span><br><span class="line"><span class="code">    if L is None:</span></span><br><span class="line"><span class="code">        L = []</span></span><br><span class="line"><span class="code">    L.append('END')</span></span><br><span class="line"><span class="code">    return L</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可变参数(参数numbers接收到的是一个tuple)</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def calc(*numbers):</span><br><span class="line"><span class="code">    sum = 0</span></span><br><span class="line"><span class="code">    for n in numbers:</span></span><br><span class="line"><span class="code">        sum = sum + n * n</span></span><br><span class="line"><span class="code">    return sum</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关键字参数(关键字参数在函数内部自动组装为一个dict)</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def person(name, age, **kw):</span><br><span class="line"><span class="code">    print('name:', name, 'age:', age, 'other:', kw)</span></span><br><span class="line">name: Jack age: 24 other: &#123;'city': 'Beijing', 'job': 'Engineer'&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong> kw获得的dict是一份拷贝，对函数外的kw没有影响　</strong></p>
+<ul>
+<li>命名关键字参数　－限制关键字参数的名字<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def person(name, age, *, city, job):</span><br><span class="line"><span class="code">    print(name, age, city, job)</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="参数组合（必选参数、默认参数、可变参数、关键字参数和命名关键字参数）"><a href="#参数组合（必选参数、默认参数、可变参数、关键字参数和命名关键字参数）" class="headerlink" title="参数组合（必选参数、默认参数、可变参数、关键字参数和命名关键字参数）"></a>参数组合（必选参数、默认参数、可变参数、关键字参数和命名关键字参数）</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def f1(a, b, c=0, <span class="emphasis">*args, *</span>*kw):</span><br><span class="line"><span class="code">    print('a =', a, 'b =', b, 'c =', c, 'args =', args, 'kw =', kw)</span></span><br><span class="line"></span><br><span class="line">def f2(a, b, c=0, <span class="emphasis">*, d, *</span>*kw):</span><br><span class="line"><span class="code">    print('a =', a, 'b =', b, 'c =', c, 'd =', d, 'kw =', kw)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于任意函数，都可以通过类似func(*args,**kw)的形式调用它，无论它的参数是如何定义的</li>
+<li>*args是可变参数，args接收的是一个tuple；</li>
+<li>**kw是关键字参数，kw接收的是一个dict。</li>
+</ul>
+<h4 id="递归函数"><a href="#递归函数" class="headerlink" title="递归函数"></a>递归函数</h4><ul>
+<li><p>使用递归函数需要注意防止栈溢出，下面的函数n最大为998,亲测</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def fact(n):</span><br><span class="line"><span class="code">    if n==1:</span></span><br><span class="line"><span class="code">        return 1</span></span><br><span class="line"><span class="code">    return n * fact(n - 1)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>尾递归，在函数返回的时候，调用自身本身</p>
+</li>
+</ul>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def fact(n):</span><br><span class="line"><span class="code">    return fact_iter(n, 1)</span></span><br><span class="line"></span><br><span class="line">def fact_iter(num, product):</span><br><span class="line"><span class="code">    if num == 1:</span></span><br><span class="line"><span class="code">        return product</span></span><br><span class="line"><span class="code">    return fact_iter(num - 1, num * product)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。</li>
+<li>大多数编程语言没有针对尾递归做优化，Python解释器也没有做优化，所以，即使把上面的fact(n)函数改成尾递归方式，也会导致栈溢出。<br><strong> 综上，尾递归这一节说的都是屁话</strong></li>
+</ul>
+<p><a href="http://bbs.fishc.com/thread-61965-1-1.html" target="_blank" rel="noopener"><strong>递归实现汉罗塔</strong></a><br><strong> 感觉有一点动态规划的感觉</strong></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2018/04/08/Python学习笔记2--函数/" target="_blank" rel="external">https://liuyi12138.github.io/2018/04/08/Python学习笔记2--函数/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/04/08/Python学习笔记2--函数/&title=《Python学习笔记2--函数》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/04/08/Python学习笔记2--函数/&title=《Python学习笔记2--函数》 — 知君的博客&source=python与c的比较学习函数你们要的函数库
+或者用help(abs)查看函数信息" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/04/08/Python学习笔记2--函数/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python学习笔记2--函数》 — 知君的博客&url=https://liuyi12138.github.io/2018/04/08/Python学习笔记2--函数/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/04/08/Python学习笔记2--函数/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/08/Python学习笔记3--高级特性/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Python学习笔记3--高级特性</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/07/Python学习笔记１--基本语法/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Python学习笔记１--基本语法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/04/08/Python学习笔记2--函数/&title=《Python学习笔记2--函数》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/04/08/Python学习笔记2--函数/&title=《Python学习笔记2--函数》 — 知君的博客&source=python与c的比较学习函数你们要的函数库
+或者用help(abs)查看函数信息" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/04/08/Python学习笔记2--函数/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python学习笔记2--函数》 — 知君的博客&url=https://liuyi12138.github.io/2018/04/08/Python学习笔记2--函数/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/04/08/Python学习笔记2--函数/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvUlEQVR42u3aQY4bMQwEwP3/p5NrgM14u0nJcYCak2GMbdUcJLrJr6/4+vXH9f391596+oanz85+a3Xh4eHhLZb+/UrueVrQE/Jpua+/LV8PHh4e3nt4+bbevv96QbPHkXwWDw8P73N4beE7eyjJwYCHh4f3v/DyWKGNGF6/xsPDw/s0Xg5o78lD3s3RciBrwcPDw+uy1qiL9Dmvr/T38PDw8NZd9dnm2wa4eRusXiEeHh7eBV7+Vz8pcxNkG0y0xT0eHh7ee3hti6ttkuUHQN4MaxtjeHh4eKd4s1ZWvvQ2UGgPjCKMwMPDw7vGi5rx8Z15a61tekXfj4eHh3eN1273yYKSqCIvnYe/hYeHh3eBt9/EZ0NXeSk/K8Hx8PDw7vHayOAUrD2cVjEuHh4e3gXerMWVU5NDqH2s0XGFh4eHd4E3K17bO/OBrVl0GxXZeHh4eNd4eWtqNkawiT8KTJ5/4OHh4ZW82ZY9a1/N2mPtGvDw8PBu82abbxJG5A/i1BhWFObi4eHhrXnF0FLAmAWsm+i2SKnx8PDwDvGSwjpf0CzYTbb7ZCXDSAIPDw9vxGvb8+0AweYhtgEHHh4e3nt4szBi3zabFdDJ4z6QteDh4eE98DZLSY6E2wfJDyU1Hh4e3jVeu+HORgHasYP838AqZcHDw8MreXkYumnnz0YNNuvEw8PDu8fblM751j9rnrUl9V8+i4eHh3eB1zacNuNWbSgcde3yR4aHh4d3iDcLGvIRqLZ51g5vFYcBHh4e3iFefuVhwazRlRwJp4p1PDw8vD2vDV5XlXs5stAGvtFMGR4eHt4hXhtAbA6PtqBvY188PDy8z+G1AUFefM9GEKLyGg8PD++f8majA3lwMMNEYQQeHh7eBd5+mz7V6GqL+GNZCx4eHl7Ma//qtwX3JsBtH/eqv4eHh4f3M+836b1pzpJdD8oAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

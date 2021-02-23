@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>C++刷Leetcode笔记之 127. Word Ladder | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="C++,Leetcode">
+    <meta name="description" content="在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力 至今遇到的最难的题之一，有一种找最短路径的感觉 Leetcode传送门">
+<meta name="keywords" content="C++,Leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++刷Leetcode笔记之 127. Word Ladder">
+<meta property="og:url" content="https://liuyi12138.github.io/2018/08/27/C++刷Leetcode笔记之 127. Word Ladder/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力 至今遇到的最难的题之一，有一种找最短路径的感觉 Leetcode传送门">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T05:20:44.043Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++刷Leetcode笔记之 127. Word Ladder">
+<meta name="twitter:description" content="在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力 至今遇到的最难的题之一，有一种找最短路径的感觉 Leetcode传送门">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">C++刷Leetcode笔记之 127. Word Ladder</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">C++刷Leetcode笔记之 127. Word Ladder</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-27T10:11:04.000Z" itemprop="datePublished" class="page-time">
+  2018-08-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Word-Ladder-Difficulty-Medium"><span class="post-toc-number">1.</span> <span class="post-toc-text">Word Ladder [Difficulty: Medium]</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#我的思路"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">我的思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考思路"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">参考思路</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#看了LeetCode上的答案，不得不贴一下超级大佬的优化"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">看了LeetCode上的答案，不得不贴一下超级大佬的优化</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#感想"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">感想</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-C++刷Leetcode笔记之 127. Word Ladder"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">C++刷Leetcode笔记之 127. Word Ladder</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-27 18:11:04" datetime="2018-08-27T10:11:04.000Z"  itemprop="datePublished">2018-08-27</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力</strong></p>
+<p>至今遇到的最难的题之一，有一种找最短路径的感觉</p>
+<p><a href="https://leetcode.com/problems/word-ladder/description/" target="_blank" rel="noopener">Leetcode传送门</a></p>
+<a id="more"></a> 
+<h1 id="Word-Ladder-Difficulty-Medium"><a href="#Word-Ladder-Difficulty-Medium" class="headerlink" title="Word Ladder [Difficulty: Medium]"></a>Word Ladder [Difficulty: Medium]</h1><ul>
+<li><p>Given two words (beginWord and endWord), and a dictionary’s word list, find the length of shortest transformation sequence from beginWord to endWord, such that:</p>
+</li>
+<li><p>Only one letter can be changed at a time.</p>
+</li>
+<li>Each transformed word must exist in the word list. Note that beginWord is not a transformed word.</li>
+<li>Note:<ul>
+<li>Return 0 if there is no such transformation sequence.</li>
+<li>All words have the same length.</li>
+<li>All words contain only lowercase alphabetic characters.</li>
+<li>You may assume no duplicates in the word list.</li>
+<li>You may assume beginWord and endWord are non-empty and are not the same.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">beginWord = &quot;hit&quot;,</span><br><span class="line">endWord = &quot;cog&quot;,</span><br><span class="line">wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]</span><br><span class="line"></span><br><span class="line">Output: 5</span><br><span class="line"></span><br><span class="line">Explanation: As one shortest transformation is &quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;dot&quot; -&gt; &quot;dog&quot; -&gt; &quot;cog&quot;,</span><br><span class="line">return its length 5.</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">beginWord = &quot;hit&quot;</span><br><span class="line">endWord = &quot;cog&quot;</span><br><span class="line">wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]</span><br><span class="line"></span><br><span class="line">Output: 0</span><br><span class="line"></span><br><span class="line">Explanation: The endWord &quot;cog&quot; is not in wordList, therefore no possible transformation.</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(<span class="built_in">string</span> beginWord, <span class="built_in">string</span> endWord, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; wordList)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="我的思路"><a href="#我的思路" class="headerlink" title="我的思路"></a>我的思路</h2><ul>
+<li>并没能AC(做了一点修改就AC了，开心！！！)</li>
+<li>首先写了两个轮子，compare函数用来比较两个长度相等的字符串的差异度，findList函数用来寻找一个vector中改变一个字母可以变动的单词</li>
+<li>然后就用栈来保存之前搜索的路径，类似于BFS</li>
+<li>难点在于如何判断到了第几层，这时候就使用了另外一个栈同步保存层数</li>
+<li>局限点在于原数据结构无法很好的保存，由于要防止闭环出现，找到了一个单词就删除掉了，导致无法回退，最终只能做到可以找到一条路径，但无法找到最短路径<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(<span class="built_in">string</span> beginWord, <span class="built_in">string</span> endWord, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; wordList)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (find(wordList.begin(),wordList.end(),endWord) == wordList.end()) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;::iterator findbegin = find(wordList.begin(),wordList.end(),beginWord);</span><br><span class="line">        <span class="keyword">if</span> (findbegin != wordList.end())</span><br><span class="line">            wordList.erase(findbegin);</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="built_in">string</span>&gt; words;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; nums;</span><br><span class="line">        words.push(beginWord);</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">        nums.push(count);</span><br><span class="line">        <span class="keyword">while</span> (!words.empty()) &#123;</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; findWords = findList(wordList, words.top());</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%s %d\n"</span>,words.top().c_str(),nums.top());</span><br><span class="line">            <span class="keyword">if</span> (find(findWords.begin(),findWords.end(),endWord) != findWords.end()) <span class="keyword">return</span> nums.top()+<span class="number">1</span>;</span><br><span class="line">            count = nums.top()+<span class="number">1</span>;</span><br><span class="line">            words.pop();</span><br><span class="line">            nums.pop();</span><br><span class="line">            max = findWords.size();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i =<span class="number">0</span>; i&lt;max;++i)&#123;</span><br><span class="line">                words.push(findWords[i]);</span><br><span class="line">                <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;::iterator it = find(wordList.begin(),wordList.end(),findWords[i]);</span><br><span class="line">                wordList.erase(it);</span><br><span class="line">                nums.push(count);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; findList(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; wordList, <span class="built_in">string</span> str) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; findList;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;::iterator iter = wordList.begin();</span><br><span class="line">        <span class="keyword">while</span> (iter != wordList.end()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (*iter != str &amp;&amp; compare(*iter,str) &lt;= <span class="number">1</span>)</span><br><span class="line">                findList.push_back(*iter);</span><br><span class="line">            iter++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> findList;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="built_in">string</span> str1, <span class="built_in">string</span> str2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = str1.size();</span><br><span class="line">        <span class="keyword">int</span> diff = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;size; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (str1[i] != str2[i])</span><br><span class="line">                diff++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> diff;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="参考思路"><a href="#参考思路" class="headerlink" title="参考思路"></a>参考思路</h2><ul>
+<li>参考答案确实坐实了我的猜想，果然是单源最短路径问题，但由于没有给出图，自己重新构建邻接表又过于麻烦，所以一般是采用栈实现BFS来解题</li>
+<li>用队列最大的好处就是不用回退，最先出队列的肯定是最短的路径</li>
+<li>我TM，把我的代码里面的stack换成queue,top换成front就通过了。。。看不透看不透</li>
+<li>还是贴一下别人的代码吧</li>
+<li>感觉在搜索方面做的还没我优雅，虽然可能我的代码由于传参耗时会更长。。。</li>
+<li>值得学习的是queue的巧妙运用，把我的两个queue写成了一个<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(<span class="built_in">string</span> beginWord, <span class="built_in">string</span> endWord, <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt;&amp; wordList)</span> </span>&#123;</span><br><span class="line">        wordList.insert(endWord);</span><br><span class="line">        <span class="built_in">queue</span>&lt;pair&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;&gt; que;</span><br><span class="line">        que.push(make_pair(beginWord, <span class="number">1</span>));</span><br><span class="line">        wordList.erase(wordList.find(beginWord));</span><br><span class="line">        <span class="keyword">while</span>(!que.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">auto</span> val = que.front();</span><br><span class="line">            que.pop();</span><br><span class="line">            <span class="keyword">if</span>(val.first == endWord) <span class="keyword">return</span> val.second;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>; i&lt; val.first.size(); i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">string</span> str = val.first;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">26</span>; j++)</span><br><span class="line">                &#123;</span><br><span class="line">                    str[i] = <span class="string">'a'</span>+j;</span><br><span class="line">                    <span class="keyword">if</span>(wordList.count(str) == <span class="number">1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        que.push(make_pair(str, val.second+<span class="number">1</span>));</span><br><span class="line">                        wordList.erase(str);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="看了LeetCode上的答案，不得不贴一下超级大佬的优化"><a href="#看了LeetCode上的答案，不得不贴一下超级大佬的优化" class="headerlink" title="看了LeetCode上的答案，不得不贴一下超级大佬的优化"></a>看了LeetCode上的答案，不得不贴一下超级大佬的优化</h3><ul>
+<li>数据结构上的优化：实际上是使用set来实现队列的功能，find更节省时间</li>
+<li>算法上的优化：居然还能双向搜索然后随时swap，比较好奇为什么swap还能这么快<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(<span class="built_in">string</span> beginWord, <span class="built_in">string</span> endWord, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; wordList)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = beginWord.size(), ret = <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt; wordSet(wordList.begin(), wordList.end()), </span><br><span class="line">                              beginSet&#123;beginWord&#125;, endSet&#123;endWord&#125;, nextSet;</span><br><span class="line">        <span class="keyword">if</span>(wordSet.erase(endWord) == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!beginSet.empty() &amp;&amp; !endSet.empty())&#123;</span><br><span class="line">            ++ret;</span><br><span class="line">            <span class="keyword">if</span>(beginSet.size() &gt; endSet.size())&#123;</span><br><span class="line">                swap(beginSet, endSet);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">string</span> word: beginSet)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">char</span> j = <span class="string">'a'</span>; j &lt;= <span class="string">'z'</span>; ++j)&#123;</span><br><span class="line">                        <span class="keyword">char</span> ch = word[i];</span><br><span class="line">                        word[i] = j;</span><br><span class="line">                        <span class="keyword">if</span>(endSet.count(word) != <span class="number">0</span>)&#123;</span><br><span class="line">                            <span class="keyword">return</span> ret;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">if</span>(wordSet.count(word) != <span class="number">0</span>)&#123;</span><br><span class="line">                            wordSet.erase(word);</span><br><span class="line">                            nextSet.insert(word);</span><br><span class="line">                        &#125;</span><br><span class="line">                        word[i] = ch;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            beginSet = nextSet;</span><br><span class="line">            nextSet.clear();   </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;     </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><ul>
+<li>果然掌握各种数据结构的搭配是第一生产力</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2018/08/27/C++刷Leetcode笔记之 127. Word Ladder/" target="_blank" rel="external">https://liuyi12138.github.io/2018/08/27/C++刷Leetcode笔记之 127. Word Ladder/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/08/27/C++刷Leetcode笔记之 127. Word Ladder/&title=《C++刷Leetcode笔记之 127. Word Ladder》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/08/27/C++刷Leetcode笔记之 127. Word Ladder/&title=《C++刷Leetcode笔记之 127. Word Ladder》 — 知君的博客&source=在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力
+至今遇到的最难的题之一，有一种找最短路径的感..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/08/27/C++刷Leetcode笔记之 127. Word Ladder/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C++刷Leetcode笔记之 127. Word Ladder》 — 知君的博客&url=https://liuyi12138.github.io/2018/08/27/C++刷Leetcode笔记之 127. Word Ladder/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/08/27/C++刷Leetcode笔记之 127. Word Ladder/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/08/27/C++刷Leetcode笔记之 56. Merge Intervals/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">C++刷Leetcode笔记之 56. Merge Intervals</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/08/25/C++刷Leetcode笔记之 125. Valid Palindrome/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">C++刷Leetcode笔记之 125. Valid Palindrome</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/08/27/C++刷Leetcode笔记之 127. Word Ladder/&title=《C++刷Leetcode笔记之 127. Word Ladder》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/08/27/C++刷Leetcode笔记之 127. Word Ladder/&title=《C++刷Leetcode笔记之 127. Word Ladder》 — 知君的博客&source=在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力
+至今遇到的最难的题之一，有一种找最短路径的感..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/08/27/C++刷Leetcode笔记之 127. Word Ladder/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C++刷Leetcode笔记之 127. Word Ladder》 — 知君的博客&url=https://liuyi12138.github.io/2018/08/27/C++刷Leetcode笔记之 127. Word Ladder/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/08/27/C++刷Leetcode笔记之 127. Word Ladder/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACp0lEQVR42u3aQXLjMAwEQP//09nrXqzMAGTiVLVOKduh2DyI0ICvV3x9vbmef5+PnNwrH7O+8PDw8A5N/f/h8lvmn3+NrnoJ8PDw8K7xnh/Z74ZOtoFkorOliTYkPDw8vA/gJYx9uZwsBB4eHt7f4j1P6x0m+fx5OfDw8PA+h9cWvvkk2nAh33IOZy14eHh4F7pIn/P3lf4eHh4e3rqrnocFbdE8K7vr2eLh4eFd4M0i2ucAom2hbRpjSfGNh4eHd5bXxgSz1/48Yjh1ZAEPDw/vHq994d8EuL/Q+sLDw8O7xpuV0W0w8cyYFej5/+Lh4eGd4t04LpDHB7NyudjM8PDw8C7wZg/fGT4/HJBEIcm3eHh4eDd4bcOpLY5nW0i+rN/cBQ8PD++XeG0DLH+Ub9pgUfmOh4eHd423ueUm6t00sYZZCx4eHt6a10YJ+ZaQlN2zkLc+iICHh4d3lNc+6NvgYBPUtle9Qnh4eHgjXnuIqo1x98X6bJ54eHh493izsHVTNB8IZ/NDYHh4eHgXeO3Lfx46JFNpG2+zYAIPDw/vBi8vXme/aQv0Olx4HgEPDw/vKC+5zexQ1KmAOC+v8fDw8H6Gl7/8b5pVCbJ+A2gjYDw8PLxrvKISHz2+Z1OfLQoeHh7ePd4MtplKHgS3W0KdkeDh4eEteAd6aItt4NS2gYeHh/eTvNmBp7zYzQ8KvBZX9K6Ah4eHt+BtAtl8gdqNJx/zm2/x8PDwLvDaB+7+Ud5GFQm+DU3w8PDw9rzN0PnUk41kE1K8vSMeHh7eNV7eXsr3mVnh2245h48O4OHh4V3gJc2zNg7Og4z2Lnh4eHifw5slHG3D7EAsgoeHh3eNl7es8hZXGz3ki1Uc0sLDw8O7wNu88M/K5XwzaMcfXnh4eHgp7x93qLGGa/iNdwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Web安全简介 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="面经,网络安全">
+    <meta name="description" content="在腾讯实习生面试的时候被问到Web安全，发现自己不是很了解，在此简单记录一下常见的一些Web安全知识。">
+<meta name="keywords" content="面经,网络安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web安全简介">
+<meta property="og:url" content="https://liuyi12138.github.io/2020/05/23/Web安全简介/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="在腾讯实习生面试的时候被问到Web安全，发现自己不是很了解，在此简单记录一下常见的一些Web安全知识。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T05:20:44.142Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web安全简介">
+<meta name="twitter:description" content="在腾讯实习生面试的时候被问到Web安全，发现自己不是很了解，在此简单记录一下常见的一些Web安全知识。">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Web安全简介</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Web安全简介</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-05-23T08:39:36.000Z" itemprop="datePublished" class="page-time">
+  2020-05-23
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#OWASP-TOP10"><span class="post-toc-number">1.</span> <span class="post-toc-text">OWASP TOP10</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#XSS"><span class="post-toc-number">2.</span> <span class="post-toc-text">XSS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#XSS简介"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">XSS简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#XSS漏洞分类"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">XSS漏洞分类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#防御方法"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">防御方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SQL注入"><span class="post-toc-number">3.</span> <span class="post-toc-text">SQL注入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SQL注入简介"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">SQL注入简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#防御方法-1"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">防御方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DDOS"><span class="post-toc-number">4.</span> <span class="post-toc-text">DDOS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DDOS简介"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">DDOS简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DDOS分类"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">DDOS分类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#资源消耗类攻击"><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">资源消耗类攻击</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Syn-Flood"><span class="post-toc-number">4.2.1.1.</span> <span class="post-toc-text">Syn Flood</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Ack-Flood"><span class="post-toc-number">4.2.1.2.</span> <span class="post-toc-text">Ack Flood</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#服务消耗性攻击"><span class="post-toc-number">4.2.2.</span> <span class="post-toc-text">服务消耗性攻击</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Web的CC攻击"><span class="post-toc-number">4.2.2.1.</span> <span class="post-toc-text">Web的CC攻击</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#反射类攻击"><span class="post-toc-number">4.2.3.</span> <span class="post-toc-text">反射类攻击</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#防御方法-2"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">防御方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Nmap"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">Nmap</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CSRF"><span class="post-toc-number">5.</span> <span class="post-toc-text">CSRF</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CSRF简介"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">CSRF简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#防御方法-3"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">防御方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#同源策略"><span class="post-toc-number">5.2.1.</span> <span class="post-toc-text">同源策略</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Hash验证"><span class="post-toc-number">5.2.2.</span> <span class="post-toc-text">Hash验证</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#验证码"><span class="post-toc-number">5.2.3.</span> <span class="post-toc-text">验证码</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">6.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Web安全简介"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Web安全简介</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-05-23 16:39:36" datetime="2020-05-23T08:39:36.000Z"  itemprop="datePublished">2020-05-23</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>在腾讯实习生面试的时候被问到Web安全，发现自己不是很了解，在此简单记录一下常见的一些Web安全知识。<br><a id="more"></a> </p>
+<p><strong>Web从业者和网安从业者都需要对Web安全有一定了解，常见的Web攻击方式有XSS、SQL注入、DDOS、CSRF等，其中有一部分在ctf比赛中也会有所接触。</strong></p>
+<h2 id="OWASP-TOP10"><a href="#OWASP-TOP10" class="headerlink" title="OWASP TOP10"></a>OWASP TOP10</h2><p>OWASP TOP10这个榜单的描述感觉挺抽象的，2017版如下，但在面试的时候最好不要全盘托出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">A1 注入 Injection</span><br><span class="line">A2 失效的身份认证</span><br><span class="line">A3 敏感信息泄露</span><br><span class="line">A4 XML外部实体（XXE）</span><br><span class="line">A5 失效的访问控制</span><br><span class="line">A6 安全配置错误</span><br><span class="line">A7 跨站脚本（XSS）</span><br><span class="line">A8 不安全的反序列化</span><br><span class="line">A9 使用含有已知漏洞的组件</span><br><span class="line">A10 不足的日志记录和监控</span><br></pre></td></tr></table></figure></p>
+<p>我的面试回答：</p>
+<p>这个榜单我记不大全了，但我可以按照我的理解大概梳理一下常见的WEB安全问题，大概有注入（包括SQL注入、OS注入等）、身份信息验证（比如中间人攻击这种对握手阶段的攻击）、XSS攻击、CSRF攻击、以及一些安全配置问题，比如使用含有漏洞的框架等等。</p>
+<h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><h3 id="XSS简介"><a href="#XSS简介" class="headerlink" title="XSS简介"></a>XSS简介</h3><p>XSS攻击：跨站脚本攻击(Cross-Site Scripting)是指攻击者往Web页面中插入恶意的Script代码，当其他用户浏览该页面是，恶意代码就会执行，从而达到攻击用户的目的。</p>
+<p>一般xss漏洞是通过php的输出函数将js代码输出到html页面，通过用户本地浏览器进行执行。</p>
+<h3 id="XSS漏洞分类"><a href="#XSS漏洞分类" class="headerlink" title="XSS漏洞分类"></a>XSS漏洞分类</h3><p>XSS漏洞一般分为两类：</p>
+<ul>
+<li>存储型XSS(持久化)：主要出现在让用户输入数据，供其他浏览此页的用户进行查看的地方，包括留言、评论、博客日志和各类表单等，攻击者在相关页面输入脚本代码，当其他用户访问时，服务器会从数据库中查询到该代码并发送给其他用户的浏览器。</li>
+<li>反射型XSS(非持久化)：将脚本代码加入URL中，需要欺骗用户去点击链接才会触发脚本。</li>
+</ul>
+<p><strong><a href="https://zhuanlan.zhihu.com/p/24249045" target="_blank" rel="noopener">XSS实战</a></strong></p>
+<h3 id="防御方法"><a href="#防御方法" class="headerlink" title="防御方法"></a>防御方法</h3><ul>
+<li>过滤特殊字符：对用户输入的内容中的敏感字段进行过滤，比如<code>&lt;script&gt;</code>标签等</li>
+<li>使用HTTP头指定数据类型，比如指定为<code>&quot;text/javascript&quot;</code>,就可以让浏览器来解析js代码</li>
+</ul>
+<h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><h3 id="SQL注入简介"><a href="#SQL注入简介" class="headerlink" title="SQL注入简介"></a>SQL注入简介</h3><p>攻击者向服务器提交恶意的SQL查询代码，程序在接收到后错误地将输入当做查询语句的一部分进行执行，导致原始的查询逻辑被改变。</p>
+<p>举例：<code>OR &#39;1&#39;=&#39;1&#39;</code>，当我们进行登录的时候把这段字符串作为password，就可能直接绕过SQL查询时对password的校验。</p>
+<h3 id="防御方法-1"><a href="#防御方法-1" class="headerlink" title="防御方法"></a>防御方法</h3><ul>
+<li>对sql语句进行预编译，这样的话即使攻击者伪造了参数，到服务端时这些参数都会被当做字符处理</li>
+<li>对输入的特殊字符进行正则匹配等过滤方法</li>
+<li>在后端进行转义或者编码转换</li>
+</ul>
+<h2 id="DDOS"><a href="#DDOS" class="headerlink" title="DDOS"></a>DDOS</h2><h3 id="DDOS简介"><a href="#DDOS简介" class="headerlink" title="DDOS简介"></a>DDOS简介</h3><p>DDOS全称 Distributed Denial of Service，中文意思为 “分布式拒绝服务”，就是利用大量合法的分布式服务器对目标发送请求，从而导致正常合法用户无法获得服务。</p>
+<h3 id="DDOS分类"><a href="#DDOS分类" class="headerlink" title="DDOS分类"></a>DDOS分类</h3><h4 id="资源消耗类攻击"><a href="#资源消耗类攻击" class="headerlink" title="资源消耗类攻击"></a>资源消耗类攻击</h4><p><strong>资源消耗类DDOS是比较典型的DDOS攻击，通过大量请求消耗正常的带宽和协议栈处理资源的能力，从而达到服务端无法正常工作的目的。最具代表性的有Syn Flood、Ack Flood、UDP Flood</strong></p>
+<h5 id="Syn-Flood"><a href="#Syn-Flood" class="headerlink" title="Syn Flood"></a>Syn Flood</h5><p>Syn Flood 是当前网络上常见的 DDoS 攻击，攻击者会向网络服务所在的端口发送大量伪造的大量的 SYN 包，并且缺少三次握手的最后一步握手 ACK 回复，造成目标服务器中的半连接队列被占满，从而阻止其他合法用户进行访问。</p>
+<h5 id="Ack-Flood"><a href="#Ack-Flood" class="headerlink" title="Ack Flood"></a>Ack Flood</h5><p>在TCP连接建立后，所有的TCP报文都带有ACK标志位，服务器收到带有ACK标志位的数据包后悔进行查表检查该数据包所表示的连接四元组是否存在，来判断该数据包是否合法，如果不合法则需要回应RST包。攻击者在进行Ack Flood攻击时会发送大量非法的带有ACK标志位的数据包，而服务器需要进行查表和回应RST包，这就造成了服务器资源被占用，Ack Flood危害一般小于Syn Flood。</p>
+<h4 id="服务消耗性攻击"><a href="#服务消耗性攻击" class="headerlink" title="服务消耗性攻击"></a>服务消耗性攻击</h4><p><strong>服务消耗性攻击主要是针对服务的特点进行精确定点打击，比如文件下载，数据检索等接口</strong></p>
+<h5 id="Web的CC攻击"><a href="#Web的CC攻击" class="headerlink" title="Web的CC攻击"></a>Web的CC攻击</h5><p>CC(Challenge Collapsar)就是模拟多个用户，多少线程就是多少用户，不停地进行访问那些需要大量数据操作，就是需要大量CPU时间的页面，造成服务器资源的浪费，CPU长时间处于100%，永远都有处理不完的连接直至就网络拥塞，正常的访问被中止。</p>
+<h4 id="反射类攻击"><a href="#反射类攻击" class="headerlink" title="反射类攻击"></a>反射类攻击</h4><p>反射攻击也叫放大攻击，该类攻击以UDP协议为主，一般请求回应的流量远远大于请求本身流量的大小。攻击者通过流量被放大的特点以较小的流量带宽就可以制造出大规模的流量源，从而对目标发起攻击。</p>
+<h3 id="防御方法-2"><a href="#防御方法-2" class="headerlink" title="防御方法"></a>防御方法</h3><ul>
+<li>对流量进行检测与拦截</li>
+<li>可以引申出nmap</li>
+</ul>
+<h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><p>nmap是一个网络连接端扫描软件，用来扫描网上电脑开放的网络连接端。确定哪些服务运行在哪些连接端，并且推断计算机运行哪个操作系统（通过指纹判断）。</p>
+<p>nmap扫描使用的数据包都是自行构建的，在流量层面有一定的特征，可以根据这些特征检测出是否有主机被nmap进行扫描，并及时阻断。</p>
+<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><h3 id="CSRF简介"><a href="#CSRF简介" class="headerlink" title="CSRF简介"></a>CSRF简介</h3><p>CSRF（Cross-site request forgery），中文名称：跨站请求伪造，也被称为：one click attack/session riding，缩写为：CSRF/XSRF。</p>
+<p>用大白话解释解释就是在你访问恶意站点A的时候，A让你去访问一次网站B，你在访问B的时候浏览器会自动带上你之前访问A所留下的cookie，这样恶意网站A就可以模拟用户的操作了。</p>
+<h3 id="防御方法-3"><a href="#防御方法-3" class="headerlink" title="防御方法"></a>防御方法</h3><h4 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h4><p>同源策略是保障浏览器安全的一种重要的安全策略，他要求不同源的客户端脚本在没有明确授权的情况下，不能读写对方资源。而同源策略在我们进行Web开发时会导致跨域问题。</p>
+<h4 id="Hash验证"><a href="#Hash验证" class="headerlink" title="Hash验证"></a>Hash验证</h4><p>在表单中增加对Cookie的Hash，来保证请求是由客户端发送的。但由于用户的Cookie可能被XSS攻击等方式获取到，所以这种方法无法完全保证安全。</p>
+<h4 id="验证码"><a href="#验证码" class="headerlink" title="验证码"></a>验证码</h4><p>用户登录需要填写验证码，这个方案很不方便</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://www.cnblogs.com/morethink/p/8734103.html" target="_blank" rel="noopener">常见web攻击总结</a></li>
+<li><a href="https://blog.csdn.net/qq_33945246/article/details/104417576" target="_blank" rel="noopener">DDoS 攻击详解1</a></li>
+<li><a href="https://blog.csdn.net/weixin_44489066/article/details/87934156" target="_blank" rel="noopener">DDoS 攻击详解2</a></li>
+<li><a href="https://www.cnblogs.com/rain-chenwei/p/9520240.html" target="_blank" rel="noopener">同源策略和跨域解决方案</a></li>
+<li><a href="https://www.cnblogs.com/btgyoyo/p/6195897.html" target="_blank" rel="noopener">CSRF攻击原理以及防御</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2020/05/23/Web安全简介/" target="_blank" rel="external">https://liuyi12138.github.io/2020/05/23/Web安全简介/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络安全/">网络安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面经/">面经</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2020/05/23/Web安全简介/&title=《Web安全简介》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2020/05/23/Web安全简介/&title=《Web安全简介》 — 知君的博客&source=在腾讯实习生面试的时候被问到Web安全，发现自己不是很了解，在此简单记录一下常见的一些Web安全知识。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2020/05/23/Web安全简介/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Web安全简介》 — 知君的博客&url=https://liuyi12138.github.io/2020/05/23/Web安全简介/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2020/05/23/Web安全简介/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/05/24/TCP详解/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">TCP详解</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/05/03/遥寄远方的碎碎念/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">遥寄远方的碎碎念</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2020/05/23/Web安全简介/&title=《Web安全简介》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2020/05/23/Web安全简介/&title=《Web安全简介》 — 知君的博客&source=在腾讯实习生面试的时候被问到Web安全，发现自己不是很了解，在此简单记录一下常见的一些Web安全知识。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2020/05/23/Web安全简介/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Web安全简介》 — 知君的博客&url=https://liuyi12138.github.io/2020/05/23/Web安全简介/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2020/05/23/Web安全简介/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3awY7CMAxFUf7/pzvSrGaECPfZAanOzQq1Jc1hYRLbjwce1+94vvJ3rO++eoa8a9uQIUPGbRnXcjxP/erz82zrd5GfjKxNhgwZ5zDS6dbPdPDrJ19elyFDhowwCKYhld+VIUOGjDTgrkMt2SDWfg4ZMmScySDTdRaXzvPBs7gMGTJuyEgLA9/8/MH6hgwZMm7CuMKRLoUn41qrkiFDxmgGSXjx63zrlhYGUDiWIUPGAYxdSbdaU8X6W+iHliFDxlBGrW0iLT0G2ztc/pQhQ8Y5DL7hS0Nkik9D+ZuwK0OGjKEMfhAlLRd7S6HorgwZMoYyeJq+k27rX38TiGXIkDGaUUvu95P+6WY02JLKkCHjAEba7sDLkJzd4cmQIWMeo9ZUUUul1RiodCFDhozRjP5mrlZI+ERDhgwZMqYyyOLSV9aeSUnof0OGDBkjGORl5HDLC5C7Dq4yZMg4jVE7ypJWLb4IcvfNCmXIkDGakVYSaovjSTSyEQz+MWTIkHFzBg9wHMPT/bXtI+oTkSFDxjgGLw/0i53rYM2bP/49I0OGjNEMnnCvFSPTVrNWiUKGDBlDGVc4eCDmZct+IJYhQ8ZsBh98uf1D7LbcoQwZMgYxeJBNGzL4/LXDswwZMk5jkACaglsNE2lAlyFDhgyw1euAeQEAZQ1lyJBxPIO3YvDNHz/WbtgaypAh47aMtBjAw+i2nB8JuDJkyBjKqB0gt/V6YCoP6DJkyBjE+AERAYmHmAyZbQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

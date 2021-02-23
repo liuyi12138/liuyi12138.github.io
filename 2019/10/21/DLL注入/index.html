@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>DLL注入 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="逆向,DLL">
+    <meta name="description" content="网安组新人任务Week3笔记">
+<meta name="keywords" content="逆向,DLL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DLL注入">
+<meta property="og:url" content="https://liuyi12138.github.io/2019/10/21/DLL注入/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="网安组新人任务Week3笔记">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T05:20:44.056Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DLL注入">
+<meta name="twitter:description" content="网安组新人任务Week3笔记">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">DLL注入</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">DLL注入</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-21T02:46:36.000Z" itemprop="datePublished" class="page-time">
+  2019-10-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DLL注入简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">DLL注入简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#创建远程线程"><span class="post-toc-number">2.</span> <span class="post-toc-text">创建远程线程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#主要思路"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">主要思路</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考文档"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">参考文档</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码实现"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">代码实现</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用注册表"><span class="post-toc-number">3.</span> <span class="post-toc-text">使用注册表</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#消息钩取"><span class="post-toc-number">4.</span> <span class="post-toc-text">消息钩取</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-DLL注入"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">DLL注入</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-21 10:46:36" datetime="2019-10-21T02:46:36.000Z"  itemprop="datePublished">2019-10-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>网安组新人任务Week3笔记<br><a id="more"></a> </p>
+<h2 id="DLL注入简介"><a href="#DLL注入简介" class="headerlink" title="DLL注入简介"></a>DLL注入简介</h2><ul>
+<li>DLL注入指的是向运行中的其他进程强制插入特定的DLL文件</li>
+<li>从技术细节上来讲，DLL注入命令其他进程自行调用LoadLibrary() API，加载用户指定的DLL文件</li>
+<li>DLL注入主要使用以下三种方法:<ul>
+<li>创建远程线程(CreateRemoteThread())</li>
+<li>使用注册表(AppInit_DLLs值)</li>
+<li>消息钩取(SetWindowsHookEx())</li>
+</ul>
+</li>
+</ul>
+<h2 id="创建远程线程"><a href="#创建远程线程" class="headerlink" title="创建远程线程"></a>创建远程线程</h2><h3 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h3><ul>
+<li>使用进程PID打开进程,获得句柄</li>
+<li>使用进程句柄申请内存空间</li>
+<li>把dll路径写入内存</li>
+<li>创建远程线程,调用LoadLibrary</li>
+<li>释放收尾工作或者卸载dll</li>
+</ul>
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="https://blog.csdn.net/ndl1302732/article/details/82998913" target="_blank" rel="noopener">参考文档</a></h3><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">InjectDll</span><span class="params">(DWORD dwPID, LPCTSTR szDllPath)</span></span>&#123;</span><br><span class="line">    HANDLE hProcess = <span class="literal">NULL</span>, hThread = <span class="literal">NULL</span>;</span><br><span class="line">    HMODULE hMod = <span class="literal">NULL</span>;</span><br><span class="line">    LPVOID pRemoteBuf = <span class="literal">NULL</span>;</span><br><span class="line">    DWORD dwBufSize = (DWORD)(<span class="built_in">strlen</span>(szDllPath) + <span class="number">1</span>) * <span class="keyword">sizeof</span>(<span class="keyword">char</span>);</span><br><span class="line">    LPTHREAD_START_ROUTINE pThreadProc;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"获取目标进程句柄\n"</span>);</span><br><span class="line">    <span class="comment">//获取目标进程句柄，获取PROCESS_ALL_ACCESS权限</span></span><br><span class="line">    <span class="keyword">if</span>(!(hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, dwPID)) )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"OpenProcess(%d) failed!!! [%d]\n"</span>, dwPID, GetLastError());</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将注入的DLL路径写入目标进程内存</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        //在指定进程的虚拟空间保留或提交内存区域</span></span><br><span class="line"><span class="comment">        LPVOID WINAPI VirtualAllocEx(</span></span><br><span class="line"><span class="comment">        __in      HANDLE hProcess,       //进程句柄</span></span><br><span class="line"><span class="comment">        __in_opt  LPVOID lpAddress,   //地址，为NULL自动找一个合适的地址</span></span><br><span class="line"><span class="comment">        __in      SIZE_T dwSize,           //内存块大小，单位为字节</span></span><br><span class="line"><span class="comment">        __in      DWORD flAllocationType, //分配类型，预定或调拨</span></span><br><span class="line"><span class="comment">        __in      DWORD flProtect             //保护属性</span></span><br><span class="line"><span class="comment">        );</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"将注入的DLL路径写入目标进程内存\n"</span>);</span><br><span class="line">    <span class="comment">//在指定进程的虚拟空间保留或提交内存区域</span></span><br><span class="line">    pRemoteBuf = VirtualAllocEx(hProcess, <span class="literal">NULL</span>, dwBufSize, MEM_COMMIT, PAGE_READWRITE);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        BOOL WINAPI WriteProcessMemory(</span></span><br><span class="line"><span class="comment">        __in   HANDLE hProcess,         //进程句柄</span></span><br><span class="line"><span class="comment">        __in   LPVOID lpBaseAddress, //写入地址</span></span><br><span class="line"><span class="comment">        __in   LPCVOID lpBuffer,          //源缓冲区</span></span><br><span class="line"><span class="comment">        __in   SIZE_T nSize,                 //缓冲区大小，单位为字节</span></span><br><span class="line"><span class="comment">        __out  SIZE_T *lpNumberOfBytesWritten  //实际写入的字节数</span></span><br><span class="line"><span class="comment">        );</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    WriteProcessMemory(hProcess, pRemoteBuf, (LPVOID)szDllPath, dwBufSize, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取LoadLibraryA()的API地址</span></span><br><span class="line">    <span class="comment">//在Windows系统中kernel32.dll在每个进程中的加载地址是相同的</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"获取LoadLibraryW()的API地址\n"</span>);</span><br><span class="line">    <span class="comment">//创建远程线程 主要目的是调用LoadLibrary</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        HANDLE hThread = CreateRemoteThread( </span></span><br><span class="line"><span class="comment">            __in HANDLE  hProcess,  //目标进程句柄</span></span><br><span class="line"><span class="comment">            __in_opt LPSECURITY_ATTRIBUTES lpThreadAttributes, //表示线程内核对象的安全属性，一般传入NULL表示使用默认设置</span></span><br><span class="line"><span class="comment">            __in SIZE_T dwStackSize,     //表示线程栈空间大小。传入0表示使用默认大小（1MB）</span></span><br><span class="line"><span class="comment">            __in LPTHREAD_START_ROUTINE lpStartAddress, //表示新线程所执行的线程函数地址，多个线程可以使用同一个函数地址</span></span><br><span class="line"><span class="comment">            __in_opt LPVOID lpParameter,    //线程函数参数</span></span><br><span class="line"><span class="comment">            __in DWORD dwCreationFlags,     //指定额外的标志来控制线程的创建，为0表示线程创建之后立即就可以进行调度，</span></span><br><span class="line"><span class="comment">                                            如果为CREATE_SUSPENDED则表示线程创建后暂停运行，这样它就无法调度，直到调用ResumeThread()</span></span><br><span class="line"><span class="comment">            __out_opt LPDWORD lpThreadId    //将返回线程的ID号，传入NULL表示不需要返回该线程ID号</span></span><br><span class="line"><span class="comment">        )</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="comment">//由于LoadLibrary是个宏，而非实际的函数，因此需要使用GetProcAddress并传入LoadLibraryW 或 LoadLibraryA来获取真实地址</span></span><br><span class="line">    hMod = GetModuleHandle(<span class="string">"kernel32.dll"</span>);</span><br><span class="line"></span><br><span class="line">    pThreadProc = (LPTHREAD_START_ROUTINE)GetProcAddress(hMod, <span class="string">"LoadLibraryA"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建远程线程</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"创建远程线程\n"</span>);</span><br><span class="line">    hThread = CreateRemoteThread(hProcess, <span class="literal">NULL</span>, <span class="number">0</span>, pThreadProc, pRemoteBuf, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">    WaitForSingleObject(hThread, INFINITE);</span><br><span class="line"></span><br><span class="line">    CloseHandle(hThread);</span><br><span class="line">    CloseHandle(hProcess);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用注册表"><a href="#使用注册表" class="headerlink" title="使用注册表"></a>使用注册表</h2><ul>
+<li>在注册表编辑器中将要注入的DLL路径写入到AppInit_DLLs项目中，将LoadAppIait_DLLs的项目值置为1，重启后，指定DLL会注入所有运行进程</li>
+<li>User32.dll被加载到进程时，会读取AppInit_DLLs注册表，若有值则调用LoadLibrery()加载用户DLL</li>
+</ul>
+<h2 id="消息钩取"><a href="#消息钩取" class="headerlink" title="消息钩取"></a>消息钩取</h2><ul>
+<li>用SetWindowsHookEx()安装好消息“钩子”，然后由OS将指定DLL强制追响应进程</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2019/10/21/DLL注入/" target="_blank" rel="external">https://liuyi12138.github.io/2019/10/21/DLL注入/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DLL/">DLL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/10/21/DLL注入/&title=《DLL注入》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/10/21/DLL注入/&title=《DLL注入》 — 知君的博客&source=网安组新人任务Week3笔记" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/10/21/DLL注入/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《DLL注入》 — 知君的博客&url=https://liuyi12138.github.io/2019/10/21/DLL注入/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/10/21/DLL注入/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/23/DLL注入实践/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">DLL注入实践</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/10/21/重定位表/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">重定位表</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/10/21/DLL注入/&title=《DLL注入》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/10/21/DLL注入/&title=《DLL注入》 — 知君的博客&source=网安组新人任务Week3笔记" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/10/21/DLL注入/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《DLL注入》 — 知君的博客&url=https://liuyi12138.github.io/2019/10/21/DLL注入/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/10/21/DLL注入/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNElEQVR42u3aQXIiMRAEQP7/afa6Bw+uag0bO1LOiSCwUepQqFv9esXP++JJPv/3O/l3vb7xYGBgPJbx/vhcLWu2uKv/mXzvL5uIgYFxAONz8F0BcnDyV8n3Xr6PgYGB8fF1sqzPG9EeKDEwMDDypc+WlUQ5BgYGxqyIzQ9/yXEwZ9xci2NgYDyQ0Tbr/+Xrr9xvYGBgPIrxLp/164S2GRetCgMDY2tGHnCzRlh+yGsDFwMD4xxGPtwwW8pKuZsXuhgYGCcwkpjLG/pto38WxD8ELgYGxsGMlWI1v/LMN+WHDcLAwNia0TbiZ3E5OzLWPAwMjE0Zs5ZZNKSV9PnKaL55rg0DA+NRjKS9lReus+vPpbEPDAyMrRlJ5K0ssW3kJYfF6ICIgYGxHaMdlZh9Pill2/ZfncoYGBiPZeRNtNnn7y10b+gFYmBgPJCR5HE7InbbrUXZmMPAwNiPMRvzWonmeneTnwoMDIytGSuHsxywPjRWXypgYGBsx8hjsW3ut++0/6dYKAYGxhaMtmXWjmjMytdiizEwMA5gtGVqTl0phosLTgwMjMMYs+bXbHRj1mKLilgMDIwtGO/ymQVxOzxRXzNgYGBszViJufXm2iyml34SMDAwHstYD82ctz5AhoGBcTIjD752hKId1LitFsfAwDiYkUdtDk4i9RcqBgYGRry4lQvOdiO++LuBgYHxXzLaVlobyvmWtUdPDAyMExjt2ER+pMsDt43y4aUmBgbG8xh/AKKsqHal2YSGAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

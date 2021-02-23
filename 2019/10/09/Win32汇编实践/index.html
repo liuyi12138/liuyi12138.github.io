@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Win32汇编实践 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="逆向,汇编">
+    <meta name="description" content="网安组新人任务Week1实践内容">
+<meta name="keywords" content="逆向,汇编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Win32汇编实践">
+<meta property="og:url" content="https://liuyi12138.github.io/2019/10/09/Win32汇编实践/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="网安组新人任务Week1实践内容">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T05:20:44.143Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Win32汇编实践">
+<meta name="twitter:description" content="网安组新人任务Week1实践内容">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Win32汇编实践</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Win32汇编实践</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-09T07:54:36.000Z" itemprop="datePublished" class="page-time">
+  2019-10-09
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#helloWorld"><span class="post-toc-number">1.</span> <span class="post-toc-text">helloWorld</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码编写"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">代码编写:</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编译与链接"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">编译与链接</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#login"><span class="post-toc-number">2.</span> <span class="post-toc-text">login</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码编写-1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">代码编写:</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#decrypt"><span class="post-toc-number">3.</span> <span class="post-toc-text">decrypt</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#C语言代码编写"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">C语言代码编写:</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Win32汇编实践"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Win32汇编实践</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-09 15:54:36" datetime="2019-10-09T07:54:36.000Z"  itemprop="datePublished">2019-10-09</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>网安组新人任务Week1实践内容<br><a id="more"></a> </p>
+<h2 id="helloWorld"><a href="#helloWorld" class="headerlink" title="helloWorld"></a>helloWorld</h2><ul>
+<li>任务需求：用win32汇编写出一个弹窗HelloWorld</li>
+</ul>
+<h3 id="代码编写"><a href="#代码编写" class="headerlink" title="代码编写:"></a>代码编写:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">;.386是伪指令 告诉编译器使用 386指令集</span><br><span class="line">.386</span><br><span class="line"></span><br><span class="line">;.model 内存模式[,语言模式][,其它模式]</span><br><span class="line">;flat 是win32程序使用的模式，代码和数据段使用同一个4GB段</span><br><span class="line">;stdcall 是函数调用约定，参数从右往左压栈</span><br><span class="line">.model flat,stdcall</span><br><span class="line"></span><br><span class="line">;大小写敏感</span><br><span class="line">option casemap:none</span><br><span class="line"></span><br><span class="line">;包含和应用的库文件</span><br><span class="line">include windows.inc</span><br><span class="line">include user32.inc</span><br><span class="line">includelib user32.lib</span><br><span class="line">include kernel32.inc</span><br><span class="line">includelib kernel32.lib</span><br><span class="line"></span><br><span class="line">;数据段</span><br><span class="line">.data</span><br><span class="line">szCaption   db  &apos;Dian团队网安组&apos;, 0</span><br><span class="line">szText      db  &apos;Hello,World !&apos;, 0</span><br><span class="line"></span><br><span class="line">;代码段</span><br><span class="line">.code</span><br><span class="line">start:</span><br><span class="line">    invoke MessageBox,NULL,offset szText,offset szCaption,MB_OK</span><br><span class="line">    invoke ExitProcess,NULL</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
+<h3 id="编译与链接"><a href="#编译与链接" class="headerlink" title="编译与链接"></a>编译与链接</h3><ul>
+<li>编译：<code>ml /c /coff helloWorld.asm</code><ul>
+<li>/c Assemble without linking 表示只编译不连接</li>
+<li>/coff generate COFF format object file 生成COFF格式的目标文件</li>
+</ul>
+</li>
+<li>链接<ul>
+<li><code>link /subsystem:windows helloWorld.obj</code>窗口类型的程序</li>
+<li><code>link /subsystem:console helloWorld.obj</code>控制台类型程序</li>
+</ul>
+</li>
+</ul>
+<h2 id="login"><a href="#login" class="headerlink" title="login"></a>login</h2><ul>
+<li>任务需求：用win32汇编写出一个控制台程序，请求用户输入用户名和密码，当用户名为root时无论密码为什么都能登录成功，当用户名为其他的时候，密码为另一个固定的密码时才能登录</li>
+</ul>
+<h3 id="代码编写-1"><a href="#代码编写-1" class="headerlink" title="代码编写:"></a>代码编写:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">;.386是伪指令 告诉编译器使用 386指令集</span><br><span class="line">.386</span><br><span class="line"></span><br><span class="line">;.model 内存模式[,语言模式][,其它模式]</span><br><span class="line">;flat 是win32程序使用的模式，代码和数据段使用同一个4GB段</span><br><span class="line">;stdcall 是函数调用约定，参数从右往左压栈</span><br><span class="line">.model flat,stdcall</span><br><span class="line"></span><br><span class="line">;大小写敏感</span><br><span class="line">option casemap:none</span><br><span class="line"></span><br><span class="line">;包含和应用的库文件</span><br><span class="line">include windows.inc</span><br><span class="line">include user32.inc</span><br><span class="line">includelib user32.lib</span><br><span class="line">include kernel32.inc</span><br><span class="line">includelib kernel32.lib</span><br><span class="line">include masm32.inc</span><br><span class="line">includelib masm32.lib</span><br><span class="line"></span><br><span class="line">;数据段</span><br><span class="line">.data</span><br><span class="line">colHello        db  &apos;Dian团队网安组登录测试&apos;, 0Ah,0</span><br><span class="line">colAccount      db  &apos;please input the account&apos;,0Ah,0</span><br><span class="line">colPassword     db  &apos;please input the password&apos;,0Ah,0</span><br><span class="line">colOk              db  &apos;login success !&apos;,0Ah,0</span><br><span class="line">colWrong           db  &apos;password wrong !&apos;,0Ah,0</span><br><span class="line">len   equ   8</span><br><span class="line"></span><br><span class="line">root            db  &apos;root&apos;,0</span><br><span class="line">truePassword    db  &apos;diangroup&apos;,0</span><br><span class="line">account         db  ?</span><br><span class="line">password        db  ?</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">;代码段</span><br><span class="line">.code</span><br><span class="line">start:</span><br><span class="line">    invoke StdOut, addr colHello</span><br><span class="line">    invoke StdOut, addr colAccount</span><br><span class="line">    invoke StdIn, addr account,len</span><br><span class="line">    invoke StdOut, addr colPassword</span><br><span class="line">    invoke StdIn, addr password,len</span><br><span class="line"></span><br><span class="line">    movsx AX, account</span><br><span class="line">    movsx BX, root</span><br><span class="line">    cmp AX,BX</span><br><span class="line">    jz @ok</span><br><span class="line">    </span><br><span class="line">    movsx AX, password</span><br><span class="line">    movsx BX, truePassword</span><br><span class="line">    cmp AX,BX</span><br><span class="line">    jz @ok</span><br><span class="line">    invoke StdOut, addr colWrong</span><br><span class="line">    jmp @end</span><br><span class="line"></span><br><span class="line">    @ok:</span><br><span class="line">    invoke StdOut, addr colOk</span><br><span class="line"></span><br><span class="line">    @end:</span><br><span class="line">    invoke ExitProcess, 0</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
+<h2 id="decrypt"><a href="#decrypt" class="headerlink" title="decrypt"></a>decrypt</h2><ul>
+<li>尝试反编译该程序找出解密密码</li>
+</ul>
+<h3 id="C语言代码编写"><a href="#C语言代码编写" class="headerlink" title="C语言代码编写:"></a>C语言代码编写:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    char* code = &quot;Welcome to Dian !&quot;;</span><br><span class="line">    int len = strlen(code);</span><br><span class="line">    char password[128];</span><br><span class="line">    char key[128];</span><br><span class="line">    char value[128] = &#123;&#125;;</span><br><span class="line">    char decode_value[128] = &#123;&#125;;</span><br><span class="line">    printf(&quot;please input the password\n&quot;);</span><br><span class="line">    scanf(&quot;%s&quot;,password);</span><br><span class="line">    getchar();</span><br><span class="line">    if(strcmp(password,&quot;Diangroup709&quot;) == 0)&#123;</span><br><span class="line">        for(int j = 0; j &lt; len; ++j)</span><br><span class="line">            value[j] = code[j] ^ code[len - j - 1];</span><br><span class="line">        printf(&quot;%s\n&quot;,value);</span><br><span class="line">        FILE *fp =fopen(&quot;D:\\dian&quot;,&quot;w&quot;);</span><br><span class="line">        if(fp == NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        fprintf(fp ,&quot;%s&quot;,value);</span><br><span class="line">        fclose(fp);</span><br><span class="line"></span><br><span class="line">        printf(&quot;please input the key to decrypt the file\n&quot;);</span><br><span class="line">        gets(key);</span><br><span class="line">        for(int j = 0; j &lt; len; ++j)&#123;</span><br><span class="line">            if(strlen(key) &gt; j)&#123;</span><br><span class="line">                decode_value[j] = value[j] ^ key[j];</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        FILE *fp1 =fopen(&quot;D:\\dian&quot;,&quot;w&quot;);</span><br><span class="line">        if(fp1 == NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        fprintf(fp1 ,&quot;%s&quot;,decode_value);</span><br><span class="line">        fclose(fp1);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">        printf(&quot;wrong\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2019/10/09/Win32汇编实践/" target="_blank" rel="external">https://liuyi12138.github.io/2019/10/09/Win32汇编实践/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/汇编/">汇编</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/10/09/Win32汇编实践/&title=《Win32汇编实践》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/10/09/Win32汇编实践/&title=《Win32汇编实践》 — 知君的博客&source=网安组新人任务Week1实践内容" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/10/09/Win32汇编实践/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Win32汇编实践》 — 知君的博客&url=https://liuyi12138.github.io/2019/10/09/Win32汇编实践/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/10/09/Win32汇编实践/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/11/PE初识/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">PE初识</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/29/静态调试&动态调试学习笔记/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">静态调试&amp;动态调试学习笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/10/09/Win32汇编实践/&title=《Win32汇编实践》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/10/09/Win32汇编实践/&title=《Win32汇编实践》 — 知君的博客&source=网安组新人任务Week1实践内容" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/10/09/Win32汇编实践/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Win32汇编实践》 — 知君的博客&url=https://liuyi12138.github.io/2019/10/09/Win32汇编实践/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/10/09/Win32汇编实践/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3aQY7jMAwEwPz/09nrLjBxukXPApbKpyAQLJUPBEXy9Yqf94cnWf/3P/ler994MDAwHst4Xz6f1rQbJ+9cW4OBgXEO4zrwXa/5tPEkKuZnw8DAwPi0ZnKU68CNgYGBMWdc/04SygSJgYGBMUnXrl+Xh9c8cN98F8fAwHggoy3W/8/fv9LfwMDAeBTjXT5tYF1rZNanwsDA2Joxf3Ubmidp6Jd0EwMDY1PGZMBi0sgsvnFyVcbAwDiG0W4wGbNIwnHRhMDAwDiAcZ3YtQ3LSbqZtxP+2QUDA+MAxlrgy9uNbaO05mFgYGzNyANfXla7t11a7IWBgbE1I1maNyzbtK9IARMSBgbGdoy2JZCHwjxEJiu/lPYwMDC2ZuSNw3bYa3KJbUkYGBgnMO66rLbJ5WTYorgBY2BgbMHIN1hrXuYjGu1n+iE1xMDAOJKRJ3PzAN02GDAwME5gJOW2vMW4dqx2qOKHM2NgYGzNyBO7SVNzrcTWFvgwMDBOYyQBd220Ym0so85wMTAwNmW0IxdJYG0/TT7q8aUTi4GBsTUjL7q1V9O1ZsANMyMYGBgPZ7zLZxKg24QvurhiYGAcwFgLc2sluetPk5T/5i1PDAyM5zLa8n07CrbGaEt+GBgYJzDywNemmPlY2Cj0Y2BgYOStxLhVkOxeUDEwMDDKktla6GzHNW4IuBgYGI9itM2ABJ+D85EODAyMMxl5cJy3KteOcltTEwMD43mMP6gGk2FEVjQOAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

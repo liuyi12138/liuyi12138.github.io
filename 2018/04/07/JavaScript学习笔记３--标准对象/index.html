@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>JavaScript学习笔记３--标准对象 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    <meta name="description" content="js与c的比较学习标准对象">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript学习笔记３--标准对象">
+<meta property="og:url" content="https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记３--标准对象/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="js与c的比较学习标准对象">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8xMi4yNC4xLnBuZw?x-oss-process=image/format,png">
+<meta property="og:updated_time" content="2021-02-23T05:20:44.131Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript学习笔记３--标准对象">
+<meta name="twitter:description" content="js与c的比较学习标准对象">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8xMi4yNC4xLnBuZw?x-oss-process=image/format,png">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JavaScript学习笔记３--标准对象</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JavaScript学习笔记３--标准对象</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-07T06:40:10.000Z" itemprop="datePublished" class="page-time">
+  2018-04-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编程语言/">编程语言</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#js与c的比较学习"><span class="post-toc-number">1.</span> <span class="post-toc-text">js与c的比较学习</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#标准对象"><span class="post-toc-number"></span> <span class="post-toc-text">标准对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Date"><span class="post-toc-number">0.1.</span> <span class="post-toc-text">Date</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#RegExp"><span class="post-toc-number">0.2.</span> <span class="post-toc-text">RegExp</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#JSON"><span class="post-toc-number">0.3.</span> <span class="post-toc-text">JSON</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-JavaScript学习笔记３--标准对象"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JavaScript学习笔记３--标准对象</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-07 14:40:10" datetime="2018-04-07T06:40:10.000Z"  itemprop="datePublished">2018-04-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编程语言/">编程语言</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="js与c的比较学习"><a href="#js与c的比较学习" class="headerlink" title="js与c的比较学习"></a>js与c的比较学习</h3><h2 id="标准对象"><a href="#标准对象" class="headerlink" title="标准对象"></a>标准对象</h2><a id="more"></a> 
+<h4 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h4><ul>
+<li><p>Date对象用来表示日期和时间。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var now = new Date();</span><br><span class="line">now; // Wed Jun 24 2015 19:49:22 GMT+0800 (CST)</span><br><span class="line">now.getFullYear(); // 2015, 年份</span><br><span class="line">now.getMonth(); // 5, 月份，注意月份范围是0~11，5表示六月</span><br><span class="line">now.getDate(); // 24, 表示24号</span><br><span class="line">now.getDay(); // 3, 表示星期三</span><br><span class="line">now.getHours(); // 19, 24小时制</span><br><span class="line">now.getMinutes(); // 49, 分钟</span><br><span class="line">now.getSeconds(); // 22, 秒</span><br><span class="line">now.getMilliseconds(); // 875, 毫秒数</span><br><span class="line">now.getTime(); // 1435146562875, 以number形式表示的时间戳</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>var d = new Date(2015, 5, 19, 20, 15, 30, 123); ——创建一个指定日期和时间的Date对象<br><strong> JavaScript的Date对象月份值从0开始，牢记0=1月，1=2月，2=3月，……，11=12月</strong></p>
+</li>
+<li><p>var d = Date.parse(‘2015-06-24T19:49:22.875+08:00’); ——解析一个符合ISO 8601格式的字符串，但它返回的不是Date对象，而是一个时间戳</p>
+</li>
+<li>var d = new Date(1435146562875);　——把时间戳转换为Date对象</li>
+</ul>
+<p><strong>使用Date.parse()时传入的字符串使用实际月份1-12，转换为Date对象后getMonth()获取的月份值为0-11。</strong></p>
+<h4 id="RegExp"><a href="#RegExp" class="headerlink" title="RegExp"></a>RegExp</h4><ul>
+<li><p>在正则表达式中，用*表示任意个字符（包括0个），用+表示至少一个字符，用?表示0个或1个字符，用{n}表示n个字符，用{n,m}表示n-m个字符</p>
+</li>
+<li><p>‘-‘是特殊字符，在正则表达式中，要用’\’转义</p>
+</li>
+<li>\s匹配空格</li>
+<li><strong>要做更精确地匹配，可以用[]表示范围</strong></li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8xMi4yNC4xLnBuZw?x-oss-process=image/format,png" alt="正则表达式进阶" title>
+                </div>
+                <div class="image-caption">正则表达式进阶</div>
+            </figure>
+<ul>
+<li>创建一个正则表达式<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var re1 = /ABC\-001/;</span><br><span class="line">var re2 = new RegExp('ABC\\-001');</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong> 如果使用第二种写法，因为字符串的转义问题，字符串的两个\实际上是一个\ </strong></p>
+<ul>
+<li>re.test(‘….’)；　 ——RegExp对象的test()方法用于测试给定的字符串是否符合条件</li>
+<li>‘a,b;; c  d’.split(/[\s\,\;]+/); // [‘a’, ‘b’, ‘c’, ‘d’]　——切分字符串</li>
+<li><p>分组——除了简单地判断是否匹配之外，正则表达式还有提取子串的强大功能。用()表示的就是要提取的分组（Group）</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var re = /^(\d&#123;3&#125;)-(\d&#123;3,8&#125;)$/;</span><br><span class="line">re.exec('010-12345'); // ['010-12345', '010', '12345']　——在RegExp对象上用exec()方法提取出子串来。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>exec()方法在匹配成功后，会返回一个Array，第一个元素是正则表达式匹配到的整个字符串，后面的字符串表示匹配成功的子串</p>
+</li>
+<li>正则匹配默认是贪婪匹配，也就是匹配尽可能多的字符</li>
+<li>加个?就可以让\d+采用非贪婪匹配</li>
+<li><p>全局搜索</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var r1 = /test/g;</span><br><span class="line">// 等价于:</span><br><span class="line">var r2 = new RegExp('test', 'g');</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>全局匹配可以多次执行exec()方法来搜索一个匹配的字符串。当我们指定g标志后，每次运行exec()，正则表达式本身会更新lastIndex属性，表示上次匹配到的最后索引</p>
+</li>
+<li>全局匹配类似搜索，因此不能使用/^…$/，那样只会最多匹配一次</li>
+<li>正则表达式还可以指定i标志，表示忽略大小写，m标志，表示执行多行匹配</li>
+</ul>
+<h4 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h4><p><strong>JSON中的数据类型</strong></p>
+<ul>
+<li>number：和JavaScript的number完全一致</li>
+<li>boolean：就是JavaScript的true或false</li>
+<li>string：就是JavaScript的string</li>
+<li>null：就是JavaScript的null</li>
+<li>array：就是JavaScript的Array表示方式——[]</li>
+<li><p>object：就是JavaScript的{ … }表示方式</p>
+</li>
+<li><p>JSON的字符串规定必须用双引号””，Object的键也必须用双引号””</p>
+</li>
+<li>var s = JSON.stringify(xiaoming); ——把小明这个对象序列化成JSON格式的字符串</li>
+<li>JSON可以加上参数，第一个参数是对象，第二个参数用于控制如何筛选对象的键值，还可以传入一个函数</li>
+<li>JSON.parse(‘[1,2,3]’) ——反序列化，把一个JSON格式的字符串变成一个JavaScript对象</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2018/04/07/JavaScript学习笔记３--标准对象/" target="_blank" rel="external">https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记３--标准对象/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记３--标准对象/&title=《JavaScript学习笔记３--标准对象》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记３--标准对象/&title=《JavaScript学习笔记３--标准对象》 — 知君的博客&source=js与c的比较学习标准对象" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记３--标准对象/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript学习笔记３--标准对象》 — 知君的博客&url=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记３--标准对象/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记３--标准对象/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/07/JavaScript学习笔记4--互动方法/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">JavaScript学习笔记4--互动方法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/07/JavaScript学习笔记2--函数/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JavaScript学习笔记2--函数</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记３--标准对象/&title=《JavaScript学习笔记３--标准对象》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记３--标准对象/&title=《JavaScript学习笔记３--标准对象》 — 知君的博客&source=js与c的比较学习标准对象" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记３--标准对象/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript学习笔记３--标准对象》 — 知君的博客&url=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记３--标准对象/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记３--标准对象/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACr0lEQVR42u3a0WrdMBAE0P7/T6fQp8LNdWZW2jSU46fgOLKOA9J61r9+xcfHn+P1zN/nX695N87r8TrC85WXDzw8PLzR1JMbP2OeJ5GTnv82nzMeHh7eNu95M8gX6OS37Qj5JoSHh4f303jP7HZy+Rk8PDy8/4PX3r4t09uHiIeHh/f9vLsB60m8m28Ml7MWPDw8vJjXNsB+ws+L/T08PDy8g676yaLcjnne9PpkZDw8PLwFXt7UP29i3Qpw69YaHh4e3jIvAecLehtb5GMW/xg8PDy8Bd5sQU/AbUsseUxtAI2Hh4d3lzcrZ9uJtiFs+3nB2xni4eHhLfPy0nZ7I8mbXtEuh4eHh3eVlw/RxhZtlNCGDkWogYeHh3eVly/cJ8HuSQR8dBc8PDy8Nd7JEpwv98lGMot9394dDw8Pb4GXD3QyoXaryB/3tcIaDw8Pb37HC/FBsjGcR8MtGw8PD+8Wrw0d8jZV/qHArC0XUfHw8PDWeHmhnC/6bVGehyBH35Th4eHh3ckQhot1G+DmZXRe++dRLx4eHt4tXlsczwLWW5tHQsLDw8Pb5uU7xq3lfpYuJ/HEFwo8PDy8BV7bZMqX6XoRLwOF4v0ADw8P75iXZxV5ALHR9HreYAo3Hh4e3jEvJyUPqG13zc60v8XDw8O7y9uIYmfbzOzKLzYMPDw8vGXerL2Ut/k3yvovSnA8PDy8BV7+/j5bmtt2Wh00zB4xHh4e3gHvozxmSWkbOrQB7ttx8PDw8BZ4s8J3NqGW1IYjs00FDw8Pb8Zry+XZRwYzQFtw4+Hh4X0nr80wNqZyvoN9cj0eHh7eP+XlL/yzK9trokeAh4eH98N4efN+Vny3dz8qqfHw8PBK3kkYcdKUyiOJJMKoPyDAw8PDG/GGL/ltaVvGHCsMPDw8vFPeb3mUQQUn+aYpAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

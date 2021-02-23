@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Win32汇编入门 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="逆向,汇编">
+    <meta name="description" content="网安组新人任务Week1笔记">
+<meta name="keywords" content="逆向,汇编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Win32汇编入门">
+<meta property="og:url" content="https://liuyi12138.github.io/2019/09/21/Win32汇编入门/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="网安组新人任务Week1笔记">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T05:20:44.142Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Win32汇编入门">
+<meta name="twitter:description" content="网安组新人任务Week1笔记">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Win32汇编入门</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Win32汇编入门</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-21T09:15:36.000Z" itemprop="datePublished" class="page-time">
+  2019-09-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#x86汇编"><span class="post-toc-number">1.</span> <span class="post-toc-text">x86汇编</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#门"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">门</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#优先级"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">优先级</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#x86寄存器"><span class="post-toc-number">2.</span> <span class="post-toc-text">x86寄存器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#32位CPU寄存器"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">32位CPU寄存器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#段寄存器"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">段寄存器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#16位通用寄存器"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">16位通用寄存器</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Win32汇编入门"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Win32汇编入门</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-21 17:15:36" datetime="2019-09-21T09:15:36.000Z"  itemprop="datePublished">2019-09-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>网安组新人任务Week1笔记<br><a id="more"></a> </p>
+<h2 id="x86汇编"><a href="#x86汇编" class="headerlink" title="x86汇编"></a>x86汇编</h2><h3 id="门"><a href="#门" class="headerlink" title="门"></a>门</h3><ul>
+<li>保护模式下增加了门的概念用来保证低优先级的代码安全调用高优先级的代码</li>
+<li>“门”指向某个优先级高的程序所规定的入口，所有优先级低的程序调用优先级高的程序只能通过门重定向到规定的入口点</li>
+<li>保护模式下的中断与异常等服务程序也要从门进入(从用户代码切换到操作系统)</li>
+<li>在Win32中由于用户程序没有权限修改中断描述符表，所以无法使用int中断，而是用动态链接库来代替中断服务程序</li>
+</ul>
+<h3 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h3><ul>
+<li>80386处理器有4个优先级，0是最高级，3是最低级</li>
+<li>特权级代码一般是操作系统的代码，其他的是用户代码</li>
+<li>在Windows上操作系统运行于0级，应用程序运行于3级</li>
+</ul>
+<h2 id="x86寄存器"><a href="#x86寄存器" class="headerlink" title="x86寄存器"></a>x86寄存器</h2><h3 id="32位CPU寄存器"><a href="#32位CPU寄存器" class="headerlink" title="32位CPU寄存器"></a>32位CPU寄存器</h3><ul>
+<li>EAX   累加寄存器</li>
+<li>EBX   基地址寄存器</li>
+<li>ECX   计数寄存器</li>
+<li>EDX   数据寄存器</li>
+<li>ESP   堆栈顶指针</li>
+<li>EBP   堆栈基指针</li>
+<li>ESI   源变址寄存器</li>
+<li>EDI   目的变址寄存器</li>
+</ul>
+<h3 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a>段寄存器</h3><ul>
+<li>CS    代码段寄存器</li>
+<li>DS    数据段寄存器</li>
+<li>ES    附加段寄存器</li>
+<li>SS    堆栈段寄存器</li>
+<li>FS    附加段寄存器</li>
+<li>GS    附加段寄存器</li>
+</ul>
+<h3 id="16位通用寄存器"><a href="#16位通用寄存器" class="headerlink" title="16位通用寄存器"></a>16位通用寄存器</h3><ul>
+<li>AX、BX、CX、DX为通用寄存器</li>
+<li>每一个16位通用寄存器可分为两个8位寄存器 <code>AX：AH + AL</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br></pre></td><td class="code"><pre><span class="line">X86和X87汇编指令大全（有注释）  </span><br><span class="line">---------- 一、数据传输指令 ----------------------------------------------------  </span><br><span class="line">它们在存贮器和寄存器、寄存器和输入输出端口之间传送数据.  </span><br><span class="line">1. 通用数据传送指令.  </span><br><span class="line">    MOV     传送字或字节.  </span><br><span class="line">    MOVSX   先符号扩展,再传送.  </span><br><span class="line">    MOVZX   先零扩展,再传送.  </span><br><span class="line">    PUSH    把字压入堆栈.  </span><br><span class="line">    POP     把字弹出堆栈.  </span><br><span class="line">    PUSHA   把AX,CX,DX,BX,SP,BP,SI,DI依次压入堆栈.  </span><br><span class="line">    POPA    把DI,SI,BP,SP,BX,DX,CX,AX依次弹出堆栈.  </span><br><span class="line">    PUSHAD  把EAX,ECX,EDX,EBX,ESP,EBP,ESI,EDI依次压入堆栈.  </span><br><span class="line">    POPAD   把EDI,ESI,EBP,ESP,EBX,EDX,ECX,EAX依次弹出堆栈.  </span><br><span class="line">    BSWAP   交换32位寄存器里字节的顺序  </span><br><span class="line">    XCHG    交换字或字节.(至少有一个操作数为寄存器,段寄存器不可作为操作数)  </span><br><span class="line">    CMPXCHG 比较并交换操作数.(第二个操作数必须为累加器AL/AX/EAX)  </span><br><span class="line">    XADD    先交换再累加.(结果在第一个操作数里)  </span><br><span class="line">    XLAT    字节查表转换.----BX指向一张256字节的表的起点,AL为表的索引值(0-255,即0-FFH);返回AL为查表结果.([BX+AL]-&gt;AL)  </span><br><span class="line">2. 输入输出端口传送指令.  </span><br><span class="line">    IN      I/O端口输入. ( 语法: IN   累加器,    &#123;端口号│DX&#125; )  </span><br><span class="line">    OUT     I/O端口输出. ( 语法: OUT &#123;端口号│DX&#125;,累加器 )输入输出端口由立即方式指定时,    其范围是 0-255; 由寄存器 DX 指定时,其范围是    0-65535.  </span><br><span class="line">3. 目的地址传送指令.  </span><br><span class="line">    LEA     装入有效地址.例: LEA DX,string ;把偏移地址存到DX.  </span><br><span class="line">    LDS     传送目标指针,把指针内容装入DS.例: LDS SI,string   ;把段地址:偏移地址存到DS:SI.  </span><br><span class="line">    LES     传送目标指针,把指针内容装入ES.例: LES DI,string   ;把段地址:偏移地址存到ES:DI.  </span><br><span class="line">    LFS     传送目标指针,把指针内容装入FS.例: LFS DI,string   ;把段地址:偏移地址存到FS:DI.  </span><br><span class="line">    LGS     传送目标指针,把指针内容装入GS.例: LGS DI,string   ;把段地址:偏移地址存到GS:DI.  </span><br><span class="line">    LSS     传送目标指针,把指针内容装入SS.例: LSS DI,string   ;把段地址:偏移地址存到SS:DI.  </span><br><span class="line">4. 标志传送指令.  </span><br><span class="line">    LAHF    标志寄存器传送,把标志装入AH.  </span><br><span class="line">    SAHF    标志寄存器传送,把AH内容装入标志寄存器.  </span><br><span class="line">    PUSHF   标志入栈.  </span><br><span class="line">    POPF    标志出栈.  </span><br><span class="line">    PUSHD   32位标志入栈.  </span><br><span class="line">    POPD    32位标志出栈.  </span><br><span class="line">---------- 二、算术运算指令 ----------------------------------------------------  </span><br><span class="line">    ADD     加法.  </span><br><span class="line">    ADC     带进位加法.  </span><br><span class="line">    INC     加 1.  </span><br><span class="line">    AAA     加法的ASCII码调整.  </span><br><span class="line">    DAA     加法的十进制调整.  </span><br><span class="line">    SUB     减法.  </span><br><span class="line">    SBB     带借位减法.  </span><br><span class="line">    DEC     减 1.  </span><br><span class="line">    NEG     求反(以    0 减之).  </span><br><span class="line">    CMP     比较.(两操作数作减法,仅修改标志位,不回送结果).  </span><br><span class="line">    AAS     减法的ASCII码调整.  </span><br><span class="line">    DAS     减法的十进制调整.  </span><br><span class="line">    MUL     无符号乘法.结果回送AH和AL(字节运算),或DX和AX(字运算),  </span><br><span class="line">    IMUL    整数乘法.结果回送AH和AL(字节运算),或DX和AX(字运算),  </span><br><span class="line">    AAM     乘法的ASCII码调整.  </span><br><span class="line">    DIV     无符号除法.结果回送:商回送AL,余数回送AH, (字节运算);或 商回送AX,余数回送DX, (字运算).  </span><br><span class="line">    IDIV    整数除法.结果回送:商回送AL,余数回送AH, (字节运算);或 商回送AX,余数回送DX, (字运算).  </span><br><span class="line">    AAD     除法的ASCII码调整.  </span><br><span class="line">    CBW     字节转换为字. (把AL中字节的符号扩展到AH中去)  </span><br><span class="line">    CWD     字转换为双字. (把AX中的字的符号扩展到DX中去)  </span><br><span class="line">    CWDE    字转换为双字. (把AX中的字符号扩展到EAX中去)  </span><br><span class="line">    CDQ     双字扩展. (把EAX中的字的符号扩展到EDX中去)  </span><br><span class="line">---------- 三、逻辑运算指令 ----------------------------------------------------  </span><br><span class="line">    AND     与运算.  </span><br><span class="line">    OR      或运算.  </span><br><span class="line">    XOR     异或运算.  </span><br><span class="line">    NOT     取反.  </span><br><span class="line">    TEST    测试.(两操作数作与运算,仅修改标志位,不回送结果).  </span><br><span class="line">    SHL     逻辑左移.  </span><br><span class="line">    SAL     算术左移.(=SHL)  </span><br><span class="line">    SHR     逻辑右移.  </span><br><span class="line">    SAR     算术右移.(=SHR)  </span><br><span class="line">    ROL     循环左移.  </span><br><span class="line">    ROR     循环右移.  </span><br><span class="line">    RCL     通过进位的循环左移.  </span><br><span class="line">    RCR     通过进位的循环右移.  </span><br><span class="line">              以上八种移位指令,其移位次数可达255次.  </span><br><span class="line">              移位一次时, 可直接用操作码. 如 SHL AX,1.  </span><br><span class="line">              移位&gt;1次时, 则由寄存器CL给出移位次数.  </span><br><span class="line">              如 MOV CL,04   SHL AX,CL  </span><br><span class="line">---------- 四、串指令 ----------------------------------------------------------  </span><br><span class="line">              DS:SI 源串段寄存器 :源串变址.  </span><br><span class="line">              ES:DI 目标串段寄存器:目标串变址.  </span><br><span class="line">              CX 重复次数计数器.  </span><br><span class="line">              AL/AX 扫描值.  </span><br><span class="line">              D标志   0表示重复操作中SI和DI应自动增量; 1表示应自动减量.  </span><br><span class="line">              Z标志   用来控制扫描或比较操作的结束.  </span><br><span class="line">    MOVS    串传送.( MOVSB 传送字符. MOVSW 传送字. MOVSD 传送双字. )  </span><br><span class="line">    CMPS    串比较.( CMPSB 比较字符. CMPSW 比较字. )  </span><br><span class="line">    SCAS    串扫描.把AL或AX的内容与目标串作比较,比较结果反映在标志位.  </span><br><span class="line">    LODS    装入串.把源串中的元素(字或字节)逐一装入AL或AX中.( LODSB 传送字符. LODSW 传送字.    LODSD 传送双字. )  </span><br><span class="line">    STOS    保存串.是LODS的逆过程.  </span><br><span class="line">    REP         当CX/ECX&lt;&gt;0时重复.  </span><br><span class="line">    REPE/REPZ   当ZF=1或比较结果相等,且CX/ECX&lt;&gt;0时重复.  </span><br><span class="line">    REPNE/REPNZ 当ZF=0或比较结果不相等,且CX/ECX&lt;&gt;0时重复.  </span><br><span class="line">    REPC        当CF=1且CX/ECX&lt;&gt;0时重复.  </span><br><span class="line">    REPNC       当CF=0且CX/ECX&lt;&gt;0时重复.  </span><br><span class="line">---------- 五、程序转移指令 ----------------------------------------------------  </span><br><span class="line">1. 无条件转移指令 (长转移)  </span><br><span class="line">    JMP         无条件转移指令  </span><br><span class="line">    CALL        过程调用  </span><br><span class="line">    RET/RETF    过程返回.  </span><br><span class="line">2. 条件转移指令   (短转移,-128到+127的距离内)( 当且仅当(SF XOR OF)=1时,OP1&lt;OP2 )  </span><br><span class="line">    JA/JNBE     不小于或不等于时转移.  </span><br><span class="line">    JAE/JNB     大于或等于转移.  </span><br><span class="line">    JB/JNAE     小于转移.  </span><br><span class="line">    JBE/JNA     小于或等于转移.  </span><br><span class="line">        以上四条,测试无符号整数运算的结果(标志C和Z).  </span><br><span class="line">    JG/JNLE     大于转移.  </span><br><span class="line">    JGE/JNL     大于或等于转移.  </span><br><span class="line">    JL/JNGE     小于转移.  </span><br><span class="line">    JLE/JNG     小于或等于转移.  </span><br><span class="line">        以上四条,测试带符号整数运算的结果(标志S,O和Z).  </span><br><span class="line">    JE/JZ       等于转移.  </span><br><span class="line">    JNE/JNZ     不等于时转移.  </span><br><span class="line">    JC          有进位时转移.  </span><br><span class="line">    JNC         无进位时转移.  </span><br><span class="line">    JNO         不溢出时转移.  </span><br><span class="line">    JNP/JPO     奇偶性为奇数时转移.  </span><br><span class="line">    JNS         符号位为 &quot;0&quot; 时转移.  </span><br><span class="line">    JO          溢出转移.  </span><br><span class="line">    JP/JPE      奇偶性为偶数时转移.  </span><br><span class="line">    JS          符号位为 &quot;1&quot; 时转移.  </span><br><span class="line">3. 循环控制指令(短转移)  </span><br><span class="line">    LOOP            CX不为零时循环.  </span><br><span class="line">    LOOPE/LOOPZ     CX不为零且标志Z=1时循环.  </span><br><span class="line">    LOOPNE/LOOPNZ   CX不为零且标志Z=0时循环.  </span><br><span class="line">    JCXZ            CX为零时转移.  </span><br><span class="line">    JECXZ           ECX为零时转移.  </span><br><span class="line">4. 中断指令  </span><br><span class="line">    INT         中断指令  </span><br><span class="line">    INTO        溢出中断  </span><br><span class="line">    IRET        中断返回  </span><br><span class="line">5. 处理器控制指令  </span><br><span class="line">    HLT         处理器暂停,  直到出现中断或复位信号才继续.  </span><br><span class="line">    WAIT        当芯片引线TEST为高电平时使CPU进入等待状态.  </span><br><span class="line">    ESC         转换到外处理器.  </span><br><span class="line">    LOCK        封锁总线.  </span><br><span class="line">    NOP         空操作.  </span><br><span class="line">    STC         置进位标志位.  </span><br><span class="line">    CLC         清进位标志位.  </span><br><span class="line">    CMC         进位标志取反.  </span><br><span class="line">    STD         置方向标志位.  </span><br><span class="line">    CLD         清方向标志位.  </span><br><span class="line">    STI         置中断允许位.  </span><br><span class="line">    CLI         清中断允许位.  </span><br><span class="line">---------- 六、伪指令 ----------------------------------------------------------  </span><br><span class="line">    DW          定义字(2字节).  </span><br><span class="line">    PROC        定义过程.  </span><br><span class="line">    ENDP        过程结束.  </span><br><span class="line">    SEGMENT     定义段.  </span><br><span class="line">    ASSUME      建立段寄存器寻址.  </span><br><span class="line">    ENDS        段结束.  </span><br><span class="line">    END         程序结束.  </span><br><span class="line">---------- 七、处理机控制指令：标志处理指令 ------------------------------------  </span><br><span class="line">    CLC     进位位置0指令  </span><br><span class="line">    CMC     进位位求反指令  </span><br><span class="line">    STC     进位位置为1指令  </span><br><span class="line">    CLD     方向标志置1指令  </span><br><span class="line">    STD     方向标志位置1指令  </span><br><span class="line">    CLI     中断标志置0指令  </span><br><span class="line">    STI     中断标志置1指令  </span><br><span class="line">    NOP     无操作  </span><br><span class="line">    HLT     停机  </span><br><span class="line">    WAIT    等待  </span><br><span class="line">    ESC     换码  </span><br><span class="line">    LOCK    封锁  </span><br><span class="line">========== 浮点运算指令集 ======================================================  </span><br><span class="line">---------- 一、控制指令(带9B的控制指令前缀F变为FN时浮点不检查，机器码去掉9B)----  </span><br><span class="line">FINIT                 初始化浮点部件                  机器码  9B DB E3  </span><br><span class="line">FCLEX                 清除异常                         机器码  9B DB E2  </span><br><span class="line">FDISI                 浮点检查禁止中断                 机器码  9B DB E1  </span><br><span class="line">FENI                  浮点检查禁止中断二            机器码  9B DB E0  </span><br><span class="line">WAIT                  同步CPU和FPU                    机器码  9B  </span><br><span class="line">FWAIT                 同步CPU和FPU                    机器码  D9 D0  </span><br><span class="line">FNOP                  无操作                          机器码  DA E9  </span><br><span class="line">FXCH                  交换ST(0)和ST(1)                机器码  D9 C9  </span><br><span class="line">FXCH ST(i)            交换ST(0)和ST(i)                机器码  D9 C1iii  </span><br><span class="line">FSTSW ax              状态字到ax                       机器码  9B DF E0  </span><br><span class="line">FSTSW   word ptr mem  状态字到mem                      机器码  9B DD mm111mmm  </span><br><span class="line">FLDCW   word ptr mem  mem到状态字                      机器码  D9 mm101mmm  </span><br><span class="line">FSTCW   word ptr mem  控制字到mem                      机器码  9B D9 mm111mmm  </span><br><span class="line">  </span><br><span class="line">FLDENV  word ptr mem  mem到全环境                      机器码  D9 mm100mmm  </span><br><span class="line">FSTENV  word ptr mem  全环境到mem                      机器码  9B D9 mm110mmm  </span><br><span class="line">FRSTOR  word ptr mem  mem到FPU状态                    机器码  DD mm100mmm  </span><br><span class="line">FSAVE   word ptr mem  FPU状态到mem                    机器码  9B DD mm110mmm  </span><br><span class="line">  </span><br><span class="line">FFREE ST(i)           标志ST(i)未使用                   机器码  DD C0iii  </span><br><span class="line">FDECSTP               减少栈指针1-&gt;0 2-&gt;1             机器码  D9 F6  </span><br><span class="line">FINCSTP               增加栈指针0-&gt;1 1-&gt;2             机器码  D9 F7  </span><br><span class="line">FSETPM                浮点设置保护                       机器码  DB E4  </span><br><span class="line">---------- 二、数据传送指令 ----------------------------------------------------  </span><br><span class="line">FLDZ                  将0.0装入ST(0)                  机器码  D9 EE  </span><br><span class="line">FLD1                  将1.0装入ST(0)                  机器码  D9 E8  </span><br><span class="line">FLDPI                 将π装入ST(0)                    机器码  D9 EB  </span><br><span class="line">FLDL2T                将ln10/ln2装入ST(0)             机器码  D9 E9  </span><br><span class="line">FLDL2E                将1/ln2装入ST(0)                机器码  D9 EA  </span><br><span class="line">FLDLG2                将ln2/ln10装入ST(0)             机器码  D9 EC  </span><br><span class="line">FLDLN2                将ln2装入ST(0)                  机器码  D9 ED  </span><br><span class="line">  </span><br><span class="line">FLD    real4 ptr mem  装入mem的单精度浮点数             机器码  D9 mm000mmm  </span><br><span class="line">FLD    real8 ptr mem  装入mem的双精度浮点数             机器码  DD mm000mmm  </span><br><span class="line">FLD   real10 ptr mem  装入mem的十字节浮点数             机器码  DB mm101mmm  </span><br><span class="line">  </span><br><span class="line">FILD    word ptr mem  装入mem的二字节整数              机器码  DF mm000mmm  </span><br><span class="line">FILD   dword ptr mem  装入mem的四字节整数              机器码  DB mm000mmm  </span><br><span class="line">FILD   qword ptr mem  装入mem的八字节整数              机器码  DF mm101mmm  </span><br><span class="line">  </span><br><span class="line">FBLD   tbyte ptr mem  装入mem的十字节BCD数            机器码  DF mm100mmm  </span><br><span class="line">  </span><br><span class="line">FST    real4 ptr mem  保存单精度浮点数到mem             机器码  D9 mm010mmm  </span><br><span class="line">FST    real8 ptr mem  保存双精度浮点数到mem             机器码  DD mm010mmm  </span><br><span class="line">  </span><br><span class="line">FIST    word ptr mem  保存二字节整数到mem              机器码  DF mm010mmm  </span><br><span class="line">FIST   dword ptr mem  保存四字节整数到mem              机器码  DB mm010mmm  </span><br><span class="line">  </span><br><span class="line">FSTP   real4 ptr mem  保存单精度浮点数到mem并出栈      机器码  D9 mm011mmm  </span><br><span class="line">FSTP   real8 ptr mem  保存双精度浮点数到mem并出栈      机器码  DD mm011mmm  </span><br><span class="line">FSTP  real10 ptr mem  保存十字节浮点数到mem并出栈      机器码  DB mm111mmm  </span><br><span class="line">  </span><br><span class="line">FISTP   word ptr mem  保存二字节整数到mem并出栈           机器码  DF mm011mmm  </span><br><span class="line">FISTP  dword ptr mem  保存四字节整数到mem并出栈           机器码  DB mm011mmm  </span><br><span class="line">FISTP  qword ptr mem  保存八字节整数到mem并出栈           机器码  DF mm111mmm  </span><br><span class="line">  </span><br><span class="line">FBSTP  tbyte ptr mem  保存十字节BCD数到mem并出栈     机器码  DF mm110mmm  </span><br><span class="line">  </span><br><span class="line">FCMOVB                ST(0),ST(i) &lt;时传送              机器码  DA C0iii  </span><br><span class="line">FCMOVBE               ST(0),ST(i) &lt;=时传送             机器码  DA D0iii  </span><br><span class="line">FCMOVE                ST(0),ST(i) =时传送             机器码  DA C1iii  </span><br><span class="line">FCMOVNB               ST(0),ST(i) &gt;=时传送             机器码  DB C0iii  </span><br><span class="line">FCMOVNBE              ST(0),ST(i) &gt;时传送              机器码  DB D0iii  </span><br><span class="line">FCMOVNE               ST(0),ST(i) !=时传送            机器码  DB C1iii  </span><br><span class="line">FCMOVNU               ST(0),ST(i) 有序时传送        机器码  DB D1iii  </span><br><span class="line">FCMOVU                ST(0),ST(i) 无序时传送        机器码  DA D1iii  </span><br><span class="line">---------- 三、比较指令   --------------------------------------------------------  </span><br><span class="line">FCOM                  ST(0)-ST(1)                      机器码  D8 D1  </span><br><span class="line">FCOMI                 ST(0),ST(i)  ST(0)-ST(1)         机器码  DB F0iii  </span><br><span class="line">FCOMIP                ST(0),ST(i)  ST(0)-ST(1)并出栈   机器码  DF F0iii  </span><br><span class="line">FCOM   real4 ptr mem  ST(0)-实数mem                      机器码  D8 mm010mmm  </span><br><span class="line">FCOM   real8 ptr mem  ST(0)-实数mem                      机器码  DC mm010mmm  </span><br><span class="line">  </span><br><span class="line">FICOM   word ptr mem  ST(0)-整数mem                      机器码  DE mm010mmm  </span><br><span class="line">FICOM  dword ptr mem  ST(0)-整数mem                      机器码  DA mm010mmm  </span><br><span class="line">FICOMP  word ptr mem  ST(0)-整数mem并出栈               机器码  DE mm011mmm  </span><br><span class="line">FICOMP dword ptr mem  ST(0)-整数mem并出栈               机器码  DA mm011mmm  </span><br><span class="line">  </span><br><span class="line">FTST                  ST(0)-0                          机器码  D9 E4  </span><br><span class="line">FUCOM  ST(i)          ST(0)-ST(i)                      机器码  DD E0iii  </span><br><span class="line">FUCOMP ST(i)          ST(0)-ST(i)并出栈                   机器码  DD E1iii  </span><br><span class="line">FUCOMPP               ST(0)-ST(1)并二次出栈             机器码  DA E9  </span><br><span class="line">FXAM                  ST(0)规格类型                    机器码  D9 E5  </span><br><span class="line">---------- 四、运算指令   --------------------------------------------------------  </span><br><span class="line">FADD                  把目的操作数 (直接接在指令后的变量或堆栈缓存器) 与来源操作数 (接在目的操作数后的变量或堆栈缓存器)  相加，并将结果存入目的操作数  </span><br><span class="line">FADDP  ST(i),ST       这个指令是使目的操作数加上 ST  缓存器，并弹出 ST 缓存器，而目的操作数必须是堆栈缓存器的其中之一，最后不管目的操作数为何，经弹出一次后，目的操作数会变成上一个堆栈缓存器了  </span><br><span class="line">FIADD                 FIADD 是把 ST   加上来源操作数，然后再存入 ST 缓存器，来源操作数必须是字组整数或短整数形态的变数  </span><br><span class="line">  </span><br><span class="line">FSUB                  减  </span><br><span class="line">FSUBP  </span><br><span class="line">FSUBR                 减数与被减数互换  </span><br><span class="line">FSUBRP  </span><br><span class="line">FISUB  </span><br><span class="line">FISUBR  </span><br><span class="line">  </span><br><span class="line">FMUL                  乘  </span><br><span class="line">FMULP  </span><br><span class="line">FIMUL  </span><br><span class="line">  </span><br><span class="line">FDIV                  除  </span><br><span class="line">FDIVP  </span><br><span class="line">FDIVR  </span><br><span class="line">FDIVRP  </span><br><span class="line">FIDIV  </span><br><span class="line">FIDIVR  </span><br><span class="line">  </span><br><span class="line">FCHS                  改变 ST 的正负值  </span><br><span class="line">  </span><br><span class="line">FABS                  把 ST  之值取出，取其绝对值后再存回去。  </span><br><span class="line">  </span><br><span class="line">FSQRT                 将 ST  之值取出，开根号后再存回去。  </span><br><span class="line">  </span><br><span class="line">FSCALE                这个指令是计算 ST*2^ST(1)之值，再把结果存入 ST 里而 ST(1)   之值不变。ST(1)  必须是在 -32768 到 32768 (-215 到 215 )之间的整数，如果超过这个范围计算结果无法确定，如果不是整数 ST(1)    会先向零舍入成整数再计算。所以为安全起见，最好是由字组整数载入到 ST(1) 里。  </span><br><span class="line">  </span><br><span class="line">FRNDINT               这个指令是把 ST 的数值舍入成整数，FPU    提供四种舍入方式，由 FPU 的控制字组(control    word)中的 RC 两个位决定  </span><br><span class="line">                          RC    舍入控制  </span><br><span class="line">                          00    四舍五入  </span><br><span class="line">                          01    向负无限大舍入  </span><br><span class="line">                          10    向正无限大舍入  </span><br><span class="line">                          11    向零舍去  </span><br><span class="line">================================================================================</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2019/09/21/Win32汇编入门/" target="_blank" rel="external">https://liuyi12138.github.io/2019/09/21/Win32汇编入门/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/汇编/">汇编</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/09/21/Win32汇编入门/&title=《Win32汇编入门》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/09/21/Win32汇编入门/&title=《Win32汇编入门》 — 知君的博客&source=网安组新人任务Week1笔记" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/09/21/Win32汇编入门/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Win32汇编入门》 — 知君的博客&url=https://liuyi12138.github.io/2019/09/21/Win32汇编入门/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/09/21/Win32汇编入门/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/23/Linux小系统Kernel内核定制/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Linux小系统Kernel内核定制</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/21/软件逆向工程初识/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Win32汇编入门</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/09/21/Win32汇编入门/&title=《Win32汇编入门》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/09/21/Win32汇编入门/&title=《Win32汇编入门》 — 知君的博客&source=网安组新人任务Week1笔记" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/09/21/Win32汇编入门/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Win32汇编入门》 — 知君的博客&url=https://liuyi12138.github.io/2019/09/21/Win32汇编入门/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/09/21/Win32汇编入门/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3ayY7DIBBF0fz/T7vXrbbJfVW4JeCyijJgThYlavh88Loe1qzv//3t540lQ4aMZRnXcJFjpaT+c2+eKEOGjAMY48A3fj1+hxyIPOvLmWXIkCGjQR2H4PH7MmTIkDH3iCT4koPKkCFDRieJJQUyEkZ5Ye6VXFyGDBkLMtJi/X++fqW/IUOGjKUYV7g67QR+xPhUMmTI2Joxa2semvvX0MfrpgwZMjZlpAkkT1NrCSf5a27ekSFDxgEMnriS8EoukWk4/vIsGTJkHMZID8pLZpxH2gm/9pQhQ8bWDP7xrNS09p2UJ0OGjP0YvKwfh7x2uzRocMqQIWNrBi+Q8ctfrf3ZGfuQIUPGroyrtDqjY/G/CxoPMmTI2JtBfsw3TZuavHgXJLEyZMjYlMExndBZnFlLU2UZMmRsx6ilrCTgpk3Q2tXz5oYrQ4aMYxhpY7KWyqZNiEeYDBkyjmHwCxkpfqVhlA9V3OwsQ4aMrRm1sMjbkJ0SW3wZlSFDxmGMdLQ0HTlNf4tKeDJkyDiA0U9la8j0r0RzbTJkyNiUwctbtWZkLcWdMDMiQ4aMxRlXuNLBr9rgBd9HhgwZJzBqYS5tIfDyXKcAJ0OGjL0ZtaEKErjT76RJrwwZMk5j1AJf7RDpnvGwhQwZMo5npKls2pjkw2eoaihDhoyDGWk6mhb7xvtMC7gyZMhYitEfp+jU9kh4nVZukyFDxoIMnjryFiO/FKbIVlNThgwZ6zF+AKFtiYcpujJwAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

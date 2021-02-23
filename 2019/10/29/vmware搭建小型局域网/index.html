@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>vmware搭建小型局域网 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="计网">
+    <meta name="description" content="网安组计网培训任务">
+<meta name="keywords" content="计网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vmware搭建小型局域网">
+<meta property="og:url" content="https://liuyi12138.github.io/2019/10/29/vmware搭建小型局域网/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="网安组计网培训任务">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191029192157.png">
+<meta property="og:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191030094208.png">
+<meta property="og:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191030094643.png">
+<meta property="og:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191030154436.png">
+<meta property="og:updated_time" content="2021-02-23T05:20:44.145Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vmware搭建小型局域网">
+<meta name="twitter:description" content="网安组计网培训任务">
+<meta name="twitter:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191029192157.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">vmware搭建小型局域网</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">vmware搭建小型局域网</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-29T11:21:36.000Z" itemprop="datePublished" class="page-time">
+  2019-10-29
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#任务要求"><span class="post-toc-number">1.</span> <span class="post-toc-text">任务要求</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#知识整理"><span class="post-toc-number">2.</span> <span class="post-toc-text">知识整理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#iptables"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">iptables</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#任务实现"><span class="post-toc-number">3.</span> <span class="post-toc-text">任务实现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#静态ip配置"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">静态ip配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#路由配置"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">路由配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tcpdump抓包"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">tcpdump抓包</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tcpdump-i-ens34-host-10-1-2-100"><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">tcpdump -i ens34 host 10.1.2.100</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tcpdump-i-ens34-host-8-8-8-8"><span class="post-toc-number">3.3.2.</span> <span class="post-toc-text">tcpdump -i ens34 host 8.8.8.8</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#iptables配置"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">iptables配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tcpdump抓包验证"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">tcpdump抓包验证</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-vmware搭建小型局域网"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">vmware搭建小型局域网</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-29 19:21:36" datetime="2019-10-29T11:21:36.000Z"  itemprop="datePublished">2019-10-29</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>网安组计网培训任务<br><a id="more"></a> </p>
+<h2 id="任务要求"><a href="#任务要求" class="headerlink" title="任务要求"></a>任务要求</h2><ul>
+<li>通过VMware为虚拟机添加网卡，并给虚拟机配置静态IP、网关和路由(iproute2/net-tools工具配置，或使用配置文件配置)。使得B和C能互ping，且能ping通A</li>
+<li>使用iptables实现NAT转换，使得B和C能够访问(ping)A的网关和公网<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191029192157.png" alt="20191029192157" title>
+                </div>
+                <div class="image-caption">20191029192157</div>
+            </figure>
+</li>
+</ul>
+<h2 id="知识整理"><a href="#知识整理" class="headerlink" title="知识整理"></a>知识整理</h2><h3 id="iptables"><a href="#iptables" class="headerlink" title="iptables"></a>iptables</h3><ul>
+<li>可参考<a href="https://www.zsythink.net/archives/1199" target="_blank" rel="noopener">朱双印个人日志|iptables详解(一): 基本概念</a></li>
+<li>iptables相当于一个客户端代理，用户通过iptables将安全设定执行安全框架(netfilter)中</li>
+<li>netfilter位于内核空间，用户通过操作位于用户空间的iptables来控制netfilter</li>
+<li>netfilter/iptables组成Linux平台下的包过滤防火墙</li>
+</ul>
+<h2 id="任务实现"><a href="#任务实现" class="headerlink" title="任务实现"></a>任务实现</h2><h3 id="静态ip配置"><a href="#静态ip配置" class="headerlink" title="静态ip配置"></a>静态ip配置</h3><ul>
+<li>修改/etc/sysconfig/network-scripts/中的网卡配置为静态ip，并设置好ip地址、掩码和网关</li>
+<li>需要注意的问题是需要修改vmware的虚拟网络编辑器中的子网ip，否则系统会先依据虚拟网络编辑器中的ip配置</li>
+</ul>
+<h3 id="路由配置"><a href="#路由配置" class="headerlink" title="路由配置"></a>路由配置</h3><ul>
+<li>修改/etc/sysctl.conf中的net.ipv4.ip_forward=1，开启路由转发</li>
+<li>sysctl -p重新加载配置文件</li>
+<li>iptables -F关闭防火墙</li>
+</ul>
+<h3 id="tcpdump抓包"><a href="#tcpdump抓包" class="headerlink" title="tcpdump抓包"></a>tcpdump抓包</h3><ul>
+<li>由于BC两虚拟机未联网，对虚拟机A的IP2网卡使用tcpdump进行抓包分析</li>
+</ul>
+<h4 id="tcpdump-i-ens34-host-10-1-2-100"><a href="#tcpdump-i-ens34-host-10-1-2-100" class="headerlink" title="tcpdump -i ens34 host 10.1.2.100"></a>tcpdump -i ens34 host 10.1.2.100</h4><ul>
+<li>使用虚拟机C(10.1.2.101) ping 虚拟机B(10.1.2.100)</li>
+<li>由图可见10.1.2.101和10.1.2.100有来有回，是可以互相ping通的<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191030094208.png" alt="20191030094208" title>
+                </div>
+                <div class="image-caption">20191030094208</div>
+            </figure>
+</li>
+</ul>
+<h4 id="tcpdump-i-ens34-host-8-8-8-8"><a href="#tcpdump-i-ens34-host-8-8-8-8" class="headerlink" title="tcpdump -i ens34 host 8.8.8.8"></a>tcpdump -i ens34 host 8.8.8.8</h4><ul>
+<li>使用虚拟机C(10.1.2.101) ping 8.8.8.8</li>
+<li>由图可见虚拟机C暂时还无法ping通google的服务，还需要配置iptables<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191030094643.png" alt="20191030094643" title>
+                </div>
+                <div class="image-caption">20191030094643</div>
+            </figure>
+</li>
+</ul>
+<h3 id="iptables配置"><a href="#iptables配置" class="headerlink" title="iptables配置"></a>iptables配置</h3><ul>
+<li>可参考<a href="https://www.zsythink.net/archives/1764" target="_blank" rel="noopener">朱双印个人日志|iptables详解(十三): NAT</a></li>
+</ul>
+<p><code>iptables -t nat -A POSTROUTING -s 10.1.2.0/24 -j SNAT --to-source 192.168.188.128</code></p>
+<ul>
+<li><code>-t nat</code>表示操作nat表</li>
+<li><code>-A POSTROUTING</code>表示将SNAT规则添加到POSTROUTING链尾</li>
+<li><code>-s 10.1.2.0/24</code>表示匹配的报文来自10.1.2.0/24</li>
+<li><code>-j SNAT</code>表示使用SNAT动作，对报文进行地址转换</li>
+<li><code>--to-source 192.168.188.128</code>表示将匹配到的报文源修改为192.168.188.128</li>
+</ul>
+<h3 id="tcpdump抓包验证"><a href="#tcpdump抓包验证" class="headerlink" title="tcpdump抓包验证"></a>tcpdump抓包验证</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191030154436.png" alt="20191030154436" title>
+                </div>
+                <div class="image-caption">20191030154436</div>
+            </figure>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2019/10/29/vmware搭建小型局域网/" target="_blank" rel="external">https://liuyi12138.github.io/2019/10/29/vmware搭建小型局域网/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计网/">计网</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/10/29/vmware搭建小型局域网/&title=《vmware搭建小型局域网》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/10/29/vmware搭建小型局域网/&title=《vmware搭建小型局域网》 — 知君的博客&source=网安组计网培训任务" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/10/29/vmware搭建小型局域网/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《vmware搭建小型局域网》 — 知君的博客&url=https://liuyi12138.github.io/2019/10/29/vmware搭建小型局域网/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/10/29/vmware搭建小型局域网/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/31/熊猫烧香行为分析/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">熊猫烧香行为分析</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/10/23/DLL注入实践/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">DLL注入实践</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/10/29/vmware搭建小型局域网/&title=《vmware搭建小型局域网》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/10/29/vmware搭建小型局域网/&title=《vmware搭建小型局域网》 — 知君的博客&source=网安组计网培训任务" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/10/29/vmware搭建小型局域网/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《vmware搭建小型局域网》 — 知君的博客&url=https://liuyi12138.github.io/2019/10/29/vmware搭建小型局域网/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/10/29/vmware搭建小型局域网/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqUlEQVR42u3aS27DMAwFwN7/0um2QGv78aMgKMarQrAVjRYSS/LrK35et8/Pd37/fTXD/M21Bw8PD+/Y0n+PJ3MmI73tu38fDw8P7zTvaonJoVzdmoTduyTw8PDwPpl3fxwn49UZ8PDw8P4HL/qB4nH/QRcDHh4e3i0vTwTc4ycHffXb5VwLHh4eXszLq0if8/eR+h4eHh7euKreS7wmIe9W8uJhtXh4eHgHePmBuxtkV9MNk5YFPDw8vPfzqkf8PAGRbFy+uXh4eHi7vGoCtNpAkHzVK5I1kxF4eHh4h3nz8lKOzwPrQvEMDw8P7y285MiuBs3VayYJ2aONxsPDwzvAS1oEkuX2Cma9N0dhNx4eHt6YVw2aq6mHeYicJ47/GMfDw8M7xusF2clRnsw539bLGfDw8PDezusd+r2gfF5Oi3oi8PDw8JZ4ebK1d7hPvpokO/Dw8PDO8fKwNc8N5/njOSMKqfHw8PCWeL22p/wC2JohCcGbuWo8PDy8A7zydPF4fmFU579MSeDh4eGNeZPguMfOmwaSwPphHA8PD+8wLzmse81S+bLyulW5pwwPDw9vldfDTAr/SctC73cfCmB4eHh4Y161cFVtDuiVtfK2gwSPh4eHd4KXh7bVwDdpFEg2Opkz6pLAw8PDW+LlRfrqyNbSq2Ww8kt4eHh4S7xqCJsc2XnceySZi4eHh3esDDahrqVfi5fW5Zt4eHh4q7xX8clbB9Yap+Jr5rK+h4eHh7fKq4aqOWBSYMu3sonBw8PDG/N65fldzGS2ByQeHh7eMV4y9fzC6KU8RsU5PDw8vI/hVX9+kuyotl4tXAx4eHh4b+RNkq299oIjITUeHh7eUjKi14CVHPTJNdBr/MLDw8M7wav+w9+7EqrU3hpG9T08PDy856++AcuPAyd3KIWZAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

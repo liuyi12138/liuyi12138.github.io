@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>面试问题整理——操作系统 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="面经,操作系统">
+    <meta name="description" content="记录一下面试以来遇到的操作系统相关问题及解答">
+<meta name="keywords" content="面经,操作系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试问题整理——操作系统">
+<meta property="og:url" content="https://liuyi12138.github.io/2020/04/02/面试问题整理——操作系统/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="记录一下面试以来遇到的操作系统相关问题及解答">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T05:20:44.175Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试问题整理——操作系统">
+<meta name="twitter:description" content="记录一下面试以来遇到的操作系统相关问题及解答">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">面试问题整理——操作系统</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">面试问题整理——操作系统</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-04-02T15:11:16.000Z" itemprop="datePublished" class="page-time">
+  2020-04-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/面经/">面经</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内存管理"><span class="post-toc-number">1.</span> <span class="post-toc-text">内存管理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#简述进程切换的流程"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">简述进程切换的流程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#进程在地址空间中会划分为哪些区域"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">进程在地址空间中会划分为哪些区域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#栈与堆有什么区别"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">栈与堆有什么区别</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#操作系统为什么分内核态和用户态，这两者之间如何切换"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">操作系统为什么分内核态和用户态，这两者之间如何切换</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#malloc的实现机制"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">malloc的实现机制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#虚拟地址怎么映射到物理地址"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">虚拟地址怎么映射到物理地址</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#socket编程中怎么处理并发请求"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">socket编程中怎么处理并发请求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#简述IO多路复用"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">简述IO多路复用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#简述进程通信的各种方法"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">简述进程通信的各种方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#进程线程管理"><span class="post-toc-number">2.</span> <span class="post-toc-text">进程线程管理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#进程的互斥与同步"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">进程的互斥与同步</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#死锁的解决方法"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">死锁的解决方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#进程调度算法"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">进程调度算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#磁盘调度算法"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">磁盘调度算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#页面调度算法"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">页面调度算法</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-面试问题整理——操作系统"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">面试问题整理——操作系统</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-04-02 23:11:16" datetime="2020-04-02T15:11:16.000Z"  itemprop="datePublished">2020-04-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/面经/">面经</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>记录一下面试以来遇到的操作系统相关问题及解答</strong><br><a id="more"></a> </p>
+<h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><h3 id="简述进程切换的流程"><a href="#简述进程切换的流程" class="headerlink" title="简述进程切换的流程"></a>简述进程切换的流程</h3><p><strong>涉及公司：阿里云实习生</strong></p>
+<p>如果想要从A进程切换到B进程，必定要先从用户态切换到内核态，因为这个切换的工作你不能让用户进程去实现，不然当CPU在用户进程手上的时候，他可以选择一直执行，不让出CPU，这肯定是不允许的。所以操作系统需要先挂起正在占用CPU的A进程，才能切换到B进程。</p>
+<p>由于从用户态切换到内核态的时候，CPU是在用户进程手中，所以这个是通过硬中断来实现的。在从用户态切换到内核态之前需要保存用户进程的上下文，以便下一次执行时可以继续之前的工作。</p>
+<p>这个上下文就是进程执行的环境，包括所有的寄存器变量，进程打开的文件、内存信息等。一个进程的上下文可以分为用户级上下文，寄存器上下文，系统级上下文。用户级上下文存储的是用户进程的内存数据以及堆栈数据等；寄存器上下文是一些通用寄存器；系统级上下文是内核栈、PCB(进程控制块)等。</p>
+<h3 id="进程在地址空间中会划分为哪些区域"><a href="#进程在地址空间中会划分为哪些区域" class="headerlink" title="进程在地址空间中会划分为哪些区域"></a>进程在地址空间中会划分为哪些区域</h3><p><strong>涉及公司：阿里云实习生</strong></p>
+<p>这个问题在我之前的工作中其实还是有所涉及的，我来简单讲一下把文件加载到内存中的一个过程，以Window平台为例吧，PE文件我比较熟，在PE文件中，有一个叫节的概念，节是PE文件中存放代码和数据的基本单元，用以存储不同类型的数据，比如data节、code节等，一个节的所有原始数据必须加载到连续的内存空间里，这也就造成了在虚拟地址空间中的区块划分。</p>
+<p>在虚拟地址空间中会按照节划分为代码段、数据段、未初始化的数据段以及堆栈这些区块。</p>
+<h3 id="栈与堆有什么区别"><a href="#栈与堆有什么区别" class="headerlink" title="栈与堆有什么区别"></a>栈与堆有什么区别</h3><p><strong>涉及公司：阿里云实习生、拼多多实习生</strong></p>
+<p>我们常说堆栈堆栈，其实堆栈是两个不同的概念，最直观的理解，堆是由用户来控制的，我们可以使用malloc这种命令来在堆中申请内存，而栈是由操作系统控制的，在栈中存储的是这个进程的局部变量等，比如我们用malloc来申请一块内存，内存本身是在堆中开辟的，而指向这块内存的指针存储在栈中。</p>
+<h3 id="操作系统为什么分内核态和用户态，这两者之间如何切换"><a href="#操作系统为什么分内核态和用户态，这两者之间如何切换" class="headerlink" title="操作系统为什么分内核态和用户态，这两者之间如何切换"></a>操作系统为什么分内核态和用户态，这两者之间如何切换</h3><p><strong>涉及公司：拼多多实习生</strong></p>
+<p>因为在CPU的指令中，有一些是非常危险的，比如清理内存、设置时钟等，如果所有的程序都能使用，就可能造成系统的崩溃，所以，CPU将指令分为特权指令和非特权指令，对于那些危险的指令，只允许操作系统使用。CPU的特权级别有四级，从Ring0到Ring3，正常使用时一般只有两级，即用户态的Ring3和内核态的Ring0。Ring3状态不能访问Ring0的地址空间，包括代码和数据。</p>
+<p><strong>用户态切换到内核态的三种方式</strong></p>
+<ul>
+<li>系统调用（系统调用是通过软中断实现的）</li>
+<li>中断（硬）</li>
+<li>异常</li>
+</ul>
+<h3 id="malloc的实现机制"><a href="#malloc的实现机制" class="headerlink" title="malloc的实现机制"></a>malloc的实现机制</h3><p><strong>涉及公司：阿里云实习生</strong></p>
+<p>malloc本质上是维护了一个内存空闲链表，每次我们调用malloc申请空间的时候，链表就会从头开始遍历，来寻找一个合适的空闲内存空间，然后把这个空间给分割开，一部分分配给用户，另一部分继续标注为空闲，而当没有足够大的空闲块时，malloc就会通过系统调用来申请更多的内存块。而我们调用free来释放内存块的时候，该内存块就会回到链表中，并且相邻的内存块会被合并。</p>
+<p>搜索空闲块的算法主要有首次适配、下一次适配、最佳适配，首次适配即第一次找到足够大的内存块就分配，但这样会产生很多的内存碎片，也因此第二次适配被提出来缓解这个问题。另一个极端则是最佳适配，即找到一块刚好大于我们所需内存大小的内存块，这种做法一方面耗时长，另一方面也会产生一些极小的内存碎片。<br>这两种思路可以看出是在性能和空间利用率上寻找一个平衡点，在工程中实际上有很多这种没有完美解决方案，只能寻找平衡的问题。</p>
+<h3 id="虚拟地址怎么映射到物理地址"><a href="#虚拟地址怎么映射到物理地址" class="headerlink" title="虚拟地址怎么映射到物理地址"></a>虚拟地址怎么映射到物理地址</h3><p><strong>涉及公司：阿里云实习生、腾讯实习生</strong></p>
+<p>虚拟地址的构成为页目录索引(10位)+页表索引(10位)+表内偏移(12位)</p>
+<p>以win32系统为例，页目录和页表都为1024个，页表大小为4KB，一共是4G的虚拟内存空间</p>
+<p>而从虚拟地址映射到物理地址实际上就是通过页目录和页表的索引找到内存页。</p>
+<p>在页表项中有一位标志位，用来标识包含此数据的页是否在物理内存中，如果在的话，就直接做地址映射，否则，抛出缺页中断，操作系统会把次数据页调入内存。</p>
+<h3 id="socket编程中怎么处理并发请求"><a href="#socket编程中怎么处理并发请求" class="headerlink" title="socket编程中怎么处理并发请求"></a>socket编程中怎么处理并发请求</h3><p><strong>涉及公司：阿里云实习生、腾讯实习生</strong></p>
+<p>对多线程的处理与单线程不同的位置在于各个不同的进程可能会访问相同的资源，如果是对资源进行修改的话，就需要用到锁</p>
+<h3 id="简述IO多路复用"><a href="#简述IO多路复用" class="headerlink" title="简述IO多路复用"></a>简述IO多路复用</h3><p><strong>涉及公司：阿里云实习生、腾讯实习生</strong></p>
+<p>Linux的IO访问通常是先将数据拷贝到操作系统的内核缓冲区，然后再从内核缓冲区拷贝到应用程序的地址空间。在这两个阶段中，有不同的IO方式，主要分为阻塞IO、非阻塞IO、异步IO以及IO多路复用。</p>
+<p>阻塞IO即当数据还未准备好，也就是数据还在操作系统的内核缓存区时，用户进程就会一直阻塞，等待数据从操作系统内核缓冲区拷贝到应用程序的地址空间。阻塞IO在这两个阶段都是阻塞的。</p>
+<p>非阻塞IO则是如果数据还没准备好，操作系统会给应用程序返回一个error，并不阻塞应用程序，而一般应用程序会持续询问内核数据是否准备好，所以从另一个角度来说也是阻塞的。</p>
+<p>而异步IO才是真正的不阻塞，当用户程序发起read后，操作系统会立即进行回复，这样用户程序就可以去做其他事情，当数据被拷贝到用户程序的地中空间后，操作系统会给用户程序发一个信号，而用户程序可以采用回调函数的方式对这个信号进行响应。</p>
+<p>IO多路复用则是允许一个程序同时等待多个文件描述符，当任意一个文件描述符就绪，select函数就会返回，当然IO多路复用在本质上还术语阻塞IO，只不过可以同时进行多个IO操作。</p>
+<p>Linux的IO多路复用机制中有select、poll、epoll三种，<br>select和poll的时间复杂度都是O(n),因为他们都是在对IO列表进行轮询，不同点在于select能监视的文件描述符有上限，一般为1024，当然这个是在Linux内核中进行的宏定义，是可以修改的，而poll是基于链表来存储的，所以没有这个上限。<br>而epoll是基于事件驱动的，所以不需要轮询，epoll会把事件和每一个IO流对应起来。并且epoll是通过一块共享内存来实现内核空间和用户空间的通信的，比起select和poll的大量数据拷贝效率更高。<br>不过select的优点在于兼容不同的操作系统，而poll和epoll都只能在linux上使用。</p>
+<h3 id="简述进程通信的各种方法"><a href="#简述进程通信的各种方法" class="headerlink" title="简述进程通信的各种方法"></a>简述进程通信的各种方法</h3><p><strong>涉及公司：腾讯实习生</strong></p>
+<p>进程间通信的方式通常分为管道、系统IPC、套接字三种，其中管道有无名管道、命名管道，系统IPC有消息队列、信号、共享内存</p>
+<ul>
+<li>无名管道的本质是在内核缓冲区的环形队列，每次读取数据后缓冲区都会移动，并且无名管道只能在有亲缘关系的进程间使用</li>
+<li>命名管道则以文件的形式存在，由于有一个路径名，使用没有亲缘关系的进程间也可以使用命名管道</li>
+<li>消息队列是存放在内核中的消息链表，具有特定的格式，支持多种数据类型，且允许多个进程进行读写</li>
+<li>信号是软件层次上对中断机制的一种模拟，是一种异步通信方式，并且信号可以在用户空间进程和内核之间直接交互</li>
+<li>共享内存顾名思义就是两个进行对同一块内存进行读写，是最快的IPC形式，但不适合大量的数据传输</li>
+<li>Socket是对TCP/IP协议族的封装，不仅可以用于本机上的进程间通信，更多的被用于网络通信中</li>
+</ul>
+<h2 id="进程线程管理"><a href="#进程线程管理" class="headerlink" title="进程线程管理"></a>进程线程管理</h2><h3 id="进程的互斥与同步"><a href="#进程的互斥与同步" class="headerlink" title="进程的互斥与同步"></a>进程的互斥与同步</h3><p>在操作系统中，进程是占有资源的最小单位，对于那种只能同时被一个进程持有的资源我们称为临界资源，对于临界资源的访问，必须是互斥的。（对于；临界资源的访问过程分为：进入区、临界区、退出区、剩余区）</p>
+<p>而进程之间访问临界资源时可以构成同步与互斥两种关系，同步即两个进程的资源访问必须是先后关系，比如经典的生产者消费者问题，读者写着问题。而互斥则是两种在进行资源抢到，比如购票问题。</p>
+<p>通常在软件层面可以使用替换算法来实现，即每个进程持有一个标志，每次当使用资源时则将自己的标志与资源的标志互换，如果在互换的过程中发现自己获得的标志是正在使用的状态，则在此循环等待。这种方法的缺点在于每个进程都需要进行循环等待，比较低效。所以一般是通过硬件层面的信号量即PV操作来实现进程的临界资源管理。</p>
+<h3 id="死锁的解决方法"><a href="#死锁的解决方法" class="headerlink" title="死锁的解决方法"></a>死锁的解决方法</h3><p><strong>涉及公司：阿里云实习生</strong></p>
+<p>死锁的产生是在这样一种环境中：比如我们有两个进程AB，他们都需要资源1和资源2，当进程A持有资源1，进线程B持有资源2的时候，他们都需要对方手上的进程，而一般操作系统又不允许抢占，这个时候就发生了死锁。</p>
+<p>从这个例子中其实可以总结出死锁的几个必要条件：</p>
+<ul>
+<li>1.一个资源只能被一个进程所占有，不能共享</li>
+<li>2.一个线程请求资源失败时，它会等待而不是释放</li>
+<li>3.一个线程在释放资源之前其他进程不能抢夺资源</li>
+<li>4.循环等待</li>
+</ul>
+<p>从死锁产生的原因未明可以设计一些方法去避免死锁的发生</p>
+<ul>
+<li>1.静态分配资源，一开始就把一个进程所需的全部资源都分配给它，但这样会降低资源的使用效率</li>
+<li>2.允许抢占，需要设置进程的不同优先级，高优先级的进程可以抢占低优先级的进程的资源</li>
+<li>3.把资源进行编号，申请资源必须按照资源的编号顺序来申请</li>
+</ul>
+<p>如果死锁已经发生了，就需要去解开死锁，其本质思想就是分配资源打破循环等待</p>
+<ul>
+<li>1.可以运行抢占，从一个或多个进程中抢出资源来给其他进程</li>
+<li>2.也可以终止一些进程，来达到释放资源的目的</li>
+</ul>
+<h3 id="进程调度算法"><a href="#进程调度算法" class="headerlink" title="进程调度算法"></a>进程调度算法</h3><ul>
+<li>先来先服务调度算法<ul>
+<li>对长作业比较有利，但对短作业不利</li>
+</ul>
+</li>
+<li>时间片轮转调度法<ul>
+<li>每个进程只能运行一个时间片</li>
+<li>时间片的大小对系统性能的影响很大，时间片过大就和先来先服务算法一样，时间片过小会导致进行切换开销大</li>
+</ul>
+</li>
+<li>短作业优先调度算法<ul>
+<li>对长作业不利，不能保证紧迫性作业（进程）被及时处理</li>
+</ul>
+</li>
+<li>最短剩余时间优先<ul>
+<li>允许抢占，总是选择预期剩余时间最短的进程</li>
+</ul>
+</li>
+<li>高响应比优先调度算法<ul>
+<li>R=(w+s)/s （R为响应比，w为等待处理的时间，s为预计的服务时间），选择R最大的进行执行</li>
+</ul>
+</li>
+<li>优先级调度算法<ul>
+<li>进程优先级可以分为静态优先级和动态优先级</li>
+</ul>
+</li>
+<li>多级反馈队列调度算法<ul>
+<li>分为多个队列，每个队列中按时间片轮转调度算法来进行进程调度，每一级的队列时间片大小也不一样，如果进行在第一个队列的时间片内没有完成，就会进入第二个队列，以此类推，只有当第一个队列为空才执行第二个队列的进行</li>
+<li>短作业有限且长作业不会太长时间不被处理</li>
+</ul>
+</li>
+</ul>
+<h3 id="磁盘调度算法"><a href="#磁盘调度算法" class="headerlink" title="磁盘调度算法"></a>磁盘调度算法</h3><ul>
+<li>先来先服务算法（FCFS）<ul>
+<li>根据进程请求访问磁盘的先后次序进行调度</li>
+<li>优点是公平、简单</li>
+<li>缺点是吞吐量低，寻道时间长</li>
+</ul>
+</li>
+<li>最短寻道时间优先算法（SSTF）<ul>
+<li>访问与当前磁头所在的磁道距离最近的磁道</li>
+<li>优点是可以得到比较好的吞吐量</li>
+<li>缺点是对内外边缘磁道的请求将会被无限延迟</li>
+</ul>
+</li>
+<li>扫描算法（SCAN）电梯调度算法<ul>
+<li>优先考虑磁头当前的移动方向，再考虑欲访问的磁道与当前磁道的距离</li>
+<li>优点是避免了饥饿现象的出现</li>
+<li>缺点是两侧磁道被访问的频率仍低于中间磁道</li>
+</ul>
+</li>
+<li>循环扫描算法（CSCAN）<ul>
+<li>在SCAN算法的基础上，磁头只单向移动，当磁头移到最外的被访问磁道时，磁头立即返回到最里的欲访磁道</li>
+<li>优点是访问请求均匀分布</li>
+</ul>
+</li>
+</ul>
+<h3 id="页面调度算法"><a href="#页面调度算法" class="headerlink" title="页面调度算法"></a>页面调度算法</h3><ul>
+<li>先进先出调度算法（FIFO，First In First Out）</li>
+<li>最近最少使用算法(LFU, Least Frequently Used)</li>
+<li>最近最久未使用算法（LRU，Least Recently Used）</li>
+<li>时钟置换算法——为每一页设置访问位和修改位，将内存中所有页面通过连接指针接成循环队列，当页面被访问时访问位置1，被修改则修改位置1，每次淘汰时，从指针当前位置开始循环遍历，第一次寻找访问位和修改位都为0的页面，如果没有则将扫描过的节点访问位为1的置为0，找到第一个访问位为0的将其淘汰。这个算法的原则就的在LRU的基础上偏向于淘汰未被修改的页面。</li>
+<li>最佳置换算法——理想算法，找一个未来最长时间才会被访问的页面进行淘汰。</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2020/04/02/面试问题整理——操作系统/" target="_blank" rel="external">https://liuyi12138.github.io/2020/04/02/面试问题整理——操作系统/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/操作系统/">操作系统</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面经/">面经</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2020/04/02/面试问题整理——操作系统/&title=《面试问题整理——操作系统》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2020/04/02/面试问题整理——操作系统/&title=《面试问题整理——操作系统》 — 知君的博客&source=记录一下面试以来遇到的操作系统相关问题及解答" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2020/04/02/面试问题整理——操作系统/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《面试问题整理——操作系统》 — 知君的博客&url=https://liuyi12138.github.io/2020/04/02/面试问题整理——操作系统/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2020/04/02/面试问题整理——操作系统/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/04/02/面试问题整理——Linux&编译原理/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">面试问题整理——Linux&amp;编译原理</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/04/02/面试问题整理——数据库/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">面试问题整理——数据库</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2020/04/02/面试问题整理——操作系统/&title=《面试问题整理——操作系统》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2020/04/02/面试问题整理——操作系统/&title=《面试问题整理——操作系统》 — 知君的博客&source=记录一下面试以来遇到的操作系统相关问题及解答" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2020/04/02/面试问题整理——操作系统/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《面试问题整理——操作系统》 — 知君的博客&url=https://liuyi12138.github.io/2020/04/02/面试问题整理——操作系统/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2020/04/02/面试问题整理——操作系统/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACt0lEQVR42u3aQXLbMBAEQP//084DFDozu0DMQ/OksiQITVcBy8F+fcXX98f1+e7Tt37+++frp996Gu3AhYeHh7ee+tPQ+XSfbsHPn/wOrnzOeHh4eLd57fKds9vP5L8bbUV4eHh4L+DlW8KevZkPHh4e3nt4P5e2sxHyIhsPDw/vPby2tG0X7uRGbNgHshY8PDy8mJefIr3n9ZXzPTw8PLz1qXpbLrcNAZsjrmgcPDw8vAu8fMGdRa4tO28yKOaJh4eHd403iw+SW9DGsklom7+Lh4eHd5Y3O1iaFdCz5oB824h2CTw8PLxDvFn+uWm9KnatssiOnhXw8PDwFry8LSA/EmsDjnq5b+eMh4eHd5SXL+IJOym1NwFu3XqFh4eHd4E3a65qm7TaUDiJlZPHADw8PLwbvHyhzxfoNkdtI93i/4aHh4d3gbcviPNGq01jQTvPOpjAw8PDi3n7AnfThtWGtnUzAR4eHt4F3r7RKm8saFuvZiFv3XqFh4eHV/LyabWTaxsRkg2gjpvx8PDwLvBmg+blbIKftW3lM8TDw8O7xzvbRDVr5GoP26LyGg8PD++/8M5GD20onJfg0Qh4eHh4R3n7KGG2ZOcbwCw0wcPDw7vHS6Y1Cw5mBXEe7K5iXDw8PLw1ry1VZwXxqeI7P0LDw8PDu8ebFbXt5NojrvaGPo6Gh4eHd5nXtjflzQTtkdgszMXDw8P7LV6+EBfNT3HQcHj+eHh4eEd5m6OpfQPB/qDrH+/i4eHhXeDNFt+2mE5uymy0U+EvHh4eXsu7F9HmBXe+tSTB7oHuAzw8PLyAlwe4+9BhBkiaGx6zFjw8PLwX8NqlfNZu1bYO/MWCh4eH9xpe2zg1++6BYzM8PDy8a7xNzNpmxslCP7s1jxsDHh4e3lFe+8CfwDbjzAKI1YWHh4eX/tYff3dpzm4G+okAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

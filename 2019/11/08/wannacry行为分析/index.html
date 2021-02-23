@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>wannacry行为分析 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="逆向,病毒">
+    <meta name="description" content="网安组wannacry分析">
+<meta name="keywords" content="逆向,病毒">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wannacry行为分析">
+<meta property="og:url" content="https://liuyi12138.github.io/2019/11/08/wannacry行为分析/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="网安组wannacry分析">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191108150711.png">
+<meta property="og:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191108151027.png">
+<meta property="og:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191108151619.png">
+<meta property="og:updated_time" content="2021-02-23T05:20:44.147Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="wannacry行为分析">
+<meta name="twitter:description" content="网安组wannacry分析">
+<meta name="twitter:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191108150711.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">wannacry行为分析</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">wannacry行为分析</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-08T00:10:28.000Z" itemprop="datePublished" class="page-time">
+  2019-11-08
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用PEID进行查壳和语言分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">使用PEID进行查壳和语言分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用LordPE分析"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用LordPE分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#火绒剑模拟运行"><span class="post-toc-number">3.</span> <span class="post-toc-text">火绒剑模拟运行</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#文件监控"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">文件监控</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#进程监控"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">进程监控</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#感染结果观察"><span class="post-toc-number">4.</span> <span class="post-toc-text">感染结果观察</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-wannacry行为分析"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">wannacry行为分析</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-11-08 08:10:28" datetime="2019-11-08T00:10:28.000Z"  itemprop="datePublished">2019-11-08</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>网安组wannacry分析<br><a id="more"></a> </p>
+<h2 id="使用PEID进行查壳和语言分析"><a href="#使用PEID进行查壳和语言分析" class="headerlink" title="使用PEID进行查壳和语言分析"></a>使用PEID进行查壳和语言分析</h2><ul>
+<li>该病毒使用的是VC++6.0(这玩意真的不大好用哦)</li>
+<li>没有加壳，子系统是Win32 GUI</li>
+</ul>
+<h2 id="使用LordPE分析"><a href="#使用LordPE分析" class="headerlink" title="使用LordPE分析"></a>使用LordPE分析</h2><ul>
+<li>主要分许导入表，分析病毒的行为</li>
+<li><p>从导入表中整理出来的API接口如下:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">文件操作:</span><br><span class="line">GetFileSizeEx</span><br><span class="line">ReadFile</span><br><span class="line">WriteFile</span><br><span class="line">CopyFileA</span><br><span class="line">CreateFileA</span><br><span class="line">GetFileAttributesW</span><br><span class="line">SetFileAttributesW</span><br><span class="line">SetFilePointer</span><br><span class="line">SetFileTime</span><br><span class="line">CreateDirectory</span><br><span class="line">SetCurrentDirectory	//切换当前进程的当前工作目录</span><br><span class="line">GetWindowsDirectory	//获取Windows目录的完整路径名</span><br><span class="line"></span><br><span class="line">服务操作:</span><br><span class="line">CreateServiceA</span><br><span class="line">OpenServiceA</span><br><span class="line">StartServiceA</span><br><span class="line">CloseServiceHandle</span><br><span class="line"></span><br><span class="line">注册表操作:</span><br><span class="line">RegCreateKeyW</span><br><span class="line">RegSetValueExA</span><br><span class="line">RegQueryValueExA</span><br><span class="line">RegCloseKey</span><br><span class="line"></span><br><span class="line">进程操作:</span><br><span class="line">CreateProcessA</span><br><span class="line">TerminateProcess	//终止指定进程及其所有的线程。</span><br><span class="line">GetExitCodeProcess	//获取一个已中断进程的退出代码。</span><br><span class="line"></span><br><span class="line">其他操作:</span><br><span class="line">LoadLibraryA</span><br><span class="line">GetProcAddress	//检索指定的动态链接库(DLL)中的输出库函数地址</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">CriticalSection是每个线程中访问临界资源的那段代码</span><br><span class="line">不论是硬件临界资源，还是软件临界资源，多个线程必须互斥地对它进行访问</span><br><span class="line">*/</span><br><span class="line">InitializeCriticalSection</span><br><span class="line">DeleteCriticalSection</span><br><span class="line">LeaveCriticalSection</span><br><span class="line">EnterCriticalSection</span><br><span class="line"></span><br><span class="line">资源操作</span><br><span class="line">SizeofResource</span><br><span class="line">LockResource</span><br><span class="line">LoadResource</span><br><span class="line">FindResourceA</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>从API接口中我们可以看出，很多接口都涉及到了多线程的问题，需要我们重点了解一下</p>
+</li>
+</ul>
+<h2 id="火绒剑模拟运行"><a href="#火绒剑模拟运行" class="headerlink" title="火绒剑模拟运行"></a>火绒剑模拟运行</h2><ul>
+<li>使用火绒剑对wannacry进行行为监控发现只有文件操作和进程操作，像注册表和网络监控就没有获取到信息</li>
+</ul>
+<h3 id="文件监控"><a href="#文件监控" class="headerlink" title="文件监控"></a>文件监控</h3><ul>
+<li>wannacry的文件操作主要是打开文件和设置文件安全信息，并不能获取太多信息</li>
+</ul>
+<h3 id="进程监控"><a href="#进程监控" class="headerlink" title="进程监控"></a>进程监控</h3><ul>
+<li>跟之前分析的一样，确实监测到的进程动作最多，主要有以下动作<ul>
+<li>PROC_exec   创建进程</li>
+<li>PROC_exec   跨进程恢复线程</li>
+<li>PROC_open   打开进程</li>
+<li>PROC_readvm 跨进程读内存(尤其多)</li>
+</ul>
+</li>
+</ul>
+<h2 id="感染结果观察"><a href="#感染结果观察" class="headerlink" title="感染结果观察"></a>感染结果观察</h2><ul>
+<li>感染后除了桌面上出现一些与wannacry有关的文件外没有太多变化</li>
+<li>运行了一个exe文件后弹出如下窗口，并更改了桌面背景图,该窗口关闭后每隔一段时间弹出一次</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191108150711.png" alt="20191108150711" title>
+                </div>
+                <div class="image-caption">20191108150711</div>
+            </figure>
+<ul>
+<li>一些软件可以正常运行，它主要感染的还是图片和文档等文件，当然一般是这些文件更值钱</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191108151027.png" alt="20191108151027" title>
+                </div>
+                <div class="image-caption">20191108151027</div>
+            </figure>
+<ul>
+<li><p>这些文件被感染成了<code>@Please_Read_Me@.txt</code>和<code>@WanaDecryptor@.exe</code>，<code>@Please_Read_Me@.txt</code>内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Q:  What&apos;s wrong with my files?</span><br><span class="line"></span><br><span class="line">A:  Ooops, your important files are encrypted. It means you will not be able to access them anymore until they are decrypted.</span><br><span class="line">    If you follow our instructions, we guarantee that you can decrypt all your files quickly and safely!</span><br><span class="line">    Let&apos;s start decrypting!</span><br><span class="line"></span><br><span class="line">Q:  What do I do?</span><br><span class="line"></span><br><span class="line">A:  First, you need to pay service fees for the decryption.</span><br><span class="line">    Please send $300 worth of bitcoin to this bitcoin address: 115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn</span><br><span class="line"></span><br><span class="line">    Next, please find an application file named &quot;@WanaDecryptor@.exe&quot;. It is the decrypt software.</span><br><span class="line">    Run and follow the instructions! (You may need to disable your antivirus for a while.)</span><br><span class="line">    </span><br><span class="line">Q:  How can I trust?</span><br><span class="line"></span><br><span class="line">A:  Don&apos;t worry about decryption.</span><br><span class="line">    We will decrypt your files surely because nobody will trust us if we cheat users.</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">*   If you need our assistance, send a message by clicking &lt;Contact Us&gt; on the decryptor window.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按照提示恢复了部分文件，文件恢复了但是那两个文件还在</p>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191108151619.png" alt="20191108151619" title>
+                </div>
+                <div class="image-caption">20191108151619</div>
+            </figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2019/11/08/wannacry行为分析/" target="_blank" rel="external">https://liuyi12138.github.io/2019/11/08/wannacry行为分析/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/病毒/">病毒</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/11/08/wannacry行为分析/&title=《wannacry行为分析》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/11/08/wannacry行为分析/&title=《wannacry行为分析》 — 知君的博客&source=网安组wannacry分析" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/11/08/wannacry行为分析/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《wannacry行为分析》 — 知君的博客&url=https://liuyi12138.github.io/2019/11/08/wannacry行为分析/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/11/08/wannacry行为分析/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/11/09/wannacry源码分析/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">wannacry源码分析</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/11/02/熊猫烧香源码分析/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">熊猫烧香源码分析</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/11/08/wannacry行为分析/&title=《wannacry行为分析》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/11/08/wannacry行为分析/&title=《wannacry行为分析》 — 知君的博客&source=网安组wannacry分析" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/11/08/wannacry行为分析/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《wannacry行为分析》 — 知君的博客&url=https://liuyi12138.github.io/2019/11/08/wannacry行为分析/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/11/08/wannacry行为分析/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3aO3LjQAwFQN3/0tpkg01MPgDklmemGblUIjntAMLv84mv7z9X7/vVez9vXBgYGMsyvpfX9bES3jUmf+/NGzEwMA5g5K9PMNfP/AmTsH/8HAMDAyM4VhQWH30vBgYGRpLS9UhJ+MbAwMDoFbHVZlnOyFPPB2pxDAyMBRm9w/2fv1+Zb2BgYCzF+BavpGXWS/V65/n7NAwMjK0ZeYB7tkC9TvKq58HAwDiBkTfRqiPJapKXw26ejIGBsRGj2sCaV8nVEBw16TAwMA5g9FK65HBP8W7uwsDA2JrxxqCxuoqRFMxR0omBgbEpo9ruzw/aSyXzgP6pxnsMDIwtGHliVx1eToJvtJaBgYGxNWMyGKi2xpIWfz5+eGyEiYGB8esZk0DZC8HVsrmwLYKBgbEpI0+/qmG3NyqYLIphYGCcycgf1ytZ56XsqIOIgYGxIGOO6bXGqqtp0UkwMDC2Y1y/IEnjquVobyB6w8bAwDiYkReo84K2epLRzRgYGIszqsthCWxSADdTQwwMjAMY1YFlUgwnz0zSTQwMjDMZ1Qb9fMGi12i76RRiYGBsx+gNF6sBNP9HVAMuBgbGCYzqsLA3YkyK3uoQtHceDAyMdRl5kM1bb5PViup3MDAwzmHkC169krU8koyXPDAwMDB62WUv+RtRMTAwMPKlh1ZDrTc0feB3AwMDYylGdRhQbY31xp+vtNswMDAWZFRXHJIAPR9kvjLUxMDAWI/xB960vCqwFubEAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
