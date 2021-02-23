@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>网址访问过程详解 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="计网,面经">
+    <meta name="description" content="在面试过程中常常会遇到这样一个问题：请你详细描述一下从我们在浏览器中输入网址到最后看到网页，这个过程中发生了什么？这个问题涉及面十分广，几乎涵盖了计网的全部相关问题，这个题的答案因人而异，可以挑选一两个着重点进行详细说明，其他的略过。">
+<meta name="keywords" content="计网,面经">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网址访问过程详解">
+<meta property="og:url" content="https://liuyi12138.github.io/2020/05/25/网址访问过程详解/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="在面试过程中常常会遇到这样一个问题：请你详细描述一下从我们在浏览器中输入网址到最后看到网页，这个过程中发生了什么？这个问题涉及面十分广，几乎涵盖了计网的全部相关问题，这个题的答案因人而异，可以挑选一两个着重点进行详细说明，其他的略过。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T06:34:31.925Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网址访问过程详解">
+<meta name="twitter:description" content="在面试过程中常常会遇到这样一个问题：请你详细描述一下从我们在浏览器中输入网址到最后看到网页，这个过程中发生了什么？这个问题涉及面十分广，几乎涵盖了计网的全部相关问题，这个题的答案因人而异，可以挑选一两个着重点进行详细说明，其他的略过。">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">网址访问过程详解</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">网址访问过程详解</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-05-25T13:06:36.000Z" itemprop="datePublished" class="page-time">
+  2020-05-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/计网/">计网</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#全过程简要概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">全过程简要概述</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DNS解析"><span class="post-toc-number">2.</span> <span class="post-toc-text">DNS解析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTTP请求"><span class="post-toc-number">3.</span> <span class="post-toc-text">HTTP请求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TCP-gt-网络层连接"><span class="post-toc-number">4.</span> <span class="post-toc-text">TCP-&gt;网络层连接</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#页面渲染"><span class="post-toc-number">5.</span> <span class="post-toc-text">页面渲染</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTTPS"><span class="post-toc-number">6.</span> <span class="post-toc-text">HTTPS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#补充提问：你对中间人攻击有哪些了解？"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">补充提问：你对中间人攻击有哪些了解？</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#最终答案"><span class="post-toc-number">7.</span> <span class="post-toc-text">最终答案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">参考资料</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-网址访问过程详解"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">网址访问过程详解</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-05-25 21:06:36" datetime="2020-05-25T13:06:36.000Z"  itemprop="datePublished">2020-05-25</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/计网/">计网</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>在面试过程中常常会遇到这样一个问题：请你详细描述一下从我们在浏览器中输入网址到最后看到网页，这个过程中发生了什么？这个问题涉及面十分广，几乎涵盖了计网的全部相关问题，这个题的答案因人而异，可以挑选一两个着重点进行详细说明，其他的略过。<br><a id="more"></a> </p>
+<h3 id="全过程简要概述"><a href="#全过程简要概述" class="headerlink" title="全过程简要概述"></a>全过程简要概述</h3><p>当我们将网址输入到浏览器后，第一件事就是解析url得到域名，通过<strong>DNS协议</strong>获取到该域名的ip地址，得到ip后浏览器会先与服务器通过TCP三次握手建立连接，然后构建<strong>HTTP请求</strong>，将HTTP的传输工作交给操作系统的协议栈，发送请求成功后，浏览器会从服务端拿到该页面的HTML以及资源文件，浏览器会<strong>渲染页面</strong>，呈现出我们所看到的模样。</p>
+<p>在这整个过程中，涉及到了DNS解析，http请求，TCP\IP协议栈、页面渲染等知识，当然也可以继续扩展，比如从HTTP可以说到HTTPS，可以说到对称加密与非对称加密，可以说到网络安全等等，主要目的就是让整个面试过程跟着你的技术栈走，而不被面试官带到你不会的地方。</p>
+<p>在这里我将重点写一下我在面试中喜欢拓展的方向，并拟出一份答案。</p>
+<h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>浏览器在拿到url时，首先会对url进行解析，将域名与实际的文件路径分离，然后需要使用DNS协议，通过域名得到IP地址。</p>
+<p>首先浏览器会查询浏览器缓存，如果有这个网址就可以直接获取到IP，如果没有就进一步访问本机缓存，如果本机缓存也没有才会发起DNS请求。</p>
+<p>而DNS的服务器是一个树状结构，对于域名来说是倒着进行解析的，根节点是根DNS服务器，他的子节点为com、cn这种顶级域dns服务器，然后进一步向下进行解析。</p>
+<p>以baidu.com为例，当我们的电脑需要发起DNS请求的时候，会先对根DNS服务器发起请求，这个服务器的IP地址一般在每台电脑上都有，我们一般会设置为8.8.8.8或者114.114.114.114，我们的电脑在访问根DNS服务器后，会得到con域DNS服务器的IP，然后会继续访问con域DNS服务器，这时就能得到baicu.com的IP地址了。</p>
+<h3 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h3><p>在解析url时，我们能获取到需要请求资源的资源路径、端口号、请求参数等信息，这些信息会被存储在http头中，通过DNS请求获取到ip后，浏览器会构建并发送HTTP请求或者HTTPS请求，HTTPS就是在HTTP的基础上加了一个TLS协议来进行数据加密，这个我们待会说。</p>
+<p>HTTP请求有很多种，但对资源的操作离不开增删改查，也就对应着POST、DELETE、PUT、GET请求。最常用的是GET和POST，其区别在于GET的参数是在url中的，而POST的参数是在请求的body中。</p>
+<p>以GET为例，当需要发送HTTP请求的时候，同样也不是直接就发送了，需要先查询浏览器缓存。浏览器中的缓存分为强缓存和协商缓存，浏览器发起HTTP请求时首先会根据http头信息来判断是存有强缓存，以及其是否过期，如果有强缓存且未过期则命中，不会发送请求到服务器了。如果强缓存没命中，则会向服务器发起请求，这个请求的Header头中会带有浏览器最后一次请求该资源的时间和一个资源校验码(使用资源修改时间、资源大小等信息生成)，服务器收到这个请求后会判断协商缓存是否过期，如果过期则返回新的资源信息，如果没过期则返回304状态码，表示资源未更新，可以使用缓存中的资源。</p>
+<h3 id="TCP-gt-网络层连接"><a href="#TCP-gt-网络层连接" class="headerlink" title="TCP-&gt;网络层连接"></a>TCP-&gt;网络层连接</h3><p><strong>TCP这一块内容比较多，所以一般不会在这个问题中详细说明，这里只写一个过渡段，想要了解TCP相关问题解答的可以看我的另一篇博客：<a href="https://liuyi12138.github.io/2020/05/24/TCP%E8%AF%A6%E8%A7%A3/">TCP详解</a></strong></p>
+<p>HTTP请求发出后会将数据包交给下层协议栈处理，在传输层和网络层该数据包会被分别加上TCP头和IP头，并且被发送出去，沿路的网关会收到这个数据包并进行识别和转发，直到该数据包被服务器收到，通过相同的流程返回回复数据包。</p>
+<h3 id="页面渲染"><a href="#页面渲染" class="headerlink" title="页面渲染"></a>页面渲染</h3><p><strong>由于我对前端不熟悉，就不展开讲，被问到的话就说是通过写爬虫来了解DOM树的(挪威组)，前端只会简单的Vue开发，底层原理不了解</strong></p>
+<p>一般来说，浏览器第一次从服务器请求的资源都是一个HTML文件，例如服务端默认的index.html等，浏览器获取到这个HTML文件就会对其进行解析，构建出一棵DOM树，并通过执行其中的js代码发起更多的请求，请求渲染页面需要的其他资源，CSS或者一些外链的图片等，拿到CSS后将其与DOM树结合进行更进一步的渲染，我们就能看到页面了。</p>
+<h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h3><p>由于HTTP是使用信息明文传播，所以会有窃听、篡改、冒充等风险，所以HTTPS在HTTP的基础上加上了SSL层，通过加密的方式来保证数据安全。</p>
+<p>SSL通过加密防止窃听，通过签名来防止篡改，通过证书来防止冒充。<br>HTTPS协议在客户端与服务端开始通信前，会进行密钥协商，通过一轮非对称加密，一般是RSA加密来传递后序通信过程使用的对称密钥，由于非对称加密较慢，后续通信过程中使用对称加密。在密钥协商的过程中，服务端会将自己的证书发送给客户端，客户端会到CA机构通过摘要值验证证书的合法性，从而防止中间人攻击。</p>
+<h4 id="补充提问：你对中间人攻击有哪些了解？"><a href="#补充提问：你对中间人攻击有哪些了解？" class="headerlink" title="补充提问：你对中间人攻击有哪些了解？"></a>补充提问：你对中间人攻击有哪些了解？</h4><p><strong>中间人攻击主要分为SSL劫持攻击、SSL剥离攻击以及针对SSL算法的攻击</strong></p>
+<ul>
+<li>SSL劫持攻击即SSL证书欺骗攻击，攻击者为了获得HTTPS传输的明文数据，需要先将自己接入到客户端和目标网站之间；在传输过程中伪造服务器的证书，将服务器的公钥替换成自己的公钥，这样中间人就可以解密客户端和服务端的数据传输内容。可以通过在网站前端加入证书校验来预防SSL劫持攻击。</li>
+<li>SSL剥离攻击，即将HTTPS连接降级到HTTP连接。假如客户端直接访问HTTPS的URL，攻击者是没办法直接进行降级的，该攻击方式主要是利用用户并不会每次都直接在浏览器上输入https来访问网站或者有些网站并非全网HTTPS，中间人攻击者在劫持了客户端与服务端的HTTP会话后，将HTTP页面里面所有的 https:// 超链接都换成 http:// ，用户在点击相应的链接时，是使用HTTP协议来进行访问。可以通过在网站前端检查URL是否被篡改来预防SSL剥离攻击。</li>
+<li>针对SSL算法的攻击：低版本的SSL协议是存在漏洞的，这些漏洞可能会被公共者利用，及时升级服务端的SSL配置可以预防针对SSL算法的攻击。</li>
+</ul>
+<h3 id="最终答案"><a href="#最终答案" class="headerlink" title="最终答案"></a>最终答案</h3><p>浏览器在拿到url时，首先会对url进行解析，将域名与实际的文件路径分离，然后需要使用DNS协议，通过域名得到IP地址。<br>浏览器会查询浏览器缓存，如果有这个网址的缓存就可以直接获取到IP，如果没有就进一步访问本机缓存，如果本机缓存也没有才会发起DNS请求。<br>而DNS的服务器是一个树状结构，对于域名来说是倒着进行解析的，根节点是根DNS服务器，他的子节点为com、cn这种顶级域dns服务器，然后进一步向下进行解析。<br>以baidu.com为例，当我们的电脑需要发起DNS请求的时候，会先对根DNS服务器发起请求，这个服务器的IP地址一般在每台电脑上都有，我们一般会设置为8.8.8.8或者114.114.114.114，我们的电脑在访问根DNS服务器后，会得到con域DNS服务器的IP，然后会继续访问con域DNS服务器，这时就能得到baicu.com的IP地址了。</p>
+<p>得到ip后浏览器会先与服务器通过TCP三次握手建立连接，然后构建HTTP请求。<br>在解析url时，我们能获取到需要请求资源的资源路径、端口号、请求参数等信息，这些信息会被存储在http头中，通过DNS请求获取到ip后，浏览器会构建并发送HTTP请求或者HTTPS请求，HTTPS就是在HTTP的基础上加了一个TLS协议来进行数据加密，这个我们待会说。<br>HTTP请求有很多种，但对资源的操作离不开增删改查，也就对应着POST、DELETE、PUT、GET请求。最常用的是GET和POST，其区别在于GET的参数是在url中的，而POST的参数是在请求的body中。<br>以GET为例，当需要发送HTTP请求的时候，同样也不是直接就发送了，需要先查询浏览器缓存。浏览器中的缓存分为强缓存和协商缓存，浏览器发起HTTP请求时首先会根据http头信息来判断是存有强缓存，以及其是否过期，如果有强缓存且未过期则命中，不会发送请求到服务器了。如果强缓存没命中，则会向服务器发起请求，这个请求的Header头中会带有浏览器最后一次请求该资源的时间和一个资源校验码(使用资源修改时间、资源大小等信息生成)，服务器收到这个请求后会判断协商缓存是否过期，如果过期则返回新的资源信息，如果没过期则返回304状态码，表示资源未更新，可以使用缓存中的资源。</p>
+<p>HTTP请求发出后会将数据包交给下层协议栈处理，在传输层和网络层该数据包会被分别加上TCP头和IP头，并且被发送出去，沿路的网关会收到这个数据包并进行识别和转发，直到该数据包被服务器收到，通过相同的流程返回回复数据包。</p>
+<p>一般来说，浏览器第一次从服务器请求的资源都是一个HTML文件，例如服务端默认的index.html等，浏览器获取到这个HTML文件就会对其进行解析，构建出一棵DOM树，并通过执行其中的js代码发起更多的请求，请求渲染页面需要的其他资源，CSS或者一些外链的图片等，拿到CSS后将其与DOM树结合进行更进一步的渲染，我们就能看到页面了。</p>
+<p>最后再补充一下HTTPS，由于HTTP是使用信息明文传播，所以会有窃听、篡改、冒充等风险，所以HTTPS在HTTP的基础上加上了SSL层，通过加密的方式来保证数据安全。<br>SSL通过加密防止窃听，通过签名来防止篡改，通过证书来防止冒充。<br>HTTPS协议在客户端与服务端开始通信前，会进行密钥协商，通过一轮非对称加密，一般是RSA加密来传递后序通信过程使用的对称密钥，由于非对称加密较慢，后续通信过程中使用对称加密。在密钥协商的过程中，服务端会将自己的证书发送给客户端，客户端会到CA机构通过摘要值验证证书的合法性，从而防止中间人攻击。</p>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ul>
+<li><a href="https://www.nowcoder.com/tutorial/93/e1b14ab2b40a4ef98d9e55830eb48d66" target="_blank" rel="noopener">C++工程师面试宝典之计算机网络</a></li>
+<li><a href="https://blog.csdn.net/jochebed666/article/details/88377253" target="_blank" rel="noopener">在浏览器中输入一个URL会发生什么?</a></li>
+<li><a href="https://www.cnblogs.com/tisikcci/p/5866753.html" target="_blank" rel="noopener">在浏览器中输入URL并回车后都发生了什么？</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU4ODI1MjA3NQ==&amp;mid=2247485569&amp;idx=2&amp;sn=a9bf44fa1ec4e9ebee345d8ccae4a1fb&amp;chksm=fddede45caa957532b0c95fa6071428da1bd4ec9a7ae6511abbd3f40baed33f40f779a2818e1&amp;mpshare=1&amp;scene=23&amp;srcid=&amp;sharer_sharetime=1590414335165&amp;sharer_shareid=74f3beda79e30a98e4e0f8dd6e1fd9d4#rd" target="_blank" rel="noopener">探究：一个数据包在网络中到底是怎么游走的？</a></li>
+<li><a href="https://www.cnblogs.com/an-wen/p/11180076.html" target="_blank" rel="noopener">HTTP协议超级详解</a></li>
+<li><a href="https://www.cnblogs.com/ranyonsue/p/8918908.html" target="_blank" rel="noopener">HTTP缓存机制</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html" target="_blank" rel="noopener">SSL/TLS协议运行机制的概述</a></li>
+<li><a href="https://blog.csdn.net/liuxingrong666/article/details/83869161" target="_blank" rel="noopener">HTTPS的数字证书验证原理</a></li>
+<li><a href="https://www.jianshu.com/p/a825de42ccbc" target="_blank" rel="noopener">MITM攻击(中间人攻击)</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2020/05/25/网址访问过程详解/" target="_blank" rel="external">https://liuyi12138.github.io/2020/05/25/网址访问过程详解/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计网/">计网</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面经/">面经</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2020/05/25/网址访问过程详解/&title=《网址访问过程详解》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2020/05/25/网址访问过程详解/&title=《网址访问过程详解》 — 知君的博客&source=在面试过程中常常会遇到这样一个问题：请你详细描述一下从我们在浏览器中输入网址到最后看到网页，这个过程中发生了什么？这个问题涉及面十分广，几乎涵盖了计网的全..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2020/05/25/网址访问过程详解/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《网址访问过程详解》 — 知君的博客&url=https://liuyi12138.github.io/2020/05/25/网址访问过程详解/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2020/05/25/网址访问过程详解/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/06/24/C++相关知识点梳理/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">C++相关知识点梳理</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/05/24/TCP详解/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">TCP详解</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2020/05/25/网址访问过程详解/&title=《网址访问过程详解》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2020/05/25/网址访问过程详解/&title=《网址访问过程详解》 — 知君的博客&source=在面试过程中常常会遇到这样一个问题：请你详细描述一下从我们在浏览器中输入网址到最后看到网页，这个过程中发生了什么？这个问题涉及面十分广，几乎涵盖了计网的全..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2020/05/25/网址访问过程详解/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《网址访问过程详解》 — 知君的博客&url=https://liuyi12138.github.io/2020/05/25/网址访问过程详解/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2020/05/25/网址访问过程详解/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvElEQVR42u3aS27jMBAFwNz/0gkwqwCJpNcfOh6gtApsWWJxwWYe++Mjvj7/Xfef/Pz2+3X128lz1i48PDy81tCvrp/3VCfi/p78XVf3PEwBHh4e3jFeMojJ8l1d4q/Y+Zjx8PDw3oHXe+X9ncmT8fDw8P533mS4+a/+rDDg4eHhxbz80dWIIYkMetTlrAUPDw8v5lUPwN7h74Pne3h4eHiDU/V82b1f7k8fd12OEw8PD+8AL48SkgaCXntB3s5VDTjw8PDwTvC2gtT8sKpaKibhCB4eHt4JXnWxztlJG0FvEptsPDw8vAO85MV5fFBNU6vlqhpt4OHh4W3x5rOSfJ6XmWR7fT+hv4QReHh4eKu8ZBs6GUReKvIegGpDAx4eHt4JXvLi6r/9edtB9aArb2XAw8PDew2vd9CVR7eTLXv1+Xh4eHjneAtL7XhGJxvxh/Hj4eHhrfJ6D6o2V+XTl7cjRGd6eHh4eC/h9cpD8nl1W9zrfXgoDHh4eHjHeL1QdWubXi0hl9/i4eHhHeDlS/Zu0JA0Iix3RuDh4eEt8apLfG/bnUQJ+f2FsAMPDw/vJbx5nake9vemI/otHh4e3gFevqz3ttr5UVZz6a9u8fHw8PCWeEkoUG0gmLRYJUt/oQjh4eHhrfKqP55slKvBRF6QHkoCHh4e3ipvsor24oM8X00OyQr/AODh4eEt8T6LV/WYajJN1QO2Xz7Bw8PDO8BLYtNk67zbRJW8PWHj4eHhneDNC8OkVPRii2R7vVb38PDw8DoZafnIarLQJ4FIHnbg4eHhneNVY9Nqc0Cv9SqfLDw8PLy/4uXxa55z5LVoUrUeph4PDw/vbXjJBnceDfcmGg8PD+99eMmwes1Y1Q19PgY8PDy8c7z8BXn0UD1Cy8tAoWzg4eHhHeBNDsAmce1u00AThoeHh1fjfQEeASIWPlMwoQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

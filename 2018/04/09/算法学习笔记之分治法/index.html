@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>算法学习笔记之分治法 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="算法">
+    <meta name="description" content="没有什么问题是分割成两半还解决不了的，如果有，就再分一次。╭（╯＾╰）╮">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法学习笔记之分治法">
+<meta property="og:url" content="https://liuyi12138.github.io/2018/04/09/算法学习笔记之分治法/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="没有什么问题是分割成两半还解决不了的，如果有，就再分一次。╭（╯＾╰）╮">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8xMi4yMC4xLnBuZw?x-oss-process=image/format,png">
+<meta property="og:updated_time" content="2021-02-23T06:34:31.925Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法学习笔记之分治法">
+<meta name="twitter:description" content="没有什么问题是分割成两半还解决不了的，如果有，就再分一次。╭（╯＾╰）╮">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8xMi4yMC4xLnBuZw?x-oss-process=image/format,png">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">算法学习笔记之分治法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">算法学习笔记之分治法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-09T06:23:40.000Z" itemprop="datePublished" class="page-time">
+  2018-04-09
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分治法的设计思想"><span class="post-toc-number">1.</span> <span class="post-toc-text">分治法的设计思想</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分治法的适用范围"><span class="post-toc-number">2.</span> <span class="post-toc-text">分治法的适用范围</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分治法的基本步骤"><span class="post-toc-number">3.</span> <span class="post-toc-text">分治法的基本步骤</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可使用分治法求解的经典问题"><span class="post-toc-number">4.</span> <span class="post-toc-text">可使用分治法求解的经典问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-求x的n次幂"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">1.求ｘ的ｎ次幂</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-归并排序"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">2.归并排序</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-最大子数组问题"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">3.最大子数组问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考链接"><span class="post-toc-number">5.</span> <span class="post-toc-text">参考链接</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-算法学习笔记之分治法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">算法学习笔记之分治法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-09 14:23:40" datetime="2018-04-09T06:23:40.000Z"  itemprop="datePublished">2018-04-09</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>没有什么问题是分割成两半还解决不了的，如果有，就再分一次。╭（╯＾╰）╮</strong><br><a id="more"></a> </p>
+<h3 id="分治法的设计思想"><a href="#分治法的设计思想" class="headerlink" title="分治法的设计思想"></a>分治法的设计思想</h3><p><strong>将一个难以直接解决的大问题，分割成一些规模较小的与原问题形式相同的子问题，用递归解决这些子问题，然后将子问题的解合并即为原问题的解。</strong></p>
+<h3 id="分治法的适用范围"><a href="#分治法的适用范围" class="headerlink" title="分治法的适用范围"></a>分治法的适用范围</h3><ul>
+<li>１．该问题的规模缩小后可以容易地解决。</li>
+<li>２．该问题可以分解为若干个规模较小的相同问题。</li>
+<li>３．该问题的子问题的解可以合并。</li>
+<li>４．该问题的各个子问题相互独立。</li>
+</ul>
+<p><strong>TIP:如果一个问题具备前两条特征，但不具备第三条，可以考虑贪心算法或动态规划</strong><br><strong>TIP:如果一个问题不具备第四条特征，分治法的效率降低，用动态规划较好。</strong></p>
+<h3 id="分治法的基本步骤"><a href="#分治法的基本步骤" class="headerlink" title="分治法的基本步骤"></a>分治法的基本步骤</h3><p>分治法在每一层递归上都有三个步骤：<br>step1 分解：将原问题分解为若干个规模较小，相互独立，与原问题形式相同的子问题；</p>
+<p>step2 解决：若子问题规模较小而容易被解决则直接解，否则递归地解各个子问题</p>
+<p>step3 合并：将各个子问题的解合并为原问题的解。</p>
+<h3 id="可使用分治法求解的经典问题"><a href="#可使用分治法求解的经典问题" class="headerlink" title="可使用分治法求解的经典问题"></a>可使用分治法求解的经典问题</h3><ul>
+<li>二分搜索</li>
+<li>大整数乘法</li>
+<li>Strassen矩阵乘法</li>
+<li>棋盘覆盖</li>
+<li>归并排序</li>
+<li>快速排序</li>
+<li>线性时间选择</li>
+<li>最接近点对问题</li>
+<li>循环赛日程表</li>
+<li>汉诺塔</li>
+</ul>
+<p>###　分治法实例</p>
+<h4 id="1-求x的n次幂"><a href="#1-求x的n次幂" class="headerlink" title="1.求ｘ的ｎ次幂"></a>1.求ｘ的ｎ次幂</h4><p><strong>时间复杂度为O(lgn)</strong><br>个人感悟：感觉有二分法的思想。<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sum(x,n)</span><br><span class="line">if(x==1)</span><br><span class="line">  result=x;</span><br><span class="line">if(x%2==0)</span><br><span class="line"> result=sum(x,n/2)*sum(x,n/2);</span><br><span class="line">else</span><br><span class="line"> result=sum(x,(n+1)/2)*sum(x,(n-1)/2);</span><br><span class="line">return result;</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-归并排序"><a href="#2-归并排序" class="headerlink" title="2.归并排序"></a>2.归并排序</h4><p>个人感悟：归并排序与快速排序的区别在于<br>１．使用二分法时，快速排序两边个数不一定相等，归并排序一定相等。<br>２．快速排序不需要额外数组。<br>３．快速排序不稳定，归并排序稳定。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8xMi4yMC4xLnBuZw?x-oss-process=image/format,png" alt="12.20.1.png" title>
+                </div>
+                <div class="image-caption">12.20.1.png</div>
+            </figure><br>合并方法：用两个指针分别指向两个子数组第一个元素，然后总是把小的数字填入结果中并将对应指针往右移一位；如果其中一个指针到头了，则直接把另外一个指针没到头的数组的剩余元素填入结果。</p>
+<h4 id="3-最大子数组问题"><a href="#3-最大子数组问题" class="headerlink" title="3.最大子数组问题"></a>3.最大子数组问题</h4><p><strong>时间复杂度O(nlgn) </strong><br>将数组等分，讨论最大子数组的位置:</p>
+<ul>
+<li>1.完全在左边或者右边。</li>
+<li>2.跨越中点。<br>第一种情况直接递归找出最大子数组，第二种情况从中点开始向两边寻找最大子数组，问题的解就是两种情况里面和最大的那个子数组。<br><strong>关于最大子数组问题，也可以用动态规划的思想做，区别参照归并排序与快速排序的区别。</strong></li>
+</ul>
+<p><a href="https://www.cnblogs.com/AlgrithmsRookie/p/5882379.html" target="_blank" rel="noopener"><strong>最大子数组问题</strong></a></p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><strong>TIP:参考链接中还有许多其他链接也是非常好的学习素材哦。</strong><br><a href="http://www.cnblogs.com/steven_oyj/archive/2010/05/22/1741370.html" target="_blank" rel="noopener"><strong>理论部分</strong></a><br><a href="http://www.hahack.com/wiki/algorithms-divide-and-conquer.html#%E4%B8%89%E4%B8%AA%E6%AD%A5%E9%AA%A4" target="_blank" rel="noopener"><strong>示例部分1</strong></a><br><a href="http://raytaylorlin.com/Tech/algorithm/divide-and-conquer/" target="_blank" rel="noopener"><strong>示例部分２</strong></a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2018/04/09/算法学习笔记之分治法/" target="_blank" rel="external">https://liuyi12138.github.io/2018/04/09/算法学习笔记之分治法/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/04/09/算法学习笔记之分治法/&title=《算法学习笔记之分治法》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/04/09/算法学习笔记之分治法/&title=《算法学习笔记之分治法》 — 知君的博客&source=没有什么问题是分割成两半还解决不了的，如果有，就再分一次。╭（╯＾╰）╮" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/04/09/算法学习笔记之分治法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《算法学习笔记之分治法》 — 知君的博客&url=https://liuyi12138.github.io/2018/04/09/算法学习笔记之分治法/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/04/09/算法学习笔记之分治法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/09/许你的一百零九个日夜/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">许你的一百零九个日夜</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/09/鸟哥的Linux私房菜学习笔记/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">鸟哥的Linux私房菜学习笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/04/09/算法学习笔记之分治法/&title=《算法学习笔记之分治法》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/04/09/算法学习笔记之分治法/&title=《算法学习笔记之分治法》 — 知君的博客&source=没有什么问题是分割成两半还解决不了的，如果有，就再分一次。╭（╯＾╰）╮" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/04/09/算法学习笔记之分治法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《算法学习笔记之分治法》 — 知君的博客&url=https://liuyi12138.github.io/2018/04/09/算法学习笔记之分治法/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/04/09/算法学习笔记之分治法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACt0lEQVR42u3awU7DMBAE0P7/T8MVCdLMeO0qSC8nVNLiFyR7O7uvV3x9/bjye37f//6Vr4vr6r3bLjw8PLzB0t9/dPKH5/dM1vPHI8DDw8M7xrvaUdt7EkZ+VORHzuXreHh4eA/jrd0/Z+Ph4eH9R15e1CbldXu04OHh4T2B18YNyUbfLrd9QJuzFjw8PLyYl3eRnvPzkf4eHh4e3rirnmzW7fGwq8UVfQ4eHh7eAV4b0eYlbzKqlRfxa+vEw8PDO82bhKeTyjYfR8gPKjw8PLxzvCR4TTbftQe0Nl5QrBYPDw/vAG8t88w38Xw4YBIZR2U3Hh4e3lZeXYOXwwT50vNNf3T64eHh4Q147UafLyIvpvPHVBfueHh4eAd4awtqN+61wKJtgN0ExHh4eHibeO0oVV7U5uMC7dKLEQQ8PDy8A7z5R6yRkkiiPaKKBhgeHh7egJcfDHn0kB8YbYlc/xU8PDy8A7xJt+j9snbFHO31apeFh4eHV/LyMjqvzYuZhXFUcXMnHh4e3jFeXuzmTay8aN7VYPvjXXh4eHgHeGuDU2uvJLB2sCB60Hh4eHiHeWvlb9u+auPjfD033xvw8PDwxrykIE4C0zYCnhTQRUyMh4eHd4DXbvpJELB2SJwY9sLDw8P7DK+NEtrQNl9oEnPkBw8eHh7eXl676eetrzbejRpa7YACHh4e3sd5u0retQI6j24vX8fDw8M7zFsrjucbett+q5MVPDw8vK2w/FobI2hD3jx0uPmX4OHh4R3gTVpi7T1t2f2+3G+HuvDw8PD28tba89vCgvE4ws1v8fDw8I7x1jpHawX0JDiuHxYeHh7eY3jJprwrkkge7k3igoeHh/cAXoufbP3tsAIeHh7eZ3hrg1P5u/KyODla8pgDDw8P7wSv/cI/YewKHY6MZ+Hh4eHdv+sbMjBK34M0TIwAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

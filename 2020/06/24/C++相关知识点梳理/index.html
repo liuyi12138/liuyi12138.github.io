@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>C++相关知识点梳理 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="C++,面经">
+    <meta name="description" content="整理一下与C++相关的一些常考知识点。">
+<meta name="keywords" content="C++,面经">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++相关知识点梳理">
+<meta property="og:url" content="https://liuyi12138.github.io/2020/06/24/C++相关知识点梳理/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="整理一下与C++相关的一些常考知识点。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T06:34:31.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++相关知识点梳理">
+<meta name="twitter:description" content="整理一下与C++相关的一些常考知识点。">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">C++相关知识点梳理</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">C++相关知识点梳理</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-06-24T08:03:36.000Z" itemprop="datePublished" class="page-time">
+  2020-06-24
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/面经/">面经</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关键字"><span class="post-toc-number">1.</span> <span class="post-toc-text">关键字</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#static"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">static</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#隐藏"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">隐藏</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#改变变量的存储方式和生命周期"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">改变变量的存储方式和生命周期</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#对类成员声明static"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">对类成员声明static</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#const"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">const</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#extern-C"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">extern C</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#底层原理"><span class="post-toc-number">2.</span> <span class="post-toc-text">底层原理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RTTI"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">RTTI</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#cast转换"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">cast转换</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#虚函数（多态）"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">虚函数（多态）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#多态及其实现条件"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">多态及其实现条件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#虚函数与重写"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">虚函数与重写</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#多态的原理"><span class="post-toc-number">2.3.3.</span> <span class="post-toc-text">多态的原理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#其他问题"><span class="post-toc-number">2.3.4.</span> <span class="post-toc-text">其他问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#内存管理与内存泄露"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">内存管理与内存泄露</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#C-11"><span class="post-toc-number">3.</span> <span class="post-toc-text">C++11</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#auto"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">auto</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#nullptr"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">nullptr</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基于范围的for循环"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">基于范围的for循环</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#初始化列表"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">初始化列表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#智能指针"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">智能指针</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#右值引用"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">右值引用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#新增STL容器array以及tuple-元组"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">新增STL容器array以及tuple(元组)</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-C++相关知识点梳理"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">C++相关知识点梳理</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-06-24 16:03:36" datetime="2020-06-24T08:03:36.000Z"  itemprop="datePublished">2020-06-24</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/面经/">面经</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>整理一下与C++相关的一些常考知识点。<br><a id="more"></a> </p>
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><h3 id="static"><a href="#static" class="headerlink" title="static"></a>static</h3><h4 id="隐藏"><a href="#隐藏" class="headerlink" title="隐藏"></a>隐藏</h4><p>未加static的全局变量和函数是全局可见的，当同时编译多个文件时，文件之间的变量或者函数可能会有命名冲突的情况，可以使用static来隐藏，使得变量或函数只能在该文件可见。</p>
+<h4 id="改变变量的存储方式和生命周期"><a href="#改变变量的存储方式和生命周期" class="headerlink" title="改变变量的存储方式和生命周期"></a>改变变量的存储方式和生命周期</h4><p>static关键字会使得它修饰的变量存储在静态存储区，在程序开始运行是就初始化，并且会一直存在直到程序结束，并且不会被再次初始化。</p>
+<h4 id="对类成员声明static"><a href="#对类成员声明static" class="headerlink" title="对类成员声明static"></a>对类成员声明static</h4><p>同样有上述的几种功能，对该成员函数or静态变量进行隐藏以及改变其生命周期，并且所有的对象共用一个静态成员函数或静态变量。另外静态内部类也是实现单例模式的一种方法，其优点在于外部类加载时并不需要立即加载内部类，内部类不被加载则不去初始化INSTANCE，故而不占内存，只有当getInstance()方法第一次被调用时，才会去初始化INSTANCE。</p>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>const用来表示常量，即不允许他修饰的变量被修改，在进行参数传递的时候，也常常使用const修饰引用来传参，既保证了不复制参数，又防止对象被修改。<br>C++中还可以用const修饰成员函数和数据成员来达到封装的目的，不允许使用const修饰的成员函数来修改数据成员。</p>
+<h3 id="extern-C"><a href="#extern-C" class="headerlink" title="extern C"></a>extern C</h3><p>extern是C/C++语言中表明函数和全局变量作用范围（可见性）的关键字，该关键字告诉编译器，其声明的函数和变量可以在本模块或其它模块中使用(只是声明，不分配内存)</p>
+<p>与extern对应的关键字是static，被它修饰的全局变量和函数只能在本模块中使用。因此，一个函数或变量只可能被本模块使用时，其不可能被extern “C”修饰。</p>
+<p>被extern “C”修饰的变量和函数是按照C语言方式编译和链接的</p>
+<p>之所以要如此是因为编译器在将C++源代码编译成目标文件时，会将函数和变量的名称进行修饰，形成符号名，目标文件中所使用的符号名就是修饰后名称，所以对于不同函数签名的函数，即使函数名相同，编译器和链接器都认为它们是不同的函数（重载）。因此有时候在调用一些库函数的时候，会出现无法链接的情况(因为函数签名不同)所以对于C++来说，必须使用extern “C”来声明这些函数。</p>
+<h2 id="底层原理"><a href="#底层原理" class="headerlink" title="底层原理"></a>底层原理</h2><h3 id="RTTI"><a href="#RTTI" class="headerlink" title="RTTI"></a>RTTI</h3><p>RTTI是运行时类型检测，也是C++11的新特性，主要是在<code>dynamic_cast</code>、<code>typeid</code>中使用，在进行类型转换前或者获取类型时，会查询<code>type_info</code>指针来进行类型检测。</p>
+<h3 id="cast转换"><a href="#cast转换" class="headerlink" title="cast转换"></a>cast转换</h3><ul>
+<li>const_cast，用于将const变量转换为非const</li>
+<li>static_cast，用于隐式转换，如非const转const，void*转指针等，能用于多态向上转化，向下不安全</li>
+<li>static_cast，动态类型转换，可以用于层次间的向上向下转化，只能转指针和引用</li>
+<li>reinterpret_cast，什么都可以转，可能会出问题</li>
+</ul>
+<h3 id="虚函数（多态）"><a href="#虚函数（多态）" class="headerlink" title="虚函数（多态）"></a>虚函数（多态）</h3><h4 id="多态及其实现条件"><a href="#多态及其实现条件" class="headerlink" title="多态及其实现条件"></a>多态及其实现条件</h4><p>c++中的多态就是在父类的函数前加上virtual关键字，在子类中重写该函数，运行时将会根据对象的实际类型来调用相应的函数，如果对象类型是子类，就调用子类的函数，如果对象类型是父类，就调用父类的函数。</p>
+<p>多态的实现需要两个条件：</p>
+<ul>
+<li>虚函数重写，设置不同的状态</li>
+<li>对象调用虚函数时必须是指针或者引用</li>
+</ul>
+<h4 id="虚函数与重写"><a href="#虚函数与重写" class="headerlink" title="虚函数与重写"></a>虚函数与重写</h4><ul>
+<li>虚函数是带有virtual关键字的成员函数</li>
+<li>子类有个和父类完全相同(函数名,形参,返回值都相同,协变和析构函数除外)的虚函数,就称子类虚函数重写父类虚函数 </li>
+</ul>
+<h4 id="多态的原理"><a href="#多态的原理" class="headerlink" title="多态的原理"></a>多态的原理</h4><ul>
+<li>多态是用虚函数表来实现的</li>
+<li>有虚函数的类都会生成一个虚函数表，在编译的时候使用</li>
+<li>虚函数表是一个存储虚函数地址的数组</li>
+<li>生成子类的虚函数表需要经过一下步骤<ul>
+<li>将父类的虚函数表拷贝</li>
+<li>将子类中重写的虚函数覆盖掉父类中的虚函数</li>
+<li>如果有新增加的虚函数则放到表的最后</li>
+</ul>
+</li>
+<li>在调用时会根据对象中的虚表指针来找实际应该调用的函数</li>
+</ul>
+<h4 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h4><ul>
+<li>虚函数和普通函数一样在代码段,虚表在只读常量区</li>
+<li>inline函数(内联函数)没有地址,无法放到虚函数表中</li>
+<li>静态成员不能是虚函数，因为静态成员函数没有this指针,因为有this指针才能访问到虚表指针,有虚表指针才能找到虚表从而调用实际应该调用的函数</li>
+<li>构造函数不能是虚函数，因为对象中的虚函数表指针是在构造函数初始化列表阶段才初始化的</li>
+<li>析构函数可以是虚函数，并且最好把基类的析构函数定义成虚函数，当父类指针指向子类对象时,如果析构函数不是虚函数,析构就只会释放父类对象,造成内存泄漏</li>
+<li>普通对象访问普通函数和访问虚函数是一样快的(不会触发多态);指针对象或者是引用对象，调用普通函数更快一些，因为构成了多态，运行时调用虚函数要先到虚函数表中去查找。这样然后才拿到韩式的地址，这样就不如直接可以拿到函数地址的普通函数快。</li>
+</ul>
+<h3 id="内存管理与内存泄露"><a href="#内存管理与内存泄露" class="headerlink" title="内存管理与内存泄露"></a>内存管理与内存泄露</h3><p>可以通过静态扫描来检测内存泄露，具体的操作为对象计数；重载new/delete，记录分配点等</p>
+<p>解决内存泄露可以使用智能指针，但要小心循环引用的问题。</p>
+<h2 id="C-11"><a href="#C-11" class="headerlink" title="C++11"></a>C++11</h2><h3 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h3><p>auto实际上很早就被引入到C++，用来进行类型推导，比如用在迭代器中。</p>
+<h3 id="nullptr"><a href="#nullptr" class="headerlink" title="nullptr"></a>nullptr</h3><p>传统的C++无法区分NULL和0，有的编译器会把NULL定义为void*的指针，有的直接就定义为0了，这就会导致一系列的问题，比如在重载时会发生混乱，所以C++11引入了nullptr来区分空指针和0。</p>
+<h3 id="基于范围的for循环"><a href="#基于范围的for循环" class="headerlink" title="基于范围的for循环"></a>基于范围的for循环</h3><p>进行遍历的时候可以像python一样写<code>auto iter:arr</code>来遍历。</p>
+<h3 id="初始化列表"><a href="#初始化列表" class="headerlink" title="初始化列表"></a>初始化列表</h3><p>提供了统一的语法来初始化任意的对象,这两个特性就让人感觉C++越来越智能而简洁了。</p>
+<h3 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h3><p>C++11引入智能指针主要是因为C++没有自动的内存回收机制，所以当业务逻辑过于复杂的时候难免会出现内存没有delete的现象，这就容易造成内存泄漏的问题，智能指针主要就是被用来对这些资源进行动态管理，并及时释放无用的资源。</p>
+<p>C++11提供四种智能指针，有<code>unique_ptr</code>,<code>shared_ptr</code>, <code>weak_ptr</code>,以及<code>auto_ptr</code>，不过<code>auto_ptr</code>已经被弃用。</p>
+<p><code>shared_ptr</code>允许多个指针指向相同的对象，每次被引用就内部计数+1，析构则-1，当引用计数为0时则释放内存。<code>unique_ptr</code>只允许一个指针指向给定的对象，<code>weak_ptr</code>最大的作用在于协助<code>shared_ptr</code>，可以观测目标对象的引用计数。</p>
+<p>智能指针会遇到的最大问题是循环引用，就像是类之间的循环引用一样，两个指针互相引用对方就会造成都无法析构的现象。循环引用的现象可以通过让引用链上的一方持用普通指针或弱智能指针(weak_ptr)来解决。</p>
+<p>实现智能指针可以通过引入辅助类或者使用句柄。<br>辅助类实现即单独使用一个类来存储引用计数，每次在构造和析构智能指针类的时候对辅助类进行操作。<br>而句柄实现则是把指针封装起来，通过重载来重新定义指针的行为，将计数内置进去。</p>
+<h3 id="右值引用"><a href="#右值引用" class="headerlink" title="右值引用"></a>右值引用</h3><p>C++11引入右值引用的目的是解决拷贝临时对象时的性能低下问题，在C++11之前，进行临时对象拷贝时会多调用一次构造函数并复制，这就使得性能低下。实际上直接移动变量的指向就会快得多，但C++11之前右值是不能被取地址的，所以没法进行右值引用。</p>
+<p>从本质上来说，左值引实际上是用const指针来实现的，它保存的是一个指向数据地址的指针，而如果进行反汇编可以发现右值引用是通过取地址来实现的，一个变量的右值引用存储的就是它的地址。</p>
+<p>而对于传入的引用，在不知道是左值还是右值的情况下，可以用move函数来将其转换为右值，也就是实现了取地址的操作。</p>
+<h3 id="新增STL容器array以及tuple-元组"><a href="#新增STL容器array以及tuple-元组" class="headerlink" title="新增STL容器array以及tuple(元组)"></a>新增STL容器array以及tuple(元组)</h3><p>array保存在栈内存中，相比堆内存中的vector，速度更快，但array长度无法更改，没有vector灵活。</p>
+<p>而新增了tuple感觉就是C++在像python看齐</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2020/06/24/C++相关知识点梳理/" target="_blank" rel="external">https://liuyi12138.github.io/2020/06/24/C++相关知识点梳理/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面经/">面经</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2020/06/24/C++相关知识点梳理/&title=《C++相关知识点梳理》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2020/06/24/C++相关知识点梳理/&title=《C++相关知识点梳理》 — 知君的博客&source=整理一下与C++相关的一些常考知识点。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2020/06/24/C++相关知识点梳理/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C++相关知识点梳理》 — 知君的博客&url=https://liuyi12138.github.io/2020/06/24/C++相关知识点梳理/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2020/06/24/C++相关知识点梳理/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/08/19/实习生面试经历整理/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">实习生面试经历整理</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/05/25/网址访问过程详解/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">网址访问过程详解</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2020/06/24/C++相关知识点梳理/&title=《C++相关知识点梳理》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2020/06/24/C++相关知识点梳理/&title=《C++相关知识点梳理》 — 知君的博客&source=整理一下与C++相关的一些常考知识点。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2020/06/24/C++相关知识点梳理/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C++相关知识点梳理》 — 知君的博客&url=https://liuyi12138.github.io/2020/06/24/C++相关知识点梳理/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2020/06/24/C++相关知识点梳理/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtUlEQVR42u3aUXKrMAwF0Ox/0+0C8iBXkkXzZg5fHaDBhw/bXOn1io+ft+P9/NV/3Z95P3//rNfGgYeHhzce+j3jatDJPckTE15yPx4eHt42L5ms80m/ungkz0oWCTw8PLzv5FWn+HyXm5Pw8PDw/kdesnW+H2gSbVSDCTw8PLwneXkQMNnmTuLg9awFDw8Pr7bLjapI3/P3Sn0PDw8Pb1xVnxeiesepX8bDw8Pb4OUTbrLlTUpfeYiQnInGiYeHh7fAu7+Qb2qTUtbGElIOc/Hw8PAGvPyzP99e9+5PkoTygoGHh4e3wEtaoJKAoNeklV/Ni1uF+h4eHh5ei5c0BPTasHob9OqyUVj38PDw8I7yqmWnfJE4tWzkY8DDw8N7hjePJ5JoIH8RvRary84IPDw8vAXeJIzIQ41Jo0C18IaHh4f3DK+68U0m/Wr4W12iPsS7eHh4eGu85Kd7m+/e66tW/6OmKzw8PLxDvHxy/6viWb4MlFuv8PDw8Aa8JHidhA55INtbAD4sMHh4eHhrvN60W97aLl/9hwIPDw/vKK/XUDWfdavPTYpwUesAHh4e3lFerwQ1qTclRbVR2IGHh4e3wKtuUqsNWHlQOwk1jiUueHh4eOO0s9DeVHwpvXAh+c3LceLh4eE9yKsuANXiVnW6bxbk8PDw8I7y5m1SyQSd3N9rPvhwDx4eHt4aL59we4xeOW3CxsPDw3uel0elZ+PdV+uIvhXw8PDwxrxJaWpSlJq8msJVPDw8vAVeb9rN2wjye6oxcTXUwMPDwzvL65Xney0FV4PIo+RyKQ4PDw9vjdcrgE2aBu6p+Sv78Lrx8PDwvoDXm8onW+RqHDzqjMDDw8Nb400i1Em5Kw+a8fDw8LZ5veaqU4x8EUoKb3h4eHjbvN4H/2t89Ir9vReNh4eHd4j3CxCeIhbdT6uAAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

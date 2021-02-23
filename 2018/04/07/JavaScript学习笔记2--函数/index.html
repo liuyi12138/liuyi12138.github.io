@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>JavaScript学习笔记2--函数 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    <meta name="description" content="js与c的比较学习函数">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript学习笔记2--函数">
+<meta property="og:url" content="https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记2--函数/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="js与c的比较学习函数">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T06:34:31.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript学习笔记2--函数">
+<meta name="twitter:description" content="js与c的比较学习函数">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JavaScript学习笔记2--函数</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JavaScript学习笔记2--函数</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-07T06:35:46.000Z" itemprop="datePublished" class="page-time">
+  2018-04-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编程语言/">编程语言</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#js与c的比较学习"><span class="post-toc-number">1.</span> <span class="post-toc-text">js与c的比较学习</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#函数"><span class="post-toc-number"></span> <span class="post-toc-text">函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#函数的定义与调用"><span class="post-toc-number">0.1.</span> <span class="post-toc-text">函数的定义与调用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#变量作用域与解构赋值"><span class="post-toc-number">0.2.</span> <span class="post-toc-text">变量作用域与解构赋值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法"><span class="post-toc-number">0.3.</span> <span class="post-toc-text">方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#高阶函数"><span class="post-toc-number">0.4.</span> <span class="post-toc-text">高阶函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#map-reduce"><span class="post-toc-number">0.4.1.</span> <span class="post-toc-text">map/reduce</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#filter"><span class="post-toc-number">0.4.2.</span> <span class="post-toc-text">filter</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#sort"><span class="post-toc-number">0.4.3.</span> <span class="post-toc-text">sort</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#闭包"><span class="post-toc-number">0.5.</span> <span class="post-toc-text">闭包</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#箭头函数-Arrow-Function"><span class="post-toc-number">0.6.</span> <span class="post-toc-text">箭头函数(Arrow Function)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#generator"><span class="post-toc-number">0.7.</span> <span class="post-toc-text">generator</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-JavaScript学习笔记2--函数"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JavaScript学习笔记2--函数</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-07 14:35:46" datetime="2018-04-07T06:35:46.000Z"  itemprop="datePublished">2018-04-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编程语言/">编程语言</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="js与c的比较学习"><a href="#js与c的比较学习" class="headerlink" title="js与c的比较学习"></a>js与c的比较学习</h3><h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><a id="more"></a> 
+<h4 id="函数的定义与调用"><a href="#函数的定义与调用" class="headerlink" title="函数的定义与调用"></a>函数的定义与调用</h4><ul>
+<li>js中可将函数赋值给一个变量。 var abs=function(x){…}</li>
+<li>argumentsc只在函数内部起作用，并且永远指向传入的所有参数。arguments[i]</li>
+<li>arguments.length ——判断传入参数的个数</li>
+<li>rest函数:<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function exm(a,b,...rest)&#123;</span><br><span class="line">console.log('a = '+ a);</span><br><span class="line">console.log('b = '+ b);</span><br><span class="line">console.log(rest);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="变量作用域与解构赋值"><a href="#变量作用域与解构赋值" class="headerlink" title="变量作用域与解构赋值"></a>变量作用域与解构赋值</h4><ul>
+<li>JavaScript的函数在查找变量时从自身函数定义开始，从“内”向“外”查找。如果内部函数定义了与外部函数重名的变量，则内部函数的变量将“屏蔽”外部函数的变量。</li>
+<li>JavaScript会将所有申明的变量提升到函数顶部，所以尽量在函数顶部申明变量并赋值。</li>
+<li>JavaScript默认有一个全局变量window,声明的全局变量会绑定到window上，访问全局变量course和访问window.course等价</li>
+<li>可把全局变量都绑定在唯一的名字空间，var MYAPP={};MYAPP.name=’myapp’;</li>
+<li>解构赋值　var[x,y,z]=[1,2,3];</li>
+<li>如果需要从一个对象中取出若干属性，也可以使用解构赋值，便于快速获取对象的指定属性</li>
+<li>解构赋值简化代码：　[x,y]=[y,x]</li>
+</ul>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ul>
+<li>在一个对象中绑定函数，称为这个对象的方法</li>
+<li>在一个方法内部，this是一个特殊变量，它始终指向当前对象</li>
+<li>用var that = this;，就可以放心地在方法内部定义其他函数，而不是把所有语句都堆到一个方法中。</li>
+<li>apply 在function.apply(对象，[参数])　——apply接收两个参数，一个是需要绑定的this变量，另一个是包含函数本身参数的数组</li>
+<li><p>apply与call的区别：apply()把参数打包成Array再传入；call()把参数按顺序传入。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Math.max.apply(null, [3, 5, 4]);</span><br><span class="line">Math.max.call(null, 3, 5, 4);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>装饰器　apply()</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var count = 0;</span><br><span class="line">var oldParseInt = parseInt; // 保存原函数</span><br><span class="line">window.parseInt = function () &#123;</span><br><span class="line"><span class="code">    count += 1;</span></span><br><span class="line"><span class="code">    return oldParseInt.apply(null, arguments); // 调用原函数</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h4><p><strong> 接收另一个函数作为参数的函数叫做高阶函数　</strong></p>
+<h5 id="map-reduce"><a href="#map-reduce" class="headerlink" title="map/reduce"></a>map/reduce</h5><ul>
+<li>arr.map(function)　——将arr中的每个参数依次传入function中</li>
+<li>map()传入的参数是函数对象本身</li>
+<li>reduce必须接收两个参数，并把结果和序列的下一个元素做累积计算</li>
+</ul>
+<h5 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h5><ul>
+<li>filter用于把Array中的某些元素过滤掉，filter也接收一个函数，然后把传入的函数依次作用于每个元素，根据返回值确定是否保留该元素</li>
+<li><p>filter()接收的回调函数，其实可以有多个参数。通常我们仅使用第一个参数，表示Array的某个元素。回调函数还可以接收另外两个参数，表示元素的位置和数组本身</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var arr = ['A', 'B', 'C'];</span><br><span class="line">var r = arr.filter(function (element, index, self) &#123;</span><br><span class="line"><span class="code">    console.log(element); // 依次打印'A', 'B', 'C'</span></span><br><span class="line"><span class="code">    console.log(index); // 依次打印0, 1, 2</span></span><br><span class="line"><span class="code">    console.log(self); // self就是变量arr</span></span><br><span class="line"><span class="code">    return true;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以利用filter去掉重复元素</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r = arr.filter(function (element, index, self) &#123;</span><br><span class="line"><span class="code">    return self.indexOf(element) === index;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h5><ul>
+<li>Array的sort()方法默认把所有元素先转换为String再排序，要自定义一个函数才能对数字进行大小排序</li>
+<li>sort()方法会直接对Array进行修改，它返回的结果仍是当前Array</li>
+</ul>
+<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><ul>
+<li>高阶函数除了可以接受函数作为参数外，还可以把函数作为结果值返回。</li>
+<li>在函数function1中又定义了函数function2，并且，内部函数function2可以引用外部函数function1的参数和局部变量，当function1返回函数function2时，相关参数和变量都保存在返回的函数中。这种程序结构被称作闭包。</li>
+<li>当我们调用function1时，每次调用都会返回一个新的函数。即使传入的参数相同，返回的函数也不同</li>
+<li>返回闭包时牢记的一点就是：返回函数不要引用任何循环变量，或者后续会发生变化的变量。</li>
+</ul>
+<h4 id="箭头函数-Arrow-Function"><a href="#箭头函数-Arrow-Function" class="headerlink" title="箭头函数(Arrow Function)"></a>箭头函数(Arrow Function)</h4><ul>
+<li>箭头函数包含一条语句　x =&gt; x+x 相当于　function(x){return x+x;} </li>
+<li>箭头函数包含多条语句　x =&gt;{… return …;}</li>
+<li>如果参数不是一个，就需要用括号()括起来　(x,y,…rest)</li>
+<li>x =&gt; ({ foo: x }) ——返回一个对象</li>
+<li>箭头函数内部的this总是指向词法作用域，也就是外层调用者</li>
+<li>用call()或者apply()调用箭头函数时，无法对this进行绑定，即传入的第一个参数被忽略</li>
+</ul>
+<h4 id="generator"><a href="#generator" class="headerlink" title="generator"></a>generator</h4><ul>
+<li><p>generator和函数不同的是，generator由function<em>定义（注意多出的</em>号），并且，除了return语句，还可以用yield返回多次。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function* foo(x) &#123;</span><br><span class="line"><span class="code">    yield x + 1;</span></span><br><span class="line"><span class="code">    yield x + 2;</span></span><br><span class="line"><span class="code">    return x + 3;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>1.function.next(); —— next()方法会执行generator的代码，然后，每次遇到yield x;就返回一个对象{value: x, done: true/false}，然后“暂停”。返回的value就是yield的返回值，done表示这个generator是否已经执行结束了。如果done为true，则value就是return的返回值。</p>
+</li>
+<li>2.直接用for … of循环迭代generator对象，这种方式不需要我们自己判断done<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for(var x of function(10))&#123;...&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2018/04/07/JavaScript学习笔记2--函数/" target="_blank" rel="external">https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记2--函数/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记2--函数/&title=《JavaScript学习笔记2--函数》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记2--函数/&title=《JavaScript学习笔记2--函数》 — 知君的博客&source=js与c的比较学习函数" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记2--函数/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript学习笔记2--函数》 — 知君的博客&url=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记2--函数/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记2--函数/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/07/JavaScript学习笔记３--标准对象/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">JavaScript学习笔记３--标准对象</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/07/JavaScript学习笔记１--基本语法/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JavaScript学习笔记１--基本语法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记2--函数/&title=《JavaScript学习笔记2--函数》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记2--函数/&title=《JavaScript学习笔记2--函数》 — 知君的博客&source=js与c的比较学习函数" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记2--函数/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript学习笔记2--函数》 — 知君的博客&url=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记2--函数/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/04/07/JavaScript学习笔记2--函数/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuklEQVR42u3aQW7kMAwEwPz/09kHJON0k9LCh/IpMMYWywEogeTXV3x9B9fP3z+/4XmtT89+3bjw8PDwjoae856DeH5n+xGL1fHw8PCu8Z4TdJ76Z4EmG8BzPB/v4+Hh4b2Al7CT7SE5lOfr4uHh4b2Z9xxoHtzskI2Hh4f3Hl5+8J1tD/k2MHvbgVoLHh4eXldljbpI7/n7Sn8PDw8P79BAQJ7KZ09tmmF/rIuHh4d3gZcn3CSgzbPP79mshYeHh3ePl483bcZM22Juu+X8EgkeHh7eUV7S4N+MRrXjBckqxeaEh4eHd4GXH2fzZlV7FM4bb+34Ah4eHt493iZlt5tEnuLbj163xPDw8PBGvCSs2TBTHvom9Q93PDw8PLw1Ly8fJGXWtqixL3Z8vI+Hh4d3gbcpDeTPHu7XLQYL8PDw8E7xZkk5HwhIDs15VG2pFw8PD+8sb1a0nQ0EzDaD1afHw8PDu8BrG2B5it+TNsfxYX8PDw8PL+A9J9nZiEBy5J01utrSCR4eHt5tXlsqnZVW2zfkowm/rIuHh4d3jbcPtO2zzcrB9X08PDy8C7x8sVm4z8ffemQqjqH+lnh4eHgjXpRkF+WGPK3nm0RRksDDw8M7ysuP0W2bavb72chCvYfg4eHhHeLN0m5+KG+P7HljbDhMgIeHhzfitck9v9OOF+RJv5gmw8PDw7vGa8cF9qXb2QaQ/0vw8PDwbvPy17Vli7zksa+jFFVqPDw8vBHvu7xmxdx2g2kLux/fiYeHh3eBN0u4SXNrVobYfJTNwBYeHh5ey2tfndRLE1I78pV/RDw8PLz/w5uFe2obaAsZxWEaDw8P7wW8/Kn20Jx8oHZ1PDw8vLfx2pLrvl5SDA3g4eHhXeYlxYg8ZW+qyPk4VzTahYeHh3eBN1tyPyzVhnW9v4eHh4f3N+8fYWWxhnJGe8MAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

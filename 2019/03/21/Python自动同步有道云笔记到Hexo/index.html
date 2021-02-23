@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Python自动同步有道云笔记到Hexo | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="轮子,Python">
+    <meta name="description" content="对一个大佬的代码进行了删改，不过貌似大佬并没有理我的gayhub合并请求">
+<meta name="keywords" content="轮子,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python自动同步有道云笔记到Hexo">
+<meta property="og:url" content="https://liuyi12138.github.io/2019/03/21/Python自动同步有道云笔记到Hexo/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="对一个大佬的代码进行了删改，不过貌似大佬并没有理我的gayhub合并请求">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T06:34:31.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python自动同步有道云笔记到Hexo">
+<meta name="twitter:description" content="对一个大佬的代码进行了删改，不过貌似大佬并没有理我的gayhub合并请求">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Python自动同步有道云笔记到Hexo</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Python自动同步有道云笔记到Hexo</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-21T08:59:16.000Z" itemprop="datePublished" class="page-time">
+  2019-03-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编程语言/">编程语言</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-Python自动同步有道云笔记到Hexo"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Python自动同步有道云笔记到Hexo</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-21 16:59:16" datetime="2019-03-21T08:59:16.000Z"  itemprop="datePublished">2019-03-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编程语言/">编程语言</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>对一个<a href="https://github.com/liuyi12138/ynote2hexo" target="_blank" rel="noopener">大佬的代码</a>进行了删改，不过貌似大佬并没有理我的gayhub合并请求</strong></p>
+<a id="more"></a>
+<ul>
+<li>2019.4.15   今天发现我的分支被人fork了！有点开心，感觉自己为开源社区做出来一丢丢贡献这样子~~~</li>
+<li>2019.4.16   发现cookie过期了，感觉需要写一下登录了</li>
+<li>2019.4.16   查了一下有道云的官方api好像已经没有人维护了，所以只能使用现有的api，因此还是要从cookie的值来解决问题。起初想到的是直接从浏览器获取cookie，但代码在云端运行就拿不到cookie了，又想到模拟登陆后获取cookie，但一方面我的账号是qq登录，另一方面有道云对密码做了加密所以没法post数据过去，暂时没想到有什么好的方法可以解决。</li>
+<li>2019.4.18  尝试构建post表单来qq登录获取cookie，但有道云的页面显然是做过加密的，获取并不容易。现在有两个思路:<ul>
+<li>1.服务端使用一个文件读取cookie，并且构建一个udp通信，本地读取cookie后同步到服务端文件。但依旧绕不开获取cookie，本地可以尝试在Chrome的cookie文件获取cookie</li>
+<li>2.申请有道云api的秘钥，使用其api来进行文件获取。但不知道能不能拿到秘钥以及工程量比较大</li>
+<li>总而言之就是还没有一个很好的方法来解决问题，继续尝试中。。。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> commands</span><br><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(<span class="string">'utf8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Hexo 文件夹</span></span><br><span class="line">HEXO_DIR = <span class="string">'/blog/source/_posts'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 登录有道云笔记后存储在 Cookie 里的值</span></span><br><span class="line">YNOTE_PERS = <span class="string">'v2|cqq||YNOTE||web||7776000000||1553092933721||115.156.142.129||qq7265F91BB452AB2B63C3B07B55887AEB||eShHUMhLTZ0l5OMp4646z0JL6LPynMTy0QZOLkGnMe40JFOLqSh4JyROG0Mw4h4zA0zYOMgZ6Lg4RgFPLpBP46uR'</span></span><br><span class="line">YNOTE_SESS = <span class="string">'v2|3H29AJgmLRgykfkERMOY06FhHUGRMqL0lGnMQuPLwFRYm6MTF0LJuRzfhLQ4P4zW0z50MpKOfzY0q4OfUGO4pz0pBkLU5RHJLR'</span></span><br><span class="line">YNOTE_LOGIN = <span class="string">'5||1553093006110'</span></span><br><span class="line">CSTK = <span class="string">'qd9PNsay'</span></span><br><span class="line"></span><br><span class="line">HEADERS = &#123;</span><br><span class="line">    <span class="string">'Accept-Encoding'</span>:</span><br><span class="line">    <span class="string">'gzip, deflate, br'</span>,</span><br><span class="line">    <span class="string">'User-Agent'</span>:</span><br><span class="line">    <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'</span>,</span><br><span class="line">    <span class="string">'Cookie'</span>:</span><br><span class="line">    <span class="string">'YNOTE_PERS=&#123;YNOTE_PERS&#125;; YNOTE_SESS=&#123;YNOTE_SESS&#125;; YNOTE_LOGIN=&#123;YNOTE_LOGIN&#125;; YNOTE_CSTK=&#123;YNOTE_CSTK&#125;'</span>.</span><br><span class="line">    format(</span><br><span class="line">        YNOTE_PERS=YNOTE_PERS,</span><br><span class="line">        YNOTE_SESS=YNOTE_SESS,</span><br><span class="line">        YNOTE_LOGIN=YNOTE_LOGIN,</span><br><span class="line">        YNOTE_CSTK=CSTK),</span><br><span class="line">    <span class="string">'Accept'</span>:</span><br><span class="line">    <span class="string">'application/json, text/plain, */*'</span>,</span><br><span class="line">    <span class="string">'Host'</span>:</span><br><span class="line">    <span class="string">'note.youdao.com'</span>,</span><br><span class="line">    <span class="string">'Origin'</span>:</span><br><span class="line">    <span class="string">'https://note.youdao.com'</span>,</span><br><span class="line">    <span class="string">'Referer'</span>:</span><br><span class="line">    <span class="string">'https://note.youdao.com/web/'</span>,</span><br><span class="line">    <span class="string">'Content-Type'</span>:</span><br><span class="line">    <span class="string">'application/x-www-form-urlencoded;charset=UTF-8'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取某笔记本下所有的笔记本</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getBooks</span><span class="params">(path)</span>:</span></span><br><span class="line">    data = &#123;<span class="string">'path'</span>: path, <span class="string">'dirOnly'</span>: <span class="keyword">True</span>, <span class="string">'f'</span>: <span class="keyword">True</span>, <span class="string">'cstk'</span>: CSTK&#125;</span><br><span class="line">    url = <span class="string">'https://note.youdao.com/yws/api/personal/file?method=listEntireByParentPath&amp;cstk=&#123;CSTK&#125;&amp;keyfrom=web'</span>.format(</span><br><span class="line">        CSTK=CSTK)</span><br><span class="line">    res = requests.post(url, data=data, headers=HEADERS)</span><br><span class="line">    <span class="keyword">if</span> res.status_code == <span class="number">200</span>:</span><br><span class="line">        resJson = res.json()</span><br><span class="line">        books = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> resJson:</span><br><span class="line">            <span class="comment"># _私密, _开头的笔记本认为是私密笔记, 跳过</span></span><br><span class="line">            <span class="keyword">if</span> i[<span class="string">'fileEntry'</span>][<span class="string">'name'</span>][<span class="number">0</span>] != <span class="string">'_'</span>:</span><br><span class="line">                books.append(&#123;</span><br><span class="line">                    <span class="string">'name'</span>: i[<span class="string">'fileEntry'</span>][<span class="string">'name'</span>],</span><br><span class="line">                    <span class="string">'id'</span>: i[<span class="string">'fileEntry'</span>][<span class="string">'id'</span>]</span><br><span class="line">                &#125;)</span><br><span class="line">        print(len(books))</span><br><span class="line">        <span class="keyword">return</span> books</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        exit(<span class="string">'getBooks'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取所有的笔记本</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getAllBooks</span><span class="params">()</span>:</span></span><br><span class="line">    ids = Queue.Queue()</span><br><span class="line">    ids.put(<span class="string">'/'</span>)</span><br><span class="line">    books = []</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> ids.empty():</span><br><span class="line">        print(ids.queue)</span><br><span class="line">        tempId = ids.get()</span><br><span class="line">        tempBooks = getBooks(tempId)</span><br><span class="line">        <span class="keyword">for</span> book <span class="keyword">in</span> tempBooks:</span><br><span class="line">            <span class="keyword">if</span> tempId == <span class="string">'/'</span>:</span><br><span class="line">                aId = tempId + book[<span class="string">'id'</span>]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                aId = tempId + <span class="string">'/'</span> + book[<span class="string">'id'</span>]</span><br><span class="line">            ids.put(aId)</span><br><span class="line">            books.append(&#123;</span><br><span class="line">                <span class="string">'name'</span>: book[<span class="string">'name'</span>],</span><br><span class="line">                <span class="string">'id'</span>: book[<span class="string">'id'</span>]</span><br><span class="line">            &#125;)</span><br><span class="line">    <span class="keyword">print</span> (<span class="string">'allbooks'</span>)</span><br><span class="line">    print(len(books))</span><br><span class="line">    <span class="keyword">return</span> books</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取笔记本下的笔记</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getAllNotes</span><span class="params">(book)</span>:</span></span><br><span class="line">    url = <span class="string">'https://note.youdao.com/yws/api/personal/file/&#123;id&#125;?all=true&amp;cstk=&#123;CSTK&#125;&amp;f=true&amp;isReverse=false&amp;keyfrom=web&amp;len=30&amp;method=listPageByParentId&amp;sort=1'</span>.format(</span><br><span class="line">        id=book[<span class="string">'id'</span>], CSTK=CSTK)</span><br><span class="line">    res = requests.get(url, headers=HEADERS)</span><br><span class="line">    <span class="keyword">if</span> res.status_code == <span class="number">200</span>:</span><br><span class="line">        resJson = res.json()</span><br><span class="line">        notes = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> resJson[<span class="string">'entries'</span>]:</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 选出后缀名为md的文件</span></span><br><span class="line">            <span class="keyword">if</span> i[<span class="string">'fileEntry'</span>][<span class="string">'name'</span>][<span class="number">-2</span>:] == <span class="string">'md'</span> <span class="keyword">and</span> i[<span class="string">'fileEntry'</span>][<span class="string">'name'</span>][<span class="number">0</span>] != <span class="string">'_'</span>:</span><br><span class="line">                notes.append(&#123;</span><br><span class="line">                    <span class="string">'name'</span>:</span><br><span class="line">                    i[<span class="string">'fileEntry'</span>][<span class="string">'name'</span>],</span><br><span class="line">                    <span class="string">'id'</span>:</span><br><span class="line">                    i[<span class="string">'fileEntry'</span>][<span class="string">'id'</span>],</span><br><span class="line">                    <span class="string">'createTime'</span>:</span><br><span class="line">                    i[<span class="string">'fileEntry'</span>][<span class="string">'createTimeForSort'</span>],</span><br><span class="line">                    <span class="string">'modifyTime'</span>:</span><br><span class="line">                    i[<span class="string">'fileEntry'</span>][<span class="string">'modifyTimeForSort'</span>],</span><br><span class="line">                    <span class="string">'tag'</span>:</span><br><span class="line">                    book[<span class="string">'name'</span>]</span><br><span class="line">                &#125;)</span><br><span class="line">        <span class="keyword">return</span> notes</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        exit(<span class="string">'getAllNotes'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据笔记信息获取笔记内容</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getNoteDetail</span><span class="params">(note)</span>:</span></span><br><span class="line">    url = <span class="string">'https://note.youdao.com/yws/api/personal/file/&#123;id&#125;?method=download&amp;read=true&amp;cstk=&#123;CSTK&#125;'</span>.format(</span><br><span class="line">        id=note[<span class="string">'id'</span>], CSTK=CSTK)</span><br><span class="line">    res = requests.get(url, headers=HEADERS)</span><br><span class="line">    <span class="keyword">if</span> res.status_code:</span><br><span class="line">        resCon = res.content</span><br><span class="line"></span><br><span class="line">        time = <span class="string">''</span></span><br><span class="line">        <span class="keyword">if</span> note[<span class="string">'modifyTime'</span>]:  <span class="comment"># 优先选用修改时间</span></span><br><span class="line">            time = parseTS(note[<span class="string">'modifyTime'</span>])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            time = parseTS(note[<span class="string">'createTime'</span>])</span><br><span class="line"></span><br><span class="line">        detail = &#123;</span><br><span class="line">            <span class="string">'name'</span>: filterMark(note[<span class="string">'name'</span>]),</span><br><span class="line">            <span class="string">'time'</span>: time,</span><br><span class="line">            <span class="string">'content'</span>: resCon,</span><br><span class="line">            <span class="string">'tag'</span>: note[<span class="string">'tag'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> detail</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        exit(<span class="string">'getNoteDetail'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 写入文档</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">writeMd</span><span class="params">(detail)</span>:</span></span><br><span class="line">    print(<span class="string">'写入: &#123;name&#125;'</span>.format(name=detail[<span class="string">'name'</span>]))</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'_posts/'</span> + detail[<span class="string">'name'</span>], <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="comment"># f.write('---\n')</span></span><br><span class="line">        <span class="comment"># f.write('title: &#123;title&#125;\n'.format(title=detail['name'][:-3]))</span></span><br><span class="line">        <span class="comment"># f.write('date: &#123;data&#125;\n'.format(data=detail['time']))</span></span><br><span class="line">        <span class="comment"># f.write('tags: &#123;tag&#125;\n'.format(tag=detail['tag']))</span></span><br><span class="line">        <span class="comment"># f.write('---\n\n\n')</span></span><br><span class="line">        f.write(detail[<span class="string">'content'</span>])</span><br><span class="line">        f.write(<span class="string">'\n'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 _posts 目录替换到 hexo/source/_posts, 并部署提交</span></span><br><span class="line"><span class="comment"># 注意: 这将删除原有 _posts 目录, 请事先备份</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">deployHexo</span><span class="params">()</span>:</span></span><br><span class="line">    shutil.rmtree(HEXO_DIR)</span><br><span class="line">    shutil.copytree(<span class="string">'_posts'</span>, HEXO_DIR)</span><br><span class="line">    print(<span class="string">'开始部署 hexo ...'</span>)</span><br><span class="line">    dep = commands.getstatusoutput(</span><br><span class="line">        <span class="string">'cd &#123;hexo_dir&#125; &amp;&amp; hexo clean &amp;&amp; hexo g &amp;&amp; hexo d'</span>.format(</span><br><span class="line">            hexo_dir=HEXO_DIR))</span><br><span class="line">    <span class="keyword">if</span> dep[<span class="number">0</span>] == <span class="number">0</span>:</span><br><span class="line">        print(<span class="string">'部署成功'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'部署失败'</span>)</span><br><span class="line">        print(dep)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将10位时间戳转为 2017-06-29 10:00:00 的格式</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parseTS</span><span class="params">(ts)</span>:</span></span><br><span class="line">    timeArr = time.localtime(ts)</span><br><span class="line">    <span class="keyword">return</span> time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>, timeArr)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤特殊字符, 移除原有后缀后重新添加.md</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">filterMark</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="comment"># s = s.decode("utf8")</span></span><br><span class="line">    res = re.sub(</span><br><span class="line">        <span class="string">"[\s+\.\!\/_,$%^*(+\"\']+|[+——！，。？、~@#￥%……&amp;*（）()]+"</span>.decode(<span class="string">"utf8"</span>),</span><br><span class="line">        <span class="string">""</span>.decode(<span class="string">"utf8"</span>), s)</span><br><span class="line">    res = res.replace(<span class="string">' '</span>, <span class="string">''</span>)</span><br><span class="line">    <span class="keyword">return</span> res[:<span class="number">-2</span>] + <span class="string">'.md'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># MD5 加密</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span><span class="params">(str)</span>:</span></span><br><span class="line">    md5 = hashlib.md5()</span><br><span class="line">    md5.update(str)</span><br><span class="line">    <span class="keyword">return</span> md5.hexdigest()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 退出程序</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exit</span><span class="params">(why)</span>:</span></span><br><span class="line">    print(<span class="string">'&#123;why&#125; 出错了'</span>.format(why=why))</span><br><span class="line">    os._exit(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 入口</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(<span class="string">'_posts'</span>):</span><br><span class="line">        shutil.rmtree(<span class="string">r'_posts'</span>)</span><br><span class="line">    os.mkdir(<span class="string">r'_posts'</span>)</span><br><span class="line">    books = getAllBooks()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> books:</span><br><span class="line">        notes = getAllNotes(i)</span><br><span class="line">        print(len(notes))</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> notes:</span><br><span class="line">            detail = getNoteDetail(j)</span><br><span class="line">            writeMd(detail)</span><br><span class="line">    deployHexo()</span><br><span class="line"></span><br><span class="line">    t = threading.Timer(<span class="number">432000</span>, start) </span><br><span class="line">    t.start() </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    start()</span><br><span class="line">    <span class="comment"># time.sleep(24 * 60 * 60)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用nohup python youdaoToHexo.py &amp;运行代码 (守护进程)</li>
+<li><a href="https://www.cnblogs.com/baby123/p/6477429.html" target="_blank" rel="noopener">nohup和&amp;后台运行，进程查看及终止</a></li>
+<li>根目录下的文件以及以”_”开头的文件不会被copy</li>
+<li>ps -aux|grep youdaoToHexo.py 查看运行状态</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2019/03/21/Python自动同步有道云笔记到Hexo/" target="_blank" rel="external">https://liuyi12138.github.io/2019/03/21/Python自动同步有道云笔记到Hexo/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/轮子/">轮子</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/03/21/Python自动同步有道云笔记到Hexo/&title=《Python自动同步有道云笔记到Hexo》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/03/21/Python自动同步有道云笔记到Hexo/&title=《Python自动同步有道云笔记到Hexo》 — 知君的博客&source=对一个大佬的代码进行了删改，不过貌似大佬并没有理我的gayhub合并请求" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/03/21/Python自动同步有道云笔记到Hexo/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python自动同步有道云笔记到Hexo》 — 知君的博客&url=https://liuyi12138.github.io/2019/03/21/Python自动同步有道云笔记到Hexo/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/03/21/Python自动同步有道云笔记到Hexo/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/16/shell上传图片到github图床/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">shell上传图片到github图床</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/13/证券投资/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">证券投资</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/03/21/Python自动同步有道云笔记到Hexo/&title=《Python自动同步有道云笔记到Hexo》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/03/21/Python自动同步有道云笔记到Hexo/&title=《Python自动同步有道云笔记到Hexo》 — 知君的博客&source=对一个大佬的代码进行了删改，不过貌似大佬并没有理我的gayhub合并请求" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/03/21/Python自动同步有道云笔记到Hexo/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python自动同步有道云笔记到Hexo》 — 知君的博客&url=https://liuyi12138.github.io/2019/03/21/Python自动同步有道云笔记到Hexo/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/03/21/Python自动同步有道云笔记到Hexo/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwElEQVR42u3awW7cMAwE0Pz/T7doTy1Q786QUtIWz6dgs7H9dBCZET8+4uvbz+vp81+vp9++vltyh6d3OHDh4eHhjV796Xr9mBzw9P3ZoiTvjIeHh3eb97oYtIDkDnkpShbl8XM8PDy8L+W9bm3brbwtOXh4eHj/B+/1dh+1vC8xeHh4eH8zLwkj2vhgU1TacnIga8HDw8OLebNo4Gt/vni+h4eHh7c4Vc8331N3mB13Pd4fDw8P7wKvjWtnYcEGuQks8PDw8O7xZuNT+ShV/tuk8Bxor/Hw8PAWvDy6TbbmNq7NI+M2zMXDw8P7HN6pQatZmrp/nzdZCx4eHt4hXnLc1Ta+myP/5Pt5OIKHh4d3gzdsVcv1S15rH5Tg4eHhfQ4vP1iaDaq2Y1v594vQGQ8PD+8ob9Y6zwYF8iB4ExD/IWvBw8PDO8q7QZpFq5vvvDm6w8PDw7vA24w3tfHrqeWL0mg8PDy8a7x2+07C2X3M0cYfUYyLh4eHt+ZtBgI2owCzBj1f4t+yFjw8PLyjvFP/8CfRal6K2mJQjCPg4eHhrXn5Jttux3mB2ReAN0dfeHh4eEd5yXacP7KoP0EMcTbUwMPDw7vBaxvizQBBGz207XuExMPDw1vw9qNRM8A+qohaajw8PLyjvCSczUOEdrDg1OePz8XDw8O7wMujhE3xSApGO3bQLiIeHh7eKV7S/iaYduOeteb1YRseHh7eBV57NDU7iNrEEMWBVnvh4eHhLQBta5v87X68YNaa4+Hh4d3mzYpE3s62W3w7pjCcicDDw8Nb8/Itvj2Umh3/5x1yFE/g4eHhXeMlxSAZNTgbarSZAx4eHt6/wsvHApI7t6NgbxYaDw8P70t5++2+HbqaDRx8JHMEeHh4eGte+4DZ4/eFpy4beHh4eBd4pwaw9gsRhQvBAl2ZL8PDw8P7cX0HOmlf9KJQnx0AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

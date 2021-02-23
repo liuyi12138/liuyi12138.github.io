@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>鸟哥的Linux私房菜学习笔记 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux">
+    <meta name="description" content="鸟哥的Linux私房菜—-第零章 计算机概论">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="鸟哥的Linux私房菜学习笔记">
+<meta property="og:url" content="https://liuyi12138.github.io/2018/04/09/鸟哥的Linux私房菜学习笔记/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="鸟哥的Linux私房菜—-第零章 计算机概论">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjExLjEucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjE2LjEucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjIyLjEucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjIyLjIucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjIzLjEucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjI0LjEucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjI0LjIucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjI0LjMucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjI0LjQucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjI0LjUucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjI2LjEucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjQxLjEucG5n?x-oss-process=image/format,png">
+<meta property="og:updated_time" content="2021-02-23T06:34:31.941Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="鸟哥的Linux私房菜学习笔记">
+<meta name="twitter:description" content="鸟哥的Linux私房菜—-第零章 计算机概论">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjExLjEucG5n?x-oss-process=image/format,png">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">鸟哥的Linux私房菜学习笔记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">鸟哥的Linux私房菜学习笔记</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-09T06:18:36.000Z" itemprop="datePublished" class="page-time">
+  2018-04-09
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#鸟哥的Linux私房菜—-第零章-计算机概论"><span class="post-toc-number">1.</span> <span class="post-toc-text">鸟哥的Linux私房菜—-第零章  计算机概论</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0-1电脑"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">0.1电脑</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0-11计算机硬件的五大单元"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">0.11计算机硬件的五大单元</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0-12CPU的架构"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">0.12CPU的架构</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0-13其他单元的设备"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">0.13其他单元的设备</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0-15电脑按用途分类"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">0.15电脑按用途分类</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0-16电脑上面常用的计算单位"><span class="post-toc-number">1.1.5.</span> <span class="post-toc-text">0.16电脑上面常用的计算单位</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0-2个人电脑架构与相关设备原件"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">0.2个人电脑架构与相关设备原件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0-21CPU"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">0.21CPU</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0-22内存"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">0.22内存</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0-23显卡-VGA（Video-Graphics-Array）"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">0.23显卡  VGA（Video Graphics Array）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0-24硬盘与储存设备"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">0.24硬盘与储存设备</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0-25扩展卡与接口"><span class="post-toc-number">1.2.5.</span> <span class="post-toc-text">0.25扩展卡与接口</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0-26主板"><span class="post-toc-number">1.2.6.</span> <span class="post-toc-text">0.26主板</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0-3数据表示方式"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">0.3数据表示方式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0-4软件程序执行"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">0.4软件程序执行</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0-41操作系统"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">0.41操作系统</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0-42应用程序"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">0.42应用程序</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0-5重点回顾"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">0.5重点回顾</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-鸟哥的Linux私房菜学习笔记"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">鸟哥的Linux私房菜学习笔记</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-09 14:18:36" datetime="2018-04-09T06:18:36.000Z"  itemprop="datePublished">2018-04-09</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>鸟哥的Linux私房菜—-第零章 计算机概论<br><a id="more"></a> </p>
+<h2 id="鸟哥的Linux私房菜—-第零章-计算机概论"><a href="#鸟哥的Linux私房菜—-第零章-计算机概论" class="headerlink" title="鸟哥的Linux私房菜—-第零章  计算机概论"></a>鸟哥的Linux私房菜—-第零章  计算机概论</h2><h3 id="0-1电脑"><a href="#0-1电脑" class="headerlink" title="0.1电脑"></a>0.1电脑</h3><h4 id="0-11计算机硬件的五大单元"><a href="#0-11计算机硬件的五大单元" class="headerlink" title="0.11计算机硬件的五大单元"></a>0.11计算机硬件的五大单元</h4><p>输入单元、输出单元、CPU内部的控制单元、算数逻辑单元、内存<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjExLjEucG5n?x-oss-process=image/format,png" alt="0.11.1.png" title>
+                </div>
+                <div class="image-caption">0.11.1.png</div>
+            </figure></p>
+<h4 id="0-12CPU的架构"><a href="#0-12CPU的架构" class="headerlink" title="0.12CPU的架构"></a>0.12CPU的架构</h4><p>1.精简指令集（PISC)</p>
+<p>PISC的微指令集较为精简，每个指令的执行时间都很短，完成的动作也很单纯，指令的执行性能较佳。</p>
+<p>2.复杂指令集（CISC)</p>
+<p>CISC在微指令集的每个小指令可以执行一些较低阶的硬件操作，指令数目多而且复杂， 每条指令的长度并不相同。</p>
+<p>因为指令执行较为复杂所以每条指令花费的时间较长， 但每条个别指令可以处理的工作较为丰富。</p>
+<p><strong>TIPS:所谓的位指的是CPU一次数据读取的最大量！</strong></p>
+<h4 id="0-13其他单元的设备"><a href="#0-13其他单元的设备" class="headerlink" title="0.13其他单元的设备"></a>0.13其他单元的设备</h4><p>1.系统单元：系统单元包括 CPU 与内存及主板相关元件。</p>
+<p>  主板上还有很多的连接接口与相关的适配卡（网卡、 磁盘阵列卡、显卡等等）。</p>
+<p>2.存储单元：包括内存 （main memory, RAM） 与辅助内存，</p>
+<p>  辅助内存就是“储存设备”，包括硬盘、软盘、光盘、磁带等等。</p>
+<p>3.输入、输出单元：触摸屏、键盘、鼠标等等，屏幕，打印机，投影机等等。</p>
+<p><strong>CPU=脑袋瓜子；</strong></p>
+<p><strong>内存=脑袋中放置正在被思考的数据的区块；</strong></p>
+<p><strong>硬盘=脑袋中放置回忆的记忆区块；</strong></p>
+<p><strong>主板=神经系统；</strong></p>
+<p><strong>各项周边设备=人体与外界沟通的手、脚、皮肤、眼睛等；</strong></p>
+<p><strong>显卡=脑袋中的影像；</strong></p>
+<p><strong>电源供应器 （Power）=心脏；</strong></p>
+<h4 id="0-15电脑按用途分类"><a href="#0-15电脑按用途分类" class="headerlink" title="0.15电脑按用途分类"></a>0.15电脑按用途分类</h4><p>超级计算机、大型计算机、迷你电脑、工作站、微电脑</p>
+<h4 id="0-16电脑上面常用的计算单位"><a href="#0-16电脑上面常用的计算单位" class="headerlink" title="0.16电脑上面常用的计算单位"></a>0.16电脑上面常用的计算单位</h4><p> 1 Byte = 8 bits</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjE2LjEucG5n?x-oss-process=image/format,png" alt="0.16.1.png"></p>
+<h3 id="0-2个人电脑架构与相关设备原件"><a href="#0-2个人电脑架构与相关设备原件" class="headerlink" title="0.2个人电脑架构与相关设备原件"></a>0.2个人电脑架构与相关设备原件</h3><p> 早期芯片组分南北桥</p>
+<p>1）北桥：负责链接速度较快的CPU、内存与显卡接口等元件。</p>
+<p>2）南桥：负责连接速度较慢的设备接口， 包括硬盘、USB、网卡等等。</p>
+<p>因此目前的主流架构中， 大多将北桥内存控制器整合到 CPU 封装当中了（方便CPU与内存的交流）。</p>
+<p>[外链图片转存中…(img-acrItlAD-1570972088936)]</p>
+<h4 id="0-21CPU"><a href="#0-21CPU" class="headerlink" title="0.21CPU"></a>0.21CPU</h4><p>评判性能指标：频率（只能比较同款CPU的速度）、微指令集、架构、内存容量</p>
+<p><strong>1.CPU的工作频率：外频与倍频</strong></p>
+<p>外频指的是CPU与外部元件进行数据传输时的速度</p>
+<p>倍频则是 CPU 内部用来加速工作性能的一个倍数</p>
+<p>两者相乘才是CPU的频率速度</p>
+<p>超频：将CPU的倍频或者是外频通过主板的设置功能更改成较高频率的一种方式。</p>
+<pre><code>但因为CPU的倍频通常在出厂时已经被锁定而无法修改， 因此较常被超频的为外频。
+</code></pre><p>一般来说，每次频率能够传输的数据量，大多为64 位，这个 64 位就是所谓的“宽度”。</p>
+<p>内存使用系统总线带宽来与 CPU 沟通，而显卡则通过PCI-E的序列信道设计来与CPU沟通。</p>
+<p><strong>CPU可以从内存中取得的最快带宽=频率速度*系统总线宽</strong></p>
+<p><strong>2.超线程 （Hyper-Threading, HT）</strong></p>
+<p>在每一个CPU 内部将重要的寄存器 （register） 分成两群， 而让程序分别使用这两群寄存器。</p>
+<p>也就是说，可以有两个程序“同时竞争 CPU 的运算单元”，而非通过操作系统的多任务切换。</p>
+<h4 id="0-22内存"><a href="#0-22内存" class="headerlink" title="0.22内存"></a>0.22内存</h4><p>个人电脑的内存主要元件为动态随机存取内存（Dynamic Random Access Memory, DRAM），</p>
+<p>随机存取内存只有在通电时才能记录与使用，断电后数据就消失了。因此我们也称这种RAM为挥发性内存。</p>
+<p>DRAM使用广泛的主要是SDRAM与DDR SDRAM，</p>
+<p>DDR是所谓的双倍数据传送速度（Double Data Rate）， 他可以在一次工作周期中进行两次数据的传送。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjIyLjEucG5n?x-oss-process=image/format,png" alt="0.22.1.png"></p>
+<p><strong>1.多通道设计</strong></p>
+<p>将多个内存汇整在一起，加大总线宽度。</p>
+<p>要求：必须要安插两支（或四支）内存，除了容量大小要一致之外，型号也最好相同。</p>
+<p><strong>2.DRAM与SRAM</strong></p>
+<p>SRAM在设计上使用的电晶体数量较多，价格较高，且不易做成大容量，</p>
+<p>不过由于其速度快， 因此整合到CPU内成为高速缓存内存以加快数据的存取是个不错的方式。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjIyLjIucG5n?x-oss-process=image/format,png" alt="0.22.2.png"></p>
+<p>第二层高速缓存（L2 cache）整合到CPU内部，因此这个L2内存的速度必须要CPU频率相同。</p>
+<p>使用DRAM是无法达到这个频率速度的，此时就需要静态随机存取内存（StaticRandom Access Memory, SRAM）。</p>
+<p><strong>3.只读存储器（ROM）</strong></p>
+<p>主板上面如果有内置的网卡或者是显卡时，该功能是否要启动与该功能的各项参数，</p>
+<p>是被记录到主板上头的一个称为CMOS的芯片上，这个芯片需要借着额外的电源来发挥记录功能。</p>
+<p>而CMOS内的数据通过ROM来读取与更新。</p>
+<p>BIOS（Basic Input Output System）是一套程序，这套程序是写死到主板上面的一个内存芯片中，</p>
+<p>这个内存芯片在没有通电时也能够将数据记录下来，那就是只读存储器（Read Only Memory, ROM）。</p>
+<p>固件（firmware）很多也是使用ROM来进行软件的写入的。</p>
+<p><strong>ROM是一种非挥发性的内存</strong></p>
+<h4 id="0-23显卡-VGA（Video-Graphics-Array）"><a href="#0-23显卡-VGA（Video-Graphics-Array）" class="headerlink" title="0.23显卡  VGA（Video Graphics Array）"></a>0.23显卡  VGA（Video Graphics Array）</h4><p>显卡主要也是通过CPU的控制芯片来与CPU、内存等沟通.</p>
+<p><strong>显卡需要的内存=分辨率（像素个数）*每个像素占用的容量</strong></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjIzLjEucG5n?x-oss-process=image/format,png" alt="0.23.1.png"></p>
+<h4 id="0-24硬盘与储存设备"><a href="#0-24硬盘与储存设备" class="headerlink" title="0.24硬盘与储存设备"></a>0.24硬盘与储存设备</h4><p>电脑系统上面的储存设备包括有：硬盘、软盘、MO、CD、DVD、磁带机、U盘（闪存）、</p>
+<p>还有新一代的蓝光光驱等， 乃至于大型机器的区域网络储存设备（SAN, NAS）等等。</p>
+<p>在硬盘盒里面其实是由许许多多的圆形盘片、机械手臂、 磁头与主轴马达所组成的。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjI0LjEucG5n?x-oss-process=image/format,png" alt="0.24.1.png"></p>
+<p>实际的数据都是写在具有磁性物质的盘片上头，而读写主要是通过在机械手臂上的磁头（head）来达成。</p>
+<p>实际运行时， 主轴马达让盘片转动，然后机械手臂可伸展让磁头在盘片上头进行读写的动作。</p>
+<p>另外，由于单一盘片的容量有限，因此有的硬盘内部会有两个以上的盘片。</p>
+<p>磁盘的最小物理储存单位是扇区。</p>
+<p>同一个同心圆的扇区组合成的圆就是所谓的磁道（track）。</p>
+<p>由于磁盘里面可能会有多个盘片，因此在所有盘片上面的同一个磁道可以组合成所谓的柱面 （cylinder）。</p>
+<p><strong>（同心圆外圈的圆比较大，占用的面积多，所以外围的圆会有更多的扇区）</strong></p>
+<p><strong>传输接口</strong></p>
+<p>传统磁盘接口包括有 SATA, SAS, IDE 与 SCSI 等等。</p>
+<p>若考虑外接式磁盘，那就还包括了 USB, eSATA 等等接口</p>
+<p>1.SATA接口</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjI0LjIucG5n?x-oss-process=image/format,png" alt="0.24.2.png"></p>
+<p>SATA线比较窄小，所以对于安装与机箱内的通风都比较好。</p>
+<p>由于SATA一条排线仅接一颗硬盘，所以不需要调整跳针。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjI0LjMucG5n?x-oss-process=image/format,png" alt="0.24.3.png"></p>
+<p>SATA 传输接口传输时，通过的数据演算法的关系，当传输 10 位编码时，仅有 8 位为数据，</p>
+<p>其余 2 位为检验之用。因此带宽的计算上面， 使用的换算 （bit 转 Byte） 为 1:10 而不是 1Byte=8bits。</p>
+<p>2.SAS接口</p>
+<p>串行式 SCSI （Serial Attached SCSI, SAS）</p>
+<p>这种接口的速度比 SATA 来的快，而且连接的 SAS 硬盘的盘片转速与传输的速度也都比 SATA 硬盘好。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjI0LjQucG5n?x-oss-process=image/format,png" alt="0.24.4.png"></p>
+<p>3.USB接口</p>
+<p>USB接口是外接式的接口，也是目前最常见到的外接式磁盘接口。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjI0LjUucG5n?x-oss-process=image/format,png" alt="0.24.5.png"></p>
+<p><strong>固态硬盘 </strong></p>
+<p>固态硬盘最大的好处是，它没有马达不需要转动，而是通过内存直接读写的特性，</p>
+<p>因此除了没数据延迟且快速之外，还很省电。</p>
+<p>传统磁盘 （Hard Disk Drive, HDD）</p>
+<p>固态硬盘 （Solid State Disk 或 Solid State Driver, SSD）</p>
+<p>对磁盘的评判指标：HDD或SSD、容量、缓冲内存、转速</p>
+<h4 id="0-25扩展卡与接口"><a href="#0-25扩展卡与接口" class="headerlink" title="0.25扩展卡与接口"></a>0.25扩展卡与接口</h4><p>PCIe 的好处：兼容性- x16 的卡安装在 x16 的插槽，但是这个插槽仅有 x4 的电路设计，这张卡也能运行。</p>
+<p>一般服务器惯用的扩展卡，大多数都使用 PCIe x8 的接口 。</p>
+<p>为了增加扩展卡的数量，因此服务器级的主板才会大多使用到 x8 的插槽</p>
+<p>要发挥扩展卡的能力，就得要搭配相对应的插槽才行。</p>
+<h4 id="0-26主板"><a href="#0-26主板" class="headerlink" title="0.26主板"></a>0.26主板</h4><p><strong>1.设备I/O位址与IRQ中断信道</strong></p>
+<p>I/O-&gt;各设备的门牌号码</p>
+<p>IRQ-&gt;各个门牌连接到邮件中心（CPU）的专门路径</p>
+<p><strong>2.CMOS与BIOS</strong></p>
+<p>CMOS主要的功能为记录主板上面的重要参数， 包括系统时间、CPU电压与频率、各项设备的I/O位址与IRQ等。</p>
+<p>BIOS为写入到主板上某一块 flash 或 EEPROM 的程序，他可以在开机的时候执行，以载入CMOS当中的参数，</p>
+<p>并尝试调用储存设备中的开机程序，进一步进入操作系统当中。</p>
+<p><strong>3.连接周边设备的接口</strong></p>
+<p>1.PS/2接口：这原本是常见的键盘与鼠标的接口，不过目前渐渐被USB接口取代，</p>
+<p>  甚至较新的主板可能就不再提供 PS/2 接口了。</p>
+<p>2.USB接口：通常只剩下 USB 2.0 与 USB 3.0，为了方便区分，USB 3.0 为蓝色的插槽颜色。</p>
+<p>3.声音输出、输入与麦克风：这个是一些圆形的插孔，而必须你的主板上面有内置音效芯片时，才会有这三个东西。</p>
+<p>4.RJ-45网络头：如果有内置网络芯片的话，那么就会有这种接头出现。 这种接头有点类</p>
+<p>似电话接头，不过内部有八蕊线！接上网络线后在这个接头上会有灯号亮起才对。</p>
+<p>5.HDMI：如果有内置显示芯片的话，可能就会提供这个与屏幕连接的接口了！</p>
+<p> 这种接口可以同时传输声音与影像， 目前也是电视机屏幕的主流连接接口。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjI2LjEucG5n?x-oss-process=image/format,png" alt="0.26.1.png"></p>
+<h3 id="0-3数据表示方式"><a href="#0-3数据表示方式" class="headerlink" title="0.3数据表示方式"></a>0.3数据表示方式</h3><p><strong>数字系统</strong><br><strong>文字编码系统</strong></p>
+<h3 id="0-4软件程序执行"><a href="#0-4软件程序执行" class="headerlink" title="0.4软件程序执行"></a>0.4软件程序执行</h3><h4 id="0-41操作系统"><a href="#0-41操作系统" class="headerlink" title="0.41操作系统"></a>0.41操作系统</h4><p><strong>1.操作系统核心（Kernel）</strong><br>操作系统的功能就是让CPU可以开始判断逻辑与运算数值、 让内存可以开始载入/读出数据与程序<br>码、让硬盘可以开始被存取、让网卡可以开始传输数据、 让所有周边可以开始运行等等。<br><strong>总之，硬件的所有动作都必须要通过这个操作系统来达成。</strong></p>
+<p><strong>2.系统调用（System Call）</strong><br>操作系统其实就是核心与其提供的接口工具</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpdXlpMTIxMzgvRGlhbl90cmFpbmluZy9tYXN0ZXIvcGljdHVyZS8wLjQxLjEucG5n?x-oss-process=image/format,png" alt="0.41.1.png"></p>
+<p>1.操作系统的核心层直接参考硬件规格写成，所以同一个操作系统程序不能够在不一样的硬件架构下运行。<br>2.操作系统只是在管理整个硬件资源，包括CPU、内存、输入输出设备及文件系统文件。<br>3.应用程序的开发都是参考操作系统提供的开发接口，<br>   所以该应用程序只能在该操作系统上面运行而已，不可以在其他操作系统上面运行的。</p>
+<p><strong>3.核心功能</strong><br>核心主要是在负责整个电脑系统相关的资源分配与管理， 因此，核心至少也要有这些功能的：<br>1.系统调用接口（System call interface）<br>2.程序管理（Process control）<br>3.内存管理（Memory management）<br>4.文件系统管理（Filesystem management）<br>5.设备的驱动（Device drivers）</p>
+<p><strong>4.操作系统与驱动程序</strong><br>操作系统必须要能够驱动硬件，如此应用程序才能够使用该硬件功能；<br>一般来说，操作系统会提供开发接口，让开发商制作他们的驱动程序；<br>要使用新硬件功能，必须要安装厂商提供的驱动程序才行；<br>驱动程序是由厂商提供的，与操作系统开发者无关。</p>
+<h4 id="0-42应用程序"><a href="#0-42应用程序" class="headerlink" title="0.42应用程序"></a>0.42应用程序</h4><p>应用程序是参考操作系统提供的开发接口所开发出来软件，这些软件可以让使用者操作，<br>以达到某些电脑的功能利用。</p>
+<h3 id="0-5重点回顾"><a href="#0-5重点回顾" class="headerlink" title="0.5重点回顾"></a>0.5重点回顾</h3><p><strong>1.计算机的定义为：“接受使用者输入指令与数据，经由中央处理器的数学与逻辑单元运算处理后，以产生或储存成有用的信息”</strong></p>
+<p><strong>2.电脑的五大单元包括：输入单元、输出单元、控制单元、算数逻辑单元、存储单元五大部分。其中CPU占有控制、算逻辑单元，存储单元又包含内存与辅助内存；数据会流进/流出内存是CPU所发布的控制命令，而CPU实际要处理的数据则完全来自于内存；</strong></p>
+<p><strong>3.CPU依设计理念主要分为：精简指令集（RISC）与复杂指令集（CISC）系统；关于CPU的频率部分：外频指的是CPU与外部元件进行数据传输时的速度，倍频则是CPU内部用来加速工作性能的一个倍数， 两者相乘才是CPU的频率速度；</strong></p>
+<p><strong>4.新的 CPU 设计中，已经将北桥的内存控制芯片整合到 CPU 内，而 CPU 与内存、显卡沟通的总线通常称为系统总线。 南桥就是所谓的输入输出（I/O）总线，主要在联系硬盘、USB、网卡等周边设备；</strong></p>
+<p><strong>5.CPU每次能够处理的数据量称为字组大小（word size），字组大小依据CPU的设计而有32位与64位。 我们现在所称的电脑是32或64位主要是依据这个 CPU解析的字组大小而来的！</strong></p>
+<p><strong>6.个人电脑的内存主要元件为动态随机存取内存（Dynamic Random Access Memory,DRAM）， 至于CPU内部的第二层高速缓存则使用静态随机存取内存（Static RandomAccess Memory, SRAM）；</strong></p>
+<p><strong>7.BIOS（Basic Input Output System）是一套程序，这套程序是写死到主板上面的一个内存芯片中， 这个内存芯片在没有通电时也能够将数据记录下来，那就是只读存储器（Read Only Memory, ROM）；</strong></p>
+<p><strong>8.目前主流的外接卡接口大多为 PCIe 接口，且最新为 PCIe 3.0，单信道速度高达1GBytes/s。</strong></p>
+<p><strong>9.常见的显卡连接到屏幕的接口有 HDMI/DVI/D-Sub/Display port 等等。HDMI 可同时传送影像与声音。</strong></p>
+<p><strong>10.传统硬盘的组成为：圆形盘片、机械手臂、 磁头与主轴马达所组成的，其中盘片的组成为扇区、磁道与柱面；</strong></p>
+<p><strong>11.磁盘连接到主板的接口大多为 SATA 或 SAS，目前台式机主流为 SATA 3.0，理论极速可达 600MBytes/s。</strong></p>
+<p><strong>12.常见的文字编码为 ASCII，繁体中文编码主要有 Big5 及 UTF8 两种，目前主流为 UTF8操作系统（Operating System, OS）其实也是一组程序， 这组程序的重点在于管理电脑的所有活动以及驱动系统中的所有硬件。</strong></p>
+<p><strong>13.电脑主要以二进制作为单位，常用的磁盘容量单位为Bytes，其单位换算为1 Byte =8bits。</strong></p>
+<p><strong>14.最阳春的操作系统仅在驱动与管理硬件，而要使用硬件时，就得需要通过应用软件或者是壳程序（shell）的功能， 来调用操作系统操纵硬件工作。目前称为操作系统的，除了上述功能外，通常已经包含了日常工作所需要的应用软件在内了。</strong></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2018/04/09/鸟哥的Linux私房菜学习笔记/" target="_blank" rel="external">https://liuyi12138.github.io/2018/04/09/鸟哥的Linux私房菜学习笔记/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/04/09/鸟哥的Linux私房菜学习笔记/&title=《鸟哥的Linux私房菜学习笔记》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/04/09/鸟哥的Linux私房菜学习笔记/&title=《鸟哥的Linux私房菜学习笔记》 — 知君的博客&source=鸟哥的Linux私房菜—-第零章 计算机概论" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/04/09/鸟哥的Linux私房菜学习笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《鸟哥的Linux私房菜学习笔记》 — 知君的博客&url=https://liuyi12138.github.io/2018/04/09/鸟哥的Linux私房菜学习笔记/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/04/09/鸟哥的Linux私房菜学习笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/09/算法学习笔记之分治法/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">算法学习笔记之分治法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/09/理想里的真实--《无问西东》影评/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">理想里的真实--《无问西东》影评</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/04/09/鸟哥的Linux私房菜学习笔记/&title=《鸟哥的Linux私房菜学习笔记》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/04/09/鸟哥的Linux私房菜学习笔记/&title=《鸟哥的Linux私房菜学习笔记》 — 知君的博客&source=鸟哥的Linux私房菜—-第零章 计算机概论" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/04/09/鸟哥的Linux私房菜学习笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《鸟哥的Linux私房菜学习笔记》 — 知君的博客&url=https://liuyi12138.github.io/2018/04/09/鸟哥的Linux私房菜学习笔记/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/04/09/鸟哥的Linux私房菜学习笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwklEQVR42u3a0WrDMAwF0P7/T2+wp0Hr5Eqy2w1OnsLapD4eWELS4xFfXz/X7/vnv6w+fX7P6tPr918/Nbrw8PDwWktfXXNAsjWr360+9WJVeHh4eMd41WBw/ez1e67vq1t2sx48PDy8j/KScFINHvnG4eHh4f1HXu+Arh761fIHHh4e3qd4k4O+WmxNlpsXNbbVWvDw8PBiXq8B9tn74/09PDw8vFZXPQ8S1RbX3u7/crV4eHh4B3hJwXTSEstT8/n4wnLj8PDw8LbyquNTObKKmYSc5T0eHh7eAV7e6EoWlwSb6kYk4ermPXh4eHhbebuy8l7xIl9uLx3Hw8PDO82rFhomI1aj2kneDMPDw8M7wMt/spdk50NaScmj96/Cw8PDO8fLMTmpCuiFqEIbDA8PD+8Arzrk1CtS7NrKqLSBh4eHd4A3LyhMjv5dW3xDxcPDw9vEy5PaXr202vrqlT82LAgPDw+vyKu253vF38mzeajAw8PDew8vP9wnbapqeMjP+eUb8PDw8A7w8vQ0P6zz/HYeVKI14OHh4W3lJYWG6wO90MIvNv6rG/ri73h4eHhv5PWS111pdwKOkn48PDy8A7z8aK6OAvQCwLYRKzw8PLzDvKSEmhzxvZZY77jPi8t4eHh4e3nVoYF5mz8vEPcKzc18Hw8PD6/Fm7Twe5uVBJhqan4zGYGHh4c35vXOz7y1nyTQ1W/mG4GHh4d3gjcZoqoWGqpDBtVy7bK/h4eHh3eM11tcr/ibDxDk41bLMi4eHh7eVt68594busoHAnplCDw8PLzTvEkSnIeT3shXNWDclCTw8PDwtvLmqXCyrHkIKRQj8PDw8P4Ar9razzGTjWj29/Dw8PDeyJuMEeTHejWtvylG4OHh4R3gJQvND/dkECEpW/S+g4eHh3eaN2mAVYsIvTGCalpfvvDw8PBS3jc/XpKXLGNa0wAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

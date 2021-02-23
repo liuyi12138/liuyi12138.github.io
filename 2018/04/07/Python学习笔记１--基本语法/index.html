@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Python学习笔记１--基本语法 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Python">
+    <meta name="description" content="python与c的比较学习python没有分号！！！ True的”T”要大写 基本语法">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python学习笔记１--基本语法">
+<meta property="og:url" content="https://liuyi12138.github.io/2018/04/07/Python学习笔记１--基本语法/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="python与c的比较学习python没有分号！！！ True的”T”要大写 基本语法">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T06:34:31.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python学习笔记１--基本语法">
+<meta name="twitter:description" content="python与c的比较学习python没有分号！！！ True的”T”要大写 基本语法">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Python学习笔记１--基本语法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Python学习笔记１--基本语法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-07T07:54:01.000Z" itemprop="datePublished" class="page-time">
+  2018-04-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编程语言/">编程语言</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#python与c的比较学习"><span class="post-toc-number">1.</span> <span class="post-toc-text">python与c的比较学习</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本语法"><span class="post-toc-number"></span> <span class="post-toc-text">基本语法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据类型和变量"><span class="post-toc-number">1.</span> <span class="post-toc-text">数据类型和变量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特殊数据结构"><span class="post-toc-number">2.</span> <span class="post-toc-text">特殊数据结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#list-类似于数组但元素的数据类型也可以不同"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">list (类似于数组但元素的数据类型也可以不同)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#turple-元组，一旦初始化就不能修改"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">turple(元组，一旦初始化就不能修改)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#dict"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">dict</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#set"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">set</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#判断与循环"><span class="post-toc-number">3.</span> <span class="post-toc-text">判断与循环</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Python初感知"><span class="post-toc-number">4.</span> <span class="post-toc-text">Python初感知</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Python学习笔记１--基本语法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Python学习笔记１--基本语法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-07 15:54:01" datetime="2018-04-07T07:54:01.000Z"  itemprop="datePublished">2018-04-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编程语言/">编程语言</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="python与c的比较学习"><a href="#python与c的比较学习" class="headerlink" title="python与c的比较学习"></a>python与c的比较学习</h3><p><strong>python没有分号！！！</strong></p>
+<p><strong>True的”T”要大写</strong></p>
+<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><a id="more"></a> 
+<h3 id="数据类型和变量"><a href="#数据类型和变量" class="headerlink" title="数据类型和变量"></a>数据类型和变量</h3><ul>
+<li>Python允许用’’’…’’’的格式表示多行内容</li>
+<li>/除法计算结果是浮点数，即使是两个整数恰好整除，结果也是浮点数</li>
+<li>还有一种除法是//，称为地板除，两个整数的除法仍然是整数：</li>
+<li>‘Hello, %s’ % ‘world’(比c语言多一个%)(或者用format)</li>
+<li>‘Hello, {0}, 成绩提升了 {1:.1f}%’.format(‘小明’, 17.125)</li>
+<li>文件开头写上这两行：<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">#!/usr/bin/env python3</span></span><br><span class="line"><span class="section"># -*- coding: utf-8 -*-</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="特殊数据结构"><a href="#特殊数据结构" class="headerlink" title="特殊数据结构"></a>特殊数据结构</h3><h4 id="list-类似于数组但元素的数据类型也可以不同"><a href="#list-类似于数组但元素的数据类型也可以不同" class="headerlink" title="list (类似于数组但元素的数据类型也可以不同)"></a>list (类似于数组但元素的数据类型也可以不同)</h4><ul>
+<li>list可以以负数为索引，从尾到头搜索</li>
+<li>classmates.append(‘Adam’)　－往list中追加元素到末尾</li>
+<li>classmates.insert(1, ‘Jack’)　－把元素插入到指定的位置(从0开始)</li>
+<li>classmates.pop()　－删除list末尾的元素</li>
+<li>classmates.pop(i) －删除指定位置元素(从0开始)</li>
+</ul>
+<h4 id="turple-元组，一旦初始化就不能修改"><a href="#turple-元组，一旦初始化就不能修改" class="headerlink" title="turple(元组，一旦初始化就不能修改)"></a>turple(元组，一旦初始化就不能修改)</h4><ul>
+<li>t = (1)　－定义1这个数　　t = (1,)　－定义一个只含1这个元素的turple</li>
+<li>t = (‘a’, ‘b’, [‘A’, ‘B’])　－”可变”的turple<br><strong>这里turple里面有一个list，相当于c语言里一个const int*t[n]，但是t里面的指针可以改变指向.</strong><br><strong>c语言中int *const p为常指针，不能改变指针的指向</strong></li>
+</ul>
+<h4 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h4><ul>
+<li><p>dict全称dictionary，在其他语言中也称为map(<a href="https://liuyi12138.github.io/2017/12/21/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01--%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">见JavaScript中的Map,不是map</a></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;'Michael': 95, 'Bob': 75, 'Tracy': 85&#125;</span><br><span class="line">a['Michael']</span><br><span class="line">95</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>dict内部存放的顺序和key放入的顺序是没有关系的</p>
+</li>
+<li>d.get(‘Thomas’)　－get方法</li>
+<li>pop(key)　－删除一个key</li>
+<li>dict与list的比较</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">时间与键值对数目的关系    　　　　　　　</th>
+<th style="text-align:center">内存与键值对的关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">dict</td>
+<td style="text-align:center">　　　　查找和插入的速度极快，不会随着key的增加而变慢　　　　</td>
+<td style="text-align:center">　　　  需要占用大量的内存，内存浪费多　　　</td>
+</tr>
+<tr>
+<td style="text-align:center">list</td>
+<td style="text-align:center">　　　　　　 查找和插入的时间随着元素的增加而增加 　　　　　　</td>
+<td style="text-align:center">　　　　　占用空间小，浪费内存很少 　 　　　</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>dict的key必须是不可变对象</li>
+</ul>
+<h4 id="set"><a href="#set" class="headerlink" title="set"></a>set</h4><ul>
+<li>set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key</li>
+<li>s = set([1, 2, 3]) －创建set</li>
+<li>add(key) －添加元素到set中</li>
+<li>remove(key)　－从set中删除元素</li>
+<li>两个set可以做数学意义上的交集、并集等操作　　s1 &amp; s2　　 s1 | s2</li>
+</ul>
+<h3 id="判断与循环"><a href="#判断与循环" class="headerlink" title="判断与循环"></a>判断与循环</h3><ul>
+<li>选择和判断语句后要加引号＂：＂</li>
+<li>Python的缩进规则，如果if语句判断是True，就把缩进的n行print语句执行了，否则，什么也不做(不需要括号哦)</li>
+<li><p>input()返回的数据类型是str，str不能直接和整数比较，必须先把str转换成整数</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s = input('birth: ')</span><br><span class="line">birth = int(s) //类似于强制转换，但注意在python中int()是一个函数</span><br><span class="line">if birth &lt; 2000:</span><br><span class="line">    print('00前')</span><br><span class="line">else:</span><br><span class="line">    print('00后')</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>range()函数可以生成一个连续的整数数列</p>
+</li>
+<li>list()函数可以将range生成的数列转换为list<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">list(range(5))</span><br><span class="line">[0, 1, 2, 3, 4]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="Python初感知"><a href="#Python初感知" class="headerlink" title="Python初感知"></a>Python初感知</h3><p><strong>典型的面向对象编程，感觉和JavaScript十分相似(list像arr,dict像Map,set像Set),感觉十分简洁，规范性弱于C，但是Python和JavaScript的区别暂时还没有看出来,有待日后做专题比较．</strong></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2018/04/07/Python学习笔记１--基本语法/" target="_blank" rel="external">https://liuyi12138.github.io/2018/04/07/Python学习笔记１--基本语法/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/04/07/Python学习笔记１--基本语法/&title=《Python学习笔记１--基本语法》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/04/07/Python学习笔记１--基本语法/&title=《Python学习笔记１--基本语法》 — 知君的博客&source=python与c的比较学习python没有分号！！！
+True的”T”要大写
+基本语法" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/04/07/Python学习笔记１--基本语法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python学习笔记１--基本语法》 — 知君的博客&url=https://liuyi12138.github.io/2018/04/07/Python学习笔记１--基本语法/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/04/07/Python学习笔记１--基本语法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/08/Python学习笔记2--函数/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Python学习笔记2--函数</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/07/markdown学习笔记/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">markdown学习笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/04/07/Python学习笔记１--基本语法/&title=《Python学习笔记１--基本语法》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/04/07/Python学习笔记１--基本语法/&title=《Python学习笔记１--基本语法》 — 知君的博客&source=python与c的比较学习python没有分号！！！
+True的”T”要大写
+基本语法" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/04/07/Python学习笔记１--基本语法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python学习笔记１--基本语法》 — 知君的博客&url=https://liuyi12138.github.io/2018/04/07/Python学习笔记１--基本语法/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/04/07/Python学习笔记１--基本语法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3aQXLbQAwEQP3/0841KZvKzGKR6NA8uWiKy6aqFhCA1ys+vn479s5/v+b7+dfGgYeHhzd49Pe3niz8/p63nueHJ8HDw8Nb4z090NM170kJI78yf6F4eHh4n8l7v1gbJJIkO18FDw8P7zN5SXEhDwBJ+PkPcQ8PDw8v4OXlhrOUNwkD+UtcqbXg4eHhxby8i/Q5f6/09/Dw8PDGXfVJsSAPD3nAqJ8WDw8Pb4E3KbxO0uVbry8qjuDh4eFd5SW3zjfrvMibjFKdFUr+OIOHh4e3zMuHA/KyxaS4kBeUH++Dh4eHt8BLNvr2du1rOnsdySACHh4e3javHbQ6a1Dl1CRZv9a7w8PDw4t5Zw375CHaEsNZ4SPq7+Hh4eGt8dqywt2iRntN9F88PDy8Zd4kec3LBGdDXXmb7XEmAg8PD+8qLxkCaBPlJDC0IwV1io+Hh4e3wLtb5M037vaFHg5d4eHh4S3w8i34FiYPNmeJ+OOj4OHh4V3lTUq38xGBNqXOvx48PDy8Dd5GM2ze6JoMXT1+Cg8PD+8Sry3CzosL+ahBfs3jeTw8PLwF3nw7bosOZ22zttz8uhVt8PDw8I54F4afyqCSDAe06+Lh4eFt8PbaXW0C3SbuRUjAw8PDu8Rriw55Mt2+lCRE1Wk9Hh4e3jLvVmqbD1flxY72bnh4eHjbvElRdVKeaMvB9UADHh4e3jJv8ou+Xf6MVDfD8PDw8K7yvsrjLJy0hd2zRtcPn8XDw8Nb4LVbbY7Pg8EZeITBw8PDG/NuTR+8Xz45k98nb7bh4eHh7fHaMawJIwkqeTT7S9EZDw8P7wN4bWJ9NlZ1VnooGmB4eHh4/5CXbNxnW3/biosKInh4eHhrvLZllYeBPDVvk/Loq8LDw8Nb4F34wX+0TDtodbmnh4eHh3fC+wXcTA0BtiRB9gAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Git学习笔记 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Git">
+    <meta name="description" content="Git的常用命令总结">
+<meta name="keywords" content="Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git学习笔记">
+<meta property="og:url" content="https://liuyi12138.github.io/2018/04/07/Git学习笔记/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="Git的常用命令总结">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T06:34:31.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git学习笔记">
+<meta name="twitter:description" content="Git的常用命令总结">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Git学习笔记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Git学习笔记</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-07T06:31:20.000Z" itemprop="datePublished" class="page-time">
+  2018-04-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/工具使用/">工具使用</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#用户登录操作"><span class="post-toc-number">1.</span> <span class="post-toc-text">用户登录操作</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#创建版本库"><span class="post-toc-number">2.</span> <span class="post-toc-text">创建版本库</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#查看及修改"><span class="post-toc-number">3.</span> <span class="post-toc-text">查看及修改</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#删除、找回，重置文件"><span class="post-toc-number">4.</span> <span class="post-toc-text">删除、找回，重置文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#与远程库有关的操作"><span class="post-toc-number">5.</span> <span class="post-toc-text">与远程库有关的操作</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Git学习笔记"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Git学习笔记</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-07 14:31:20" datetime="2018-04-07T06:31:20.000Z"  itemprop="datePublished">2018-04-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/工具使用/">工具使用</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>Git的常用命令总结</strong><br><a id="more"></a> </p>
+<h4 id="用户登录操作"><a href="#用户登录操作" class="headerlink" title="用户登录操作"></a>用户登录操作</h4><p>1.git help ：   显示command的help</p>
+<p>2.git config –global user.name”……”  : 输入用户名</p>
+<p>3.git config –global user.email”…..”  ： 输入用户的email</p>
+<p>4.git config –list :  查看git用户信息</p>
+<h4 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h4><p>1.mkdir  <em>learnigit</em>(版本库名称)  ：创建版本库</p>
+<p><strong>TIPS：  版本库可手动创建</strong></p>
+<p>2.cd <em>d:/rep</em> ： 跳转到D盘的rep文件</p>
+<p>3.pwd ： 查看git目前所在路径</p>
+<p>4.git init  ：将目录变为git管理的仓库</p>
+<p>5.git add <em>new_1.txt</em>  :添加文本new_1.txt到暂存区</p>
+<p><strong>TIPS: 文件名尽量不要含空格和中文</strong></p>
+<p>6.git commit -m”此处应有注释“   ：将暂存区的文件提交到版本库</p>
+<p><strong>TIPS: git commit时若未加 -m”注释“ 输入小写i修改，Esc键返回，大写ZZ退出</strong></p>
+<h4 id="查看及修改"><a href="#查看及修改" class="headerlink" title="查看及修改"></a>查看及修改</h4><p>1.git status： 查看状态（略写）</p>
+<p>2.git diff 文件名 ： 查看修改内容 （详写）</p>
+<p>3.git log ： 查看历史记录 （略写）</p>
+<p><strong>TIPS:当版本较多时，小写q退出</strong></p>
+<p>4.git log –preety=oneline  （详写）</p>
+<p>5.git log -p ： 查看每次详细修改内容的diff</p>
+<p>6.git log -p -2 ： 查看最近两次详细修改内容的diff</p>
+<p>7.git log –stat ： 查看提交统计信息</p>
+<p>8.git show ： 显示某次提交的内容  == git log -p</p>
+<p>9.cat 文件名 ：查看文件内容</p>
+<h4 id="删除、找回，重置文件"><a href="#删除、找回，重置文件" class="headerlink" title="删除、找回，重置文件"></a>删除、找回，重置文件</h4><p>1.git reset –hard 版本号（git log 里复制） ：回退到某一版本</p>
+<p>2.git reset –hard HEAD^  : 回退一个版本</p>
+<p>3.git reset –hrad HEAD^^ : 回退两个版本</p>
+<p>4.git reset –hrad HEAD~n ： 回退n个版本</p>
+<p>5.git reflog ：查看每一次操作</p>
+<p>6.git rm 文件名 ：删除版本库文件</p>
+<p>7.git checkout 文件名 : 撤销删除</p>
+<h4 id="与远程库有关的操作"><a href="#与远程库有关的操作" class="headerlink" title="与远程库有关的操作"></a>与远程库有关的操作</h4><p>1.git remote add origin git @github.com:LiuYI12138/Dian_training.git :绑定远程库与本地仓库</p>
+<p>2.git push - u origin master :第一次上传文件</p>
+<p>3.git push origin master :一般上传文件</p>
+<p>4.git pull ：将远程库的文件同步到本地</p>
+<p>5.git remote -v ： 查看远程服务器地址和仓库名称</p>
+<p>6.git remote show origin ： 查看远程服务器仓库状态</p>
+<p><a href="http://www.mamicode.com/info-detail-1425456.html" target="_blank" rel="noopener"><strong>参考链接1</strong></a></p>
+<p><a href="https://www.cnblogs.com/cspku/articles/Git_cmds.html" target="_blank" rel="noopener"><strong>参考链接2</strong></a></p>
+<p>[<strong>廖雪峰的Git教程</strong>](<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606d" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0013739516305929606d</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2018/04/07/Git学习笔记/" target="_blank" rel="external">https://liuyi12138.github.io/2018/04/07/Git学习笔记/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/04/07/Git学习笔记/&title=《Git学习笔记》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/04/07/Git学习笔记/&title=《Git学习笔记》 — 知君的博客&source=Git的常用命令总结" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/04/07/Git学习笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Git学习笔记》 — 知君的博客&url=https://liuyi12138.github.io/2018/04/07/Git学习笔记/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/04/07/Git学习笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/07/JavaScript学习笔记１--基本语法/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">JavaScript学习笔记１--基本语法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/07/2017年终总结/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">2017年终总结</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/04/07/Git学习笔记/&title=《Git学习笔记》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/04/07/Git学习笔记/&title=《Git学习笔记》 — 知君的博客&source=Git的常用命令总结" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/04/07/Git学习笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Git学习笔记》 — 知君的博客&url=https://liuyi12138.github.io/2018/04/07/Git学习笔记/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/04/07/Git学习笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3aS3LbMBAFQN3/0so2qYTKewPKVQSaK5UtA2guxpjP6xU/7+C5+v7vP/n7O1d7vb7xYGBgPJaRHC757ef1k6Pn+/5jHQwMjAMY+fZX21z9JD9uy8bAwMBIjt5u/3kFDAwMjLsYs4tdcnHEwMDA+Mxo09R8g/Yi+PVcHAMD44GMvOr+85+/0t/AwMB4FONdPvkKeSNzdpI/VsbAwNiakQe4FpYU6WYN0cv0GAMD4wBGm2QmZbL2kpesHJXbMDAwtmO04XIlEK8MbRSvCQMDYztG0gBoByNm182oVYmBgXEYo00jE9JdI1/JLtGsBwYGxsMZK6MSbZks+asVPAYGxq6MvEA/4+WheWnUAwMDY2vGyvDErCU5IyXFOAwMjJMZ6yNc7eBFXS/EwMDYmjEbmMgDcTt4kQ9bRJk3BgbGRoykfdimneuvplgHAwPjAEabKLYjF+0Vs35BGBgYxzDa9uRKvzRPYqMTYmBgbM1YaQwk4bVNSmf7YmBgnMBIktV2hKKthiXg/7wODAyMgxl5+Bte48pXGTUyMTAwjmEkKWsbLu8qsRVXQwwMjIcz3uUzG7aYTUcU+TcGBsbWjJUwN/vcthxmzVEMDIz9GHmQnQXH9lLYfgcDA+McRlICy1PfvIXQ/ge4/CsMDAyM5RGKpCWQJ7r1QhgYGEcy2kGutsyXpNA3BFwMDIxHMWbNgFnJbHZQDAyMkxnr96484M6OcltTEwMD43mMX6k8x2XIb0urAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>电子邮件协议学习笔记 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="电子邮件">
+    <meta name="description" content="网络协议">
+<meta name="keywords" content="电子邮件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电子邮件协议学习笔记">
+<meta property="og:url" content="https://liuyi12138.github.io/2018/05/12/电子邮件协议学习笔记/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="网络协议">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdn.net/20170611234044643?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTmluZ2RheGluZzE5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNzMxNzE5LzIwMTYwNS83MzE3MTktMjAxNjA1MjAyMjE3NDkxMjMtOTA2ODA5NDM2LnBuZw?x-oss-process=image/format,png">
+<meta property="og:updated_time" content="2021-02-23T06:34:31.925Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="电子邮件协议学习笔记">
+<meta name="twitter:description" content="网络协议">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20170611234044643?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTmluZ2RheGluZzE5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">电子邮件协议学习笔记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">电子邮件协议学习笔记</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-05-12T02:03:47.000Z" itemprop="datePublished" class="page-time">
+  2018-05-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#网络协议"><span class="post-toc-number">1.</span> <span class="post-toc-text">网络协议</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#TCP协议"><span class="post-toc-number">2.</span> <span class="post-toc-text">TCP协议</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TCP协议中的三次握手和四次挥手"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">TCP协议中的三次握手和四次挥手</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#建立连接的三次握手"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">建立连接的三次握手</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#断开连接的四次挥手"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">断开连接的四次挥手</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#电子邮件协议"><span class="post-toc-number">3.</span> <span class="post-toc-text">电子邮件协议</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SMIP"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">SMIP</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#POP3"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">POP3</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IMAP"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">IMAP</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-电子邮件协议学习笔记"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">电子邮件协议学习笔记</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-12 10:03:47" datetime="2018-05-12T02:03:47.000Z"  itemprop="datePublished">2018-05-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h2><a id="more"></a> 
+<ul>
+<li>OSI/RM 一种分层的体系结构，参考模型有7层：<ul>
+<li>媒介层：物理层，数据链路层，网络层</li>
+<li>主机层：传输层，会话层，表示层，应用层</li>
+</ul>
+</li>
+<li>TCP/IP是基于OSI/RM的协议簇，包含多种协议</li>
+<li>应用层发送请求，每一层封装自己的信息到请求中，最后将整个请求发送。</li>
+<li>接受请求从最底层（网络接口层）开始，每一层解析属于自己的信息。</li>
+</ul>
+<h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><ul>
+<li>TCP协议是以太网协议和IP协议的上层协议，也是应用层协议的下层协议。</li>
+<li>以太网协议规定了电子信号如何组成数据包，解决了子网的点对点通信，IP协议解决了多个局域网互通的问题。</li>
+<li>TCP协议保证数据通信的完整性和可靠性，防止丢包。<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://img-blog.csdn.net/20170611234044643?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTmluZ2RheGluZzE5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="数据包" title>
+                </div>
+                <div class="image-caption">数据包</div>
+            </figure>
+<h3 id="TCP协议中的三次握手和四次挥手"><a href="#TCP协议中的三次握手和四次挥手" class="headerlink" title="TCP协议中的三次握手和四次挥手"></a>TCP协议中的三次握手和四次挥手</h3><h4 id="建立连接的三次握手"><a href="#建立连接的三次握手" class="headerlink" title="建立连接的三次握手"></a>建立连接的三次握手</h4></li>
+<li>第一次握手：客户端向服务端发送连接请求包，标记位SYN置为1，Seq=X=0</li>
+<li>第二次握手：服务器由SYN=1得知客户端请求建立连接，为这次连接分配资源，向客户端返回应该SYN和ACK都置为1的TCP报文，设置顺序号码(Seq)=Y=0，确认号码(ack)=X+1=1</li>
+<li>第三次握手：客户端检查ack是否正确以及ACK是否为1,若正确，客户端再次发包，ACK为1，SYN为0，ack=Y+1=1，Seq=X+1=1，Server收到后确认号码值与ACK=1则连接建立成功，可以传送数据了</li>
+</ul>
+<p><strong>SYN表示连接,ACK表示响应，X为客户端发给服务端的顺序号码，Y为服务器发给客户端的顺序号码，服务端和客户端分别验证XY来检查是否是与同一个端口握手</strong></p>
+<h4 id="断开连接的四次挥手"><a href="#断开连接的四次挥手" class="headerlink" title="断开连接的四次挥手"></a>断开连接的四次挥手</h4><p><strong>客户端和服务端都可以断开连接</strong></p>
+<ul>
+<li>第一次挥手：客户端向服务端发送FIN报文，将标志位FIN和ACK置为1，顺序号码为X=1，确认号码Z=1</li>
+<li>第二次挥手：服务端收到FIN后，发回ACK=1，ack=X+1=2，Seq=Z。客户端进入FIN_WAIT状态。</li>
+<li>第三次挥手: 服务端数据发送完毕，向客户端发送FIN报文，关闭连接,其他值与第二次挥手相同</li>
+<li>第四次挥手：客户端收到FIN，发回ack=Z+1=2,ACK=1顺序号码Seq=X+1=2，客户端进入TIME_WAIT状态，如果服务端没有回应说明服务端已经关闭则客户端关闭。</li>
+</ul>
+<p><strong>FIN表示关闭连接</strong><br><strong>每一次发包的ack(确认号码)与上一次接包的Seq(顺序号码)相同,ack与Seq交替保证端头的唯一性</strong></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNzMxNzE5LzIwMTYwNS83MzE3MTktMjAxNjA1MjAyMjE3NDkxMjMtOTA2ODA5NDM2LnBuZw?x-oss-process=image/format,png" alt="图解TCP" title>
+                </div>
+                <div class="image-caption">图解TCP</div>
+            </figure>
+<h2 id="电子邮件协议"><a href="#电子邮件协议" class="headerlink" title="电子邮件协议"></a>电子邮件协议</h2><ul>
+<li>常用的电子邮件协议有SMTP、POP3、IMAP4，它们都隶属于TCP/IP协议簇，处于应用层的下层。<ul>
+<li>SMIP<ul>
+<li>SMIP协议帮助每台计算机在发送或中转信件时找到下一个目的地</li>
+<li>SMTP认证：要求必须在提供了账户名和密码之后才可以登录 SMTP 服务器</li>
+</ul>
+</li>
+<li>POP<ul>
+<li>POP邮局协议负责从邮件服务器中检索电子邮件</li>
+<li>POP可以下载邮件、从服务器中删除邮件或询问是否有新邮件</li>
+</ul>
+</li>
+<li>IMAP<ul>
+<li>互联网信息访问协议（IMAP）是一种优于POP的新协议,它可以决定客户机请求邮件服务器提交所收到邮件的方式，请求邮件服务器只下载所选中的邮件而不是全部邮件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="SMIP"><a href="#SMIP" class="headerlink" title="SMIP"></a>SMIP</h3><ul>
+<li>SMIP是一种推协议，即服务端向客户端发送推送请求，客户端接受，服务端发送邮件</li>
+<li>SMIP用于将发送方的邮件服务器发送报文到接收方邮件服务器</li>
+<li>当需要将邮件从接收方服务器发送到用户手中时，不能用SMIP协议，因为当用户不接受邮件时服务器会一直请求，这样会造成资源浪费，此时需要拉协议(最典型的拉协议是HTTP协议)如POP或IMAP</li>
+</ul>
+<h3 id="POP3"><a href="#POP3" class="headerlink" title="POP3"></a>POP3</h3><p><strong>POP3按照3个阶段进行工作：特许、事务处理以及更新</strong></p>
+<ul>
+<li>特许阶段，用户代理发送用户名和口令</li>
+<li>事务处理阶段：用户代理取回报文；还可以对报文做删除标记，取消报文删除标记，以及获取邮件的统计信息</li>
+<li>更新阶段：结束该POP3会话；这个时候该邮件服务器删除那些被标记的删除的报文</li>
+<li>POP3的缺陷：当用户用用户代理将邮件存储在本地之后，在本地所进行的对邮件的删除等操作，不会对用户的邮件服务器造成影响</li>
+</ul>
+<h3 id="IMAP"><a href="#IMAP" class="headerlink" title="IMAP"></a>IMAP</h3><ul>
+<li>IMAP是双向的，在本地的操作也会反馈到服务器</li>
+</ul>
+<p><strong>参考连接</strong></p>
+<p><a href="https://blog.csdn.net/ningdaxing1994/article/details/73076795" target="_blank" rel="noopener">五分钟读懂TCP 协议——TCP协议简介</a></p>
+<p><a href="http://www.cnblogs.com/ImBit/p/5513401.html" target="_blank" rel="noopener">网络协议之Tcp、Http</a></p>
+<p><a href="https://baike.baidu.com/item/%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E5%8D%8F%E8%AE%AE/4105152?fr=aladdin" target="_blank" rel="noopener">电子邮件协议百度百科</a></p>
+<p><a href="http://baijiahao.baidu.com/s?id=1588991855144570932&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">邮件系统协议及其工作原理</a></p>
+<p><a href="https://blog.csdn.net/ladybai/article/details/50988205" target="_blank" rel="noopener">电子邮件协议之SMTP、POP3和IMAP</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2018/05/12/电子邮件协议学习笔记/" target="_blank" rel="external">https://liuyi12138.github.io/2018/05/12/电子邮件协议学习笔记/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/电子邮件/">电子邮件</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/05/12/电子邮件协议学习笔记/&title=《电子邮件协议学习笔记》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/05/12/电子邮件协议学习笔记/&title=《电子邮件协议学习笔记》 — 知君的博客&source=网络协议" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/05/12/电子邮件协议学习笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《电子邮件协议学习笔记》 — 知君的博客&url=https://liuyi12138.github.io/2018/05/12/电子邮件协议学习笔记/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/05/12/电子邮件协议学习笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/05/14/C++面向对象学习笔记/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">C++面向对象学习笔记</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/18/吴军的谷歌方法论学习笔记5/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">吴军的谷歌方法论学习笔记5</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/05/12/电子邮件协议学习笔记/&title=《电子邮件协议学习笔记》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/05/12/电子邮件协议学习笔记/&title=《电子邮件协议学习笔记》 — 知君的博客&source=网络协议" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/05/12/电子邮件协议学习笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《电子邮件协议学习笔记》 — 知君的博客&url=https://liuyi12138.github.io/2018/05/12/电子邮件协议学习笔记/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/05/12/电子邮件协议学习笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsElEQVR42u3aUW7jMAwE0Nz/0t0DZJ3OkBLaAs9fQeM6egogMSO+XvH19Xa9v9vemfzv+7uvGxceHh7eeuhPj376gKdBfH79eQry8Xx+Gh4eHt49XjvofBFPpiZ/Tj5mPDw8vN/DS4Y1q3Kf7sHDw8P767zZQp+U1O2deHh4eD/Lu5cQt4B8kzicteDh4eHFvNkQf/b1lfM9PDw8vPWpehutzhbxzWHYN8/Bw8PDu8DLF9z9IPZHX+048fDw8G7wZjFEG1XMNp426v3PDwA8PDy8C7zZP2w2hs2k5NP9ar8NPDw8vJK3X/Q3bQez6ShaB/Dw8PCu8doyd7ZMt9tP/pzie8PDw8M7xMvL2VlMsJ+s9mgNDw8P7wYvF9/YMGYhRTFCPDw8vAu8fWgbHUHFge++cSHKS/Dw8PAWvPxj8sJ61jrQBsEHols8PDy8Ea8d+iyMONU6kGwPj01XeHh4eId4p4rpZImfxbs58rGkxsPDwzvKa+PRWZtUfrTfDv0AEg8PD2/Byx83K6BnDVjJSIpIFw8PD2/NS46UZo1TefBaNFG1TQx4eHh4F3jtlnAqevj8l9lVpNR4eHh4h3izIGCz3LebUB6XFN8MHh4eXsm7UQrvi/K8gaCObvHw8PDWvLa9KSl/Tw10dnb3GEbg4eHhXePlRfOmdG6H225pUcWNh4eHd5S3KZfbJq19q9Y3k4KHh4d3jXcqVM03m5Y920Lw8PDwzvK+ymsWOrST2LaCPX4BeHh4eBd4bZG6iRvONhDkPwDw8PDwbvBmR1MtfhYQz7aNAydveHh4eAEvCSnaAeVbQpGdtHfi4eHh/UpeEkzk1X17z/WNAQ8PD+9yzZkX0LPjrrqxAA8PD+8abxOzzg60NptQUYjj4eHhXeDtf/DPTtWGZ3EbBh4eHt6W9w/dN9B1S+NCcgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

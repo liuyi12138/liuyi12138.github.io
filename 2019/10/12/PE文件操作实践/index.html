@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>PE文件操作实践 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="逆向,PE">
+    <meta name="description" content="网安组新人任务Week2实践内容">
+<meta name="keywords" content="逆向,PE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PE文件操作实践">
+<meta property="og:url" content="https://liuyi12138.github.io/2019/10/12/PE文件操作实践/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="网安组新人任务Week2实践内容">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T06:34:31.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PE文件操作实践">
+<meta name="twitter:description" content="网安组新人任务Week2实践内容">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">PE文件操作实践</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">PE文件操作实践</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-12T03:21:36.000Z" itemprop="datePublished" class="page-time">
+  2019-10-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PEDump-PE文件查看器"><span class="post-toc-number">1.</span> <span class="post-toc-text">PEDump PE文件查看器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PEINFO-PE文件结构查看器"><span class="post-toc-number">2.</span> <span class="post-toc-text">PEINFO PE文件结构查看器</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-PE文件操作实践"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">PE文件操作实践</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-12 11:21:36" datetime="2019-10-12T03:21:36.000Z"  itemprop="datePublished">2019-10-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>网安组新人任务Week2实践内容<br><a id="more"></a> </p>
+<h2 id="PEDump-PE文件查看器"><a href="#PEDump-PE文件查看器" class="headerlink" title="PEDump PE文件查看器"></a>PEDump PE文件查看器</h2><ul>
+<li>功能：可导出指定PE文件的十六进制字节码以及ASCII码</li>
+<li>使用方法: PEDUMP.exe filename 在控制台输出PE文件内容并在同一目录下导出为report.txt</li>
+<li>code：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> address = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ascii[<span class="number">16</span>];</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> buff[<span class="number">16</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//FILE *fpr = fopen(argv[1], "r");</span></span><br><span class="line">    <span class="comment">//r 读到\r\n会改为\n,读到\x1a会返回EOF</span></span><br><span class="line">    <span class="comment">//rb 读到什么返回什么,读到文件末尾才会返回EOF</span></span><br><span class="line">    FILE *fpr = fopen(argv[<span class="number">1</span>], <span class="string">"rb"</span>);</span><br><span class="line">    FILE *fpw = fopen(<span class="string">"report.txt"</span>,<span class="string">"w"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(fpr == <span class="literal">NULL</span> || fpw == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s failed to open \n"</span>,argv[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"  地址                                 字节码内容                                    ASCII字符\n"</span>);</span><br><span class="line">    <span class="built_in">fprintf</span>(fpw, <span class="string">"  地址                                 字节码内容                                     ASCII字符\n"</span>);</span><br><span class="line">    <span class="comment">//while(fgets(buff,sizeof(buff),fpr) != NULL)&#123;</span></span><br><span class="line">    <span class="comment">//此处应将fgets修正为fread，因为fgets每次读取完后会在字符串后补/0导致输出的文件出错，在后续PEINFO中发现了这个问题</span></span><br><span class="line">    <span class="keyword">while</span>(fread(buff,<span class="number">1</span>,<span class="keyword">sizeof</span>(buff),fpr) != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%08x    "</span>, address);</span><br><span class="line">        <span class="built_in">fprintf</span>(fpw, <span class="string">"%08x    "</span>, address);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">16</span>; ++i)&#123;</span><br><span class="line">            ascii[i] = buff[i];</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%02X"</span>,buff[i]);</span><br><span class="line">            <span class="built_in">fprintf</span>(fpw, <span class="string">"%02X"</span>,buff[i]);</span><br><span class="line">            <span class="keyword">if</span>(i == <span class="number">7</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">" - "</span>);</span><br><span class="line">                <span class="built_in">fprintf</span>(fpw, <span class="string">" - "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"  "</span>);</span><br><span class="line">                <span class="built_in">fprintf</span>(fpw, <span class="string">"  "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"    "</span>);</span><br><span class="line">        <span class="built_in">fprintf</span>(fpw, <span class="string">"    "</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">16</span>; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ascii[i] &gt; <span class="number">37</span> &amp;&amp; ascii[i] &lt; <span class="number">127</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%c"</span>,ascii[i]);</span><br><span class="line">                <span class="built_in">fprintf</span>(fpw, <span class="string">"%c"</span>,ascii[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"."</span>);</span><br><span class="line">                <span class="built_in">fprintf</span>(fpw,<span class="string">"."</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        address += <span class="number">16</span>;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">        <span class="built_in">fprintf</span>(fpw, <span class="string">"\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fclose(fpr);</span><br><span class="line">    fclose(fpw);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="PEINFO-PE文件结构查看器"><a href="#PEINFO-PE文件结构查看器" class="headerlink" title="PEINFO PE文件结构查看器"></a>PEINFO PE文件结构查看器</h2><ul>
+<li>功能：可查看PE文件的具体结构</li>
+<li>使用方法: PEINFO.exe filename 在控制台输出PE文件的具体结构</li>
+<li>10.19更新 增加获取导入表信息部分</li>
+<li>code：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Windows.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">IMAGE_DOS_HEADER myDosHeader;</span><br><span class="line">IMAGE_NT_HEADERS myNTHeader;</span><br><span class="line">IMAGE_OPTIONAL_HEADER myOptionHeader;</span><br><span class="line">IMAGE_SECTION_HEADER* pmySectionHeader;</span><br><span class="line">LONG e_lfanew;</span><br><span class="line">IMAGE_IMPORT_DESCRIPTOR* pmyImportDes;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getValueByOffset</span><span class="params">(FILE* fp,DWORD offset, <span class="keyword">char</span>* value, <span class="keyword">int</span> size)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"File Name: %s\n"</span>,argv[<span class="number">1</span>]);</span><br><span class="line">    FILE *fp = fopen(argv[<span class="number">1</span>], <span class="string">"rb"</span>);</span><br><span class="line">    <span class="keyword">if</span>(fp == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"failed to open \n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//DOS头部分</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"====================IMAGE_DOS_HEADER====================\n"</span>);</span><br><span class="line">    fread(&amp;myDosHeader,<span class="number">1</span> ,<span class="keyword">sizeof</span>(IMAGE_DOS_HEADER), fp);</span><br><span class="line">	<span class="keyword">if</span> (myDosHeader.e_magic!=<span class="number">0x5A4D</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"not Exe File!"</span>);</span><br><span class="line">		fclose(fp);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"MZ标识(WORD)               e_magic:             %04X\n"</span>, myDosHeader.e_magic);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"PE偏移量(DOWRD)            e_lfaner:            %08X\n\n"</span>, myDosHeader.e_lfanew);</span><br><span class="line">	e_lfanew = myDosHeader.e_lfanew;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//NT头部分</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"====================IMAGE_NT_HEADER====================\n"</span>);</span><br><span class="line">	fseek(fp, e_lfanew, SEEK_SET);</span><br><span class="line">	fread(&amp;myNTHeader, <span class="number">1</span>, <span class="keyword">sizeof</span>(IMAGE_NT_HEADERS), fp);</span><br><span class="line">	<span class="keyword">if</span> (myNTHeader.Signature != <span class="number">0x4550</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"not PE File!"</span>);</span><br><span class="line">		fclose(fp);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"PE标识(DWORD)              Signature:           %08X\n\n"</span>,myNTHeader.Signature);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//FILE头部分</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"===================IMAGE_FILE_HEADER====================\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"运行平台(WORD)             Machine:             %04X\n"</span>, myNTHeader.FileHeader.Machine);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"节的数量(WORD)             NumberOfSection:     %d\n"</span>, myNTHeader.FileHeader.NumberOfSections);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"文件属性(WORD)             Characteristics:     %04X\n\n"</span>, myNTHeader.FileHeader.Characteristics);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//OPTIONAL头部分</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"==================IMAGE_OPTION_HEADER===================\n"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"程序执行入口(DWORD)        AddressOfEntryPoint: %08X\n"</span>, myNTHeader.OptionalHeader.AddressOfEntryPoint);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"代码节起始点(DWORD)        BaseOfCode:          %08X\n"</span>, myNTHeader.OptionalHeader.BaseOfCode);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"数据节起始点(DWORD)        BaseOfData:          %08X\n"</span>, myNTHeader.OptionalHeader.BaseOfData);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"建议装入基地址(DWORD)      ImageBase:           %08X\n"</span>, myNTHeader.OptionalHeader.ImageBase);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"数据目录数量(DWORD)        NumberOfRvaAndSizes: %d\n\n"</span>, myNTHeader.OptionalHeader.NumberOfRvaAndSizes);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//数据目录</span></span><br><span class="line">    DWORD IAT_RVA = <span class="number">0</span>;                      <span class="comment">//IAT的RVA</span></span><br><span class="line">    DWORD ImportDir_RVA = <span class="number">0</span>;                <span class="comment">//导入表的RVA</span></span><br><span class="line">    DWORD IAT_offset = <span class="number">0</span>;                   <span class="comment">//由IAT的RVA计算出的文件偏移地址</span></span><br><span class="line">    DWORD ImportDir_offset = <span class="number">0</span>;             <span class="comment">//由导入表的RVA计算出的文件偏移地址</span></span><br><span class="line">    DWORD IAT_Section_RVA = <span class="number">0</span>;              <span class="comment">//IAT所在的节的RVA</span></span><br><span class="line">    DWORD IAT_Section_offset = <span class="number">0</span>;           <span class="comment">//IAT所在的节的文件偏移</span></span><br><span class="line">    DWORD ImportDir_Section_RVA = <span class="number">0</span>;        <span class="comment">//导入表所在的节的RVA</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"==================IMAGE_DATA_DIRECTORY==================\n"</span>);</span><br><span class="line">    <span class="comment">//数据目录</span></span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; myNTHeader.OptionalHeader.NumberOfRvaAndSizes; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(myNTHeader.OptionalHeader.DataDirectory[i].VirtualAddress != <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == <span class="number">1</span>)&#123;</span><br><span class="line">                ImportDir_RVA = myNTHeader.OptionalHeader.DataDirectory[i].VirtualAddress;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i == <span class="number">12</span>)&#123;</span><br><span class="line">                IAT_RVA = myNTHeader.OptionalHeader.DataDirectory[i].VirtualAddress;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"数据块%d:\n"</span>, i+<span class="number">1</span>);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"数据起始点(DWORD)          VirtualAddress:      %08X\n"</span>,myNTHeader.OptionalHeader.DataDirectory[i].VirtualAddress);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"数据块长度(DWORD)          Size:                %08X\n\n"</span>,myNTHeader.OptionalHeader.DataDirectory[i].Size);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//节表目录</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"==================IMAGE_SECTION_HEADER==================\n"</span>);</span><br><span class="line">    pmySectionHeader = (IMAGE_SECTION_HEADER*)<span class="built_in">malloc</span>(myNTHeader.FileHeader.NumberOfSections * <span class="keyword">sizeof</span>(IMAGE_SECTION_HEADER));</span><br><span class="line">    fseek(fp, (e_lfanew + <span class="keyword">sizeof</span>(IMAGE_NT_HEADERS)), SEEK_SET);</span><br><span class="line">    fread(pmySectionHeader, <span class="keyword">sizeof</span>(IMAGE_SECTION_HEADER), myNTHeader.FileHeader.NumberOfSections, fp);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"节的属性参考:\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"    00000020h           包含代码\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"    00000040h           包含已初始化的数据，如.const\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"    00000080h           包含未初始化的数据，如.data?\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"    02000000h           数据在进程开始以后被丢弃，如.reloc\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"    04000000h           节中数据不经过缓存\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"    08000000h           节中数据不会被交换到硬盘\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"    10000000h           数据将被不同进程共享\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"    20000000h           可执行\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"    40000000h           可读\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"    80000000h           可写\n\n"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"内存中节的对齐粒度(DWORD)  SectionAlignment:    %08X\n"</span>,myNTHeader.OptionalHeader.SectionAlignment);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"文件中节的对齐粒度(DWORD)  FileAlignment:       %08X\n\n"</span>,myNTHeader.OptionalHeader.FileAlignment);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; myNTHeader.FileHeader.NumberOfSections; i++,pmySectionHeader++)&#123;</span><br><span class="line">        <span class="comment">//获取IAT和导入表所在的节的信息</span></span><br><span class="line">        <span class="keyword">if</span>(ImportDir_RVA != <span class="number">0</span> &amp;&amp; IAT_RVA != <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(pmySectionHeader-&gt;VirtualAddress &lt;= IAT_RVA &amp;&amp; pmySectionHeader-&gt;VirtualAddress + pmySectionHeader-&gt;Misc.VirtualSize &gt; IAT_RVA)&#123;</span><br><span class="line">                IAT_offset = pmySectionHeader-&gt;PointerToRawData + (IAT_RVA - pmySectionHeader-&gt;VirtualAddress);</span><br><span class="line">                IAT_Section_RVA = pmySectionHeader-&gt;VirtualAddress;</span><br><span class="line">                IAT_Section_offset = pmySectionHeader-&gt;PointerToRawData;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(pmySectionHeader-&gt;VirtualAddress &lt;= ImportDir_RVA &amp;&amp; pmySectionHeader-&gt;VirtualAddress + pmySectionHeader-&gt;Misc.VirtualSize &gt; ImportDir_RVA)&#123;</span><br><span class="line">                ImportDir_offset = pmySectionHeader-&gt;PointerToRawData + (ImportDir_RVA - pmySectionHeader-&gt;VirtualAddress);</span><br><span class="line">                ImportDir_Section_RVA = pmySectionHeader-&gt;VirtualAddress;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"节区%d:\n"</span>, i);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"节的名称(BYTE)             NAME:                %s\n"</span>,pmySectionHeader-&gt;Name);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"未对齐前真实长度(DWORD)    VirtualSize:         %08X\n"</span>,pmySectionHeader-&gt;Misc.VirtualSize);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"节的RVA(DWORD)             VirtualAddress:      %08X\n"</span>,pmySectionHeader-&gt;VirtualAddress);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"文件中对齐后长度(DWORD)    SizeOfRawData:       %08X\n"</span>,pmySectionHeader-&gt;SizeOfRawData);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"在文件中的偏移(DWORD)      PointerToRawData:    %08X\n"</span>,pmySectionHeader-&gt;PointerToRawData);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"节的属性(DWORD)            Characteristics:     %08X\n\n"</span>,pmySectionHeader-&gt;Characteristics);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"========================================================\n\n"</span>);</span><br><span class="line">    <span class="keyword">if</span>(ImportDir_offset != <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;      <span class="comment">//导入表中库的数量计数</span></span><br><span class="line">        <span class="keyword">int</span> count1 = <span class="number">0</span>;     <span class="comment">//某导入库中函数数量计数</span></span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">            pmyImportDes = (IMAGE_IMPORT_DESCRIPTOR*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(IMAGE_IMPORT_DESCRIPTOR));</span><br><span class="line">            getValueByOffset(fp, ImportDir_offset + <span class="keyword">sizeof</span>(IMAGE_IMPORT_DESCRIPTOR) * count, pmyImportDes, <span class="keyword">sizeof</span>(IMAGE_IMPORT_DESCRIPTOR));</span><br><span class="line">            count++;</span><br><span class="line">            <span class="keyword">if</span>(pmyImportDes-&gt;Name == <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//获取导入库名</span></span><br><span class="line">                DWORD name_offset = (pmyImportDes-&gt;Name - IAT_Section_RVA) + IAT_Section_offset;</span><br><span class="line">                <span class="keyword">char</span> name[<span class="number">32</span>];</span><br><span class="line">                getValueByOffset(fp, name_offset, name, <span class="number">32</span>);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"导入库: %s\n"</span>, name);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"-------------------------------\n"</span>);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"OriginalFirstThunk   %08X\n"</span>, pmyImportDes-&gt;OriginalFirstThunk);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"TimeDateStamp        %08X\n"</span>, pmyImportDes-&gt;TimeDateStamp);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"ForwarderChain       %08X\n"</span>, pmyImportDes-&gt;ForwarderChain);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"NameRva              %08X\n"</span>, pmyImportDes-&gt;Name);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"NameOffest           %08X\n"</span>, name_offset);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"FirstThunk           %08X\n"</span>, pmyImportDes-&gt;FirstThunk);</span><br><span class="line">                <span class="comment">//定位到IMAGE_THUNK_DATA</span></span><br><span class="line">                <span class="keyword">if</span>(pmyImportDes-&gt;OriginalFirstThunk &lt; <span class="number">0x10000000</span>)&#123;</span><br><span class="line">                    count1 = <span class="number">0</span>;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"-------------------------------\n"</span>);</span><br><span class="line">                    <span class="comment">//循环获取单个IMAGE_THUNK_DATA</span></span><br><span class="line">                    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">                        DWORD* pmyThunkData;</span><br><span class="line">                        pmyThunkData = (DWORD*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(DWORD));</span><br><span class="line">                        DWORD thunk_offset = (pmyImportDes-&gt;OriginalFirstThunk - IAT_Section_RVA) + IAT_Section_offset;</span><br><span class="line">                        getValueByOffset(fp, thunk_offset + <span class="keyword">sizeof</span>(DWORD) * count1, pmyThunkData, <span class="keyword">sizeof</span>(DWORD));</span><br><span class="line">                        count1++;</span><br><span class="line">                        <span class="keyword">if</span>((*pmyThunkData) == <span class="number">0</span>)</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        <span class="keyword">else</span>&#123;</span><br><span class="line">                            <span class="comment">//获取Hint_Name_offset结构</span></span><br><span class="line">                            DWORD Hint_Name_offset = (*pmyThunkData - IAT_Section_RVA) + IAT_Section_offset;</span><br><span class="line">                            IMAGE_IMPORT_BY_NAME* pmyImportByName;</span><br><span class="line">                            pmyImportByName = (IMAGE_IMPORT_BY_NAME*)<span class="built_in">malloc</span>(<span class="number">320</span>);</span><br><span class="line">                            getValueByOffset(fp, Hint_Name_offset, pmyImportByName, <span class="number">320</span>);</span><br><span class="line">                            <span class="built_in">printf</span>(<span class="string">"%08X       %s\n"</span>, pmyImportByName-&gt;Hint,pmyImportByName-&gt;Name);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">free</span>(pmyImportDes);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	fclose(fp);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过在文件中的偏移获取数据</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getValueByOffset</span><span class="params">(FILE* fp,DWORD offset, <span class="keyword">char</span>* value, <span class="keyword">int</span> size)</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">int</span> position = ftell(fp);</span><br><span class="line">    fseek(fp, offset,SEEK_SET);</span><br><span class="line">    fread(value, <span class="keyword">sizeof</span>(<span class="keyword">char</span>),size,fp);</span><br><span class="line">    fseek(fp, position,SEEK_SET);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2019/10/12/PE文件操作实践/" target="_blank" rel="external">https://liuyi12138.github.io/2019/10/12/PE文件操作实践/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PE/">PE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/10/12/PE文件操作实践/&title=《PE文件操作实践》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/10/12/PE文件操作实践/&title=《PE文件操作实践》 — 知君的博客&source=网安组新人任务Week2实践内容" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/10/12/PE文件操作实践/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PE文件操作实践》 — 知君的博客&url=https://liuyi12138.github.io/2019/10/12/PE文件操作实践/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/10/12/PE文件操作实践/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/13/PE变形技术/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">PE变形技术</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/10/11/PE初识/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">PE初识</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/10/12/PE文件操作实践/&title=《PE文件操作实践》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/10/12/PE文件操作实践/&title=《PE文件操作实践》 — 知君的博客&source=网安组新人任务Week2实践内容" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/10/12/PE文件操作实践/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PE文件操作实践》 — 知君的博客&url=https://liuyi12138.github.io/2019/10/12/PE文件操作实践/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/10/12/PE文件操作实践/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3awU4DMQxF0f7/Tw8SqyKY6X0vA6LOzapqaScnC+PYfjzwOj7X8+vnlb5/9un3Z928ZMiQ8baM43KdMdLvXm80PYIfqDJkyNiAQYIsCaBk692RvdizDBkyZFxuN30kCb4yZMiQsRJw772aypAhQwZn8G2laR8J3yuXZBkyZOzA6BoDf/P61/sbMmTI+PeMo1rrF1FSpAv2I0OGjNGM6x/tBi+64l3aWngRdmXIkDGI0V0j+WWV53LdoXz5vyFDhozRDJ66XW+ClPKDzfHGgAwZMrZhdM2AtAGQpp5o1EOGDBmjGd21tsOTklw30iFDhozZDJ6EBQV6HDp5ue1FoJchQ8YGjPTSmF5H06GKmCdDhozRDF7wSlsI5J00WVzKbWXIkPG2DPLgbut80/yMT1NSGTJkbMDoLqtdk6Ar3sVjYTJkyBjKIGWylcEL8ptLfQwZMmQMZaTJH0/1uuvrSstBhgwZUxn8T0nA7bbLD+50VzJkyBjNSEMeL7Stl+rS78qQIWM2g5Tsu62njc/umGTIkLEPowuX6dHEw6m8LChDhozRjK7olqaDvNkQD1vIkCFjNOMIFx/LSDuMKyU5GTJkzGakwa67+vLwnSajMmTI2IeRtgRI83Ll/MqZERkyZGzAWCm0ERIPzSVPhgwZMtJcEqSD3ZhFkL3KkCFjSwYPu3zM4raDkyFDxgYM3gzoynBdKzS4AMuQIWM0Yz3J6x7ZDZbxdqkMGTJGMD4AiSs39QwZaoMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>C++刷Leetcode笔记之 65. Valid Number | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="C++,Leetcode">
+    <meta name="description" content="在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力 又AC的第一个HARD题，hhhh Leetcode传送门">
+<meta name="keywords" content="C++,Leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++刷Leetcode笔记之 65. Valid Number">
+<meta property="og:url" content="https://liuyi12138.github.io/2018/08/29/C++刷Leetcode笔记之 65. Valid Number/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力 又AC的第一个HARD题，hhhh Leetcode传送门">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T06:34:31.894Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++刷Leetcode笔记之 65. Valid Number">
+<meta name="twitter:description" content="在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力 又AC的第一个HARD题，hhhh Leetcode传送门">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">C++刷Leetcode笔记之 65. Valid Number</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">C++刷Leetcode笔记之 65. Valid Number</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-29T12:56:04.000Z" itemprop="datePublished" class="page-time">
+  2018-08-29
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Valid-Number-Difficulty-Hard"><span class="post-toc-number">1.</span> <span class="post-toc-text">Valid Number [Difficulty: Hard]</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题目"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#我的思路"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">我的思路</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-C++刷Leetcode笔记之 65. Valid Number"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">C++刷Leetcode笔记之 65. Valid Number</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-29 20:56:04" datetime="2018-08-29T12:56:04.000Z"  itemprop="datePublished">2018-08-29</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力</strong></p>
+<p>又AC的第一个HARD题，hhhh</p>
+<p><a href="https://leetcode.com/problems/valid-number/description/" target="_blank" rel="noopener">Leetcode传送门</a></p>
+<a id="more"></a> 
+<h1 id="Valid-Number-Difficulty-Hard"><a href="#Valid-Number-Difficulty-Hard" class="headerlink" title="Valid Number [Difficulty: Hard]"></a>Valid Number [Difficulty: Hard]</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ul>
+<li><p>Validate if a given string is numeric.</p>
+</li>
+<li><p>Some examples:</p>
+<ul>
+<li>“0” =&gt; true</li>
+<li>“ 0.1 “ =&gt; true</li>
+<li>“abc” =&gt; false</li>
+<li>“1 a” =&gt; false</li>
+<li>“2e10” =&gt; true</li>
+</ul>
+</li>
+<li><p>Note: It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isNumber</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="我的思路"><a href="#我的思路" class="headerlink" title="我的思路"></a>我的思路</h2><ul>
+<li>思路都在注释里，做这个题的时候心里是mmp的<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isNumber</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> max = s.size();</span><br><span class="line">        <span class="keyword">int</span> flag = <span class="number">0</span>; <span class="comment">//判断小数点是否存在</span></span><br><span class="line">        <span class="keyword">int</span> numExitRef = <span class="number">0</span>; <span class="comment">//判断小数点前是否有数字</span></span><br><span class="line">        <span class="keyword">int</span> unmExitNext = <span class="number">0</span>; <span class="comment">//判断小数点后是否有数字</span></span><br><span class="line">        <span class="keyword">int</span> numEnd = <span class="number">0</span>; <span class="comment">//判断是否到数字结尾</span></span><br><span class="line">        <span class="keyword">int</span> eExit = <span class="number">0</span>; <span class="comment">//判断e是否存在</span></span><br><span class="line">        <span class="keyword">int</span> eNumRef = <span class="number">0</span>; <span class="comment">//判断e前面是否有数字</span></span><br><span class="line">        <span class="keyword">int</span> eNumNext = <span class="number">0</span>; <span class="comment">//判断e后面是否有数字</span></span><br><span class="line">        <span class="keyword">int</span> symbol = <span class="number">0</span>; <span class="comment">//判断是否有符号</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;max; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!symbol &amp;&amp; !numExitRef &amp;&amp; !flag &amp;&amp; s[i] == <span class="string">' '</span>) <span class="keyword">continue</span>; <span class="comment">//判断是否为数字开始前的空格</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (s[i] == <span class="string">'-'</span> || s[i] == <span class="string">'+'</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (flag || numExitRef || symbol) <span class="comment">//如果有小数点，前面存在数字，已存在符号则判为false</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    symbol = <span class="number">1</span>; <span class="comment">//如果没有上述情况，则判定已有符号</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (s[i] == <span class="string">'.'</span> &amp;&amp; !flag &amp;&amp; !eExit) &#123; <span class="comment">//如果此字符为小数点且前面没有小数点而且e不存在</span></span><br><span class="line">                <span class="keyword">if</span> (numEnd) <span class="comment">//如过到数字结尾了，则判false</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                flag = <span class="number">1</span>; <span class="comment">//判定已有小数点</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (eNumRef &amp;&amp; s[i] == <span class="string">'e'</span> &amp;&amp; !eExit) &#123; <span class="comment">//如果e前面有数字且e不存在</span></span><br><span class="line">                eExit = <span class="number">1</span>; <span class="comment">//判定e存在</span></span><br><span class="line">                unmExitNext = <span class="number">0</span>; <span class="comment">//由于e后和e前可以当做两个数字，则将这些值都置0</span></span><br><span class="line">                numExitRef = <span class="number">0</span>;</span><br><span class="line">                symbol = <span class="number">0</span>;</span><br><span class="line">                flag = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (s[i] &lt; <span class="string">'0'</span> || s[i] &gt; <span class="string">'9'</span>) &#123; <span class="comment">//如果此字符不为以上特殊符号和数字</span></span><br><span class="line">                <span class="keyword">if</span> (s[i] == <span class="string">' '</span>) <span class="comment">//如果此字符为空</span></span><br><span class="line">                    numEnd = <span class="number">1</span>; <span class="comment">//判定已到数字结尾</span></span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">//否则判为false</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123; <span class="comment">//如果此字符为数字</span></span><br><span class="line">                <span class="keyword">if</span> (flag) unmExitNext = <span class="number">1</span>; <span class="comment">//判定是小数点前还是小数点后</span></span><br><span class="line">                <span class="keyword">else</span> numExitRef = <span class="number">1</span>;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> (eExit) eNumNext = <span class="number">1</span>; <span class="comment">//判定是e前还是e后</span></span><br><span class="line">                <span class="keyword">else</span> eNumRef = <span class="number">1</span>;</span><br><span class="line">                    </span><br><span class="line">                <span class="keyword">if</span> (numEnd) <span class="comment">//如果已经到数字末尾了则判为false</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (eExit &amp;&amp; !eNumNext) <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">//如果e存在且e后没有数字，判为false</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (numExitRef || unmExitNext) <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">//如果小数点前后有数字，判为true</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2018/08/29/C++刷Leetcode笔记之 65. Valid Number/" target="_blank" rel="external">https://liuyi12138.github.io/2018/08/29/C++刷Leetcode笔记之 65. Valid Number/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/08/29/C++刷Leetcode笔记之 65. Valid Number/&title=《C++刷Leetcode笔记之 65. Valid Number》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/08/29/C++刷Leetcode笔记之 65. Valid Number/&title=《C++刷Leetcode笔记之 65. Valid Number》 — 知君的博客&source=在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力
+又AC的第一个HARD题，hhhh
+Leet..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/08/29/C++刷Leetcode笔记之 65. Valid Number/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C++刷Leetcode笔记之 65. Valid Number》 — 知君的博客&url=https://liuyi12138.github.io/2018/08/29/C++刷Leetcode笔记之 65. Valid Number/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/08/29/C++刷Leetcode笔记之 65. Valid Number/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/09/05/算法学习笔记之动态规划/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">算法学习笔记之动态规划</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/08/29/C++刷Leetcode笔记之 57. Insert Interval/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">C++刷Leetcode笔记之 57. Insert Interval</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/08/29/C++刷Leetcode笔记之 65. Valid Number/&title=《C++刷Leetcode笔记之 65. Valid Number》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/08/29/C++刷Leetcode笔记之 65. Valid Number/&title=《C++刷Leetcode笔记之 65. Valid Number》 — 知君的博客&source=在深信服组期间学习了C++的使用方法，就打算通过刷Leetcode来提高自己的算法能力以及对C++的掌握能力
+又AC的第一个HARD题，hhhh
+Leet..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/08/29/C++刷Leetcode笔记之 65. Valid Number/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C++刷Leetcode笔记之 65. Valid Number》 — 知君的博客&url=https://liuyi12138.github.io/2018/08/29/C++刷Leetcode笔记之 65. Valid Number/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/08/29/C++刷Leetcode笔记之 65. Valid Number/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACp0lEQVR42u3aQW4jMQwEwPz/09nrAsbY3eTIdoCak5FMLJUOktLkz0/8/P73JG8+fk7efxzr8fk58eDh4eEtpn71dVc/2SxQMtbmHTw8PLzTvP0Wf/VXz4d/vojt4uLh4eF9P+/qnWSizy/Kz0l4eHh4f4uXTGv/Obl24+Hh4X2Wl/zzP1uCNlaYBRk3ZC14eHh4B6pI3/P5SH0PDw8Pb11Vb7fsew+G3/WDh4eHd4LXtkbNppWMMiuMRc1heHh4eLfy2um2F+46ci3j4xffgIeHh3eA15bzk618f4G+rfSFh4eH90bebLrt9j1rw0qauvDw8PBO89oSfhtV5BfxWXgRFcbw8PDwDvDyzTrZlPMWrvZinf8WDw8P7wSvdseYffPW5nC67IzAw8PDW/PyQDbqQSgDjvaYSWY7zJvx8PDwYl57JGzu7Mmb7UyK6BYPDw/vAG/W6pSHDpur86wRAQ8PD+8EL99qc96s0JW3LKySaTw8PLxjvE2gMIseZhWrgoqHh4d3E69NfJMIYHPAzGbyor6Hh4eHd4yXXFjztoBkKnm0MQwm8PDw8A7wNoFCHsvm023LYNGBhIeHh3crbzNwgmmbBtqxXvwtHh4e3tt5s6Ahv/LOouGiwIaHh4d3gNfGAe0U2yaqtsQVzQEPDw/vGG9fsG83+racNivI4eHh4Z3m5ew2GnjPsYGHh4f3WV47fB7y5vHupgyGh4eHd4I3Cx1mh8FsgdqDKkqp8fDw8Ba8dsPNt/t8IdqAI/+Mh4eHd443++okim0v1puQ4nImeHh4eMd4w/LSaBIJKT/Bis4IPDw8vC/jzdqw8uv17GjBw8PD+wbepkzVFsySpcTDw8P7FC8vWZ1oKUiWe3aJx8PDwzvB22/os2E21H17Fh4eHt6I9w9GFGnOmKnd1gAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

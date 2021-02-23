@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>PE变形技术 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="逆向,PE">
+    <meta name="description" content="网安组新人任务Week2笔记">
+<meta name="keywords" content="逆向,PE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PE变形技术">
+<meta property="og:url" content="https://liuyi12138.github.io/2019/10/13/PE变形技术/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="网安组新人任务Week2笔记">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/10.14.1.png">
+<meta property="og:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/10.14.2.png">
+<meta property="og:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191014154208.png">
+<meta property="og:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191014154409.png">
+<meta property="og:updated_time" content="2021-02-23T06:34:31.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PE变形技术">
+<meta name="twitter:description" content="网安组新人任务Week2笔记">
+<meta name="twitter:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/10.14.1.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">PE变形技术</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">PE变形技术</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-13T10:49:36.000Z" itemprop="datePublished" class="page-time">
+  2019-10-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PE变形技术分类"><span class="post-toc-number">1.</span> <span class="post-toc-text">PE变形技术分类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#结构重叠技术"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">结构重叠技术</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#空间调整技术"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">空间调整技术</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据转移技术"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">数据转移技术</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#变量存储"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">变量存储</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#代码存储"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">代码存储</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据压缩技术"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">数据压缩技术</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#变形技术可用的空间"><span class="post-toc-number">2.</span> <span class="post-toc-text">变形技术可用的空间</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#文件头部未用的字段"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">文件头部未用的字段</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#大小不固定的数据块"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">大小不固定的数据块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#因对齐产生的补足空间"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">因对齐产生的补足空间</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PE文件变形原则"><span class="post-toc-number">3.</span> <span class="post-toc-text">PE文件变形原则</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-PE变形技术"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">PE变形技术</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-13 18:49:36" datetime="2019-10-13T10:49:36.000Z"  itemprop="datePublished">2019-10-13</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>网安组新人任务Week2笔记<br><a id="more"></a> </p>
+<h2 id="PE变形技术分类"><a href="#PE变形技术分类" class="headerlink" title="PE变形技术分类"></a>PE变形技术分类</h2><h3 id="结构重叠技术"><a href="#结构重叠技术" class="headerlink" title="结构重叠技术"></a>结构重叠技术</h3><ul>
+<li>在不影响正常性能的前提下，将某些技术进行重叠</li>
+<li>两个字段中数据发生了重叠但没有发生加载错误<ul>
+<li>被覆盖的数据可能在另一个结构中无用</li>
+<li>有用的数据只对一个数据有用</li>
+<li>当被覆盖的数据在两个结构中都有用时必须保证重叠部分数据一致</li>
+<li>PE加载器不检测所有的字段</li>
+</ul>
+</li>
+</ul>
+<h3 id="空间调整技术"><a href="#空间调整技术" class="headerlink" title="空间调整技术"></a>空间调整技术</h3><ul>
+<li>通过调整IMAGE_DOS_HEADER.e_Ifanew的值实现动态地扩充或缩小DOS STUB块空间，从而达到PE变形的目的</li>
+<li>复制从PE头开始的所有数据到指定位置</li>
+<li>可能需要修改的值:<ul>
+<li>IMAGE_DOS_HEADER.e_lfanew —— PE头相对偏移位置</li>
+<li>IMAGE_OPTIONAL_HEADER.AddressOfEntryPoint —— 程序执行入口</li>
+<li>IMAGE_OPTIONAL_HEADER.SizeOfImage —— 内存中PE映像的尺寸</li>
+<li>IMAGE_OPTIONAL_HEADER.SizeOfHeader —— 所有头+节表的大小</li>
+<li>IMAGE_SECTION_HEADER.VirtualSIze —— 节区的尺寸</li>
+<li>IMAGE_SECTION_HEADER.PointerToRawData —— 在文件中的偏移</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据转移技术"><a href="#数据转移技术" class="headerlink" title="数据转移技术"></a>数据转移技术</h3><ul>
+<li>将PE中的一部分数据转移到另一个位置<ul>
+<li>将程序中的变量存储到文件头部结构的某个字段</li>
+<li>将代码转移到头部结构的某个连续空间中</li>
+</ul>
+</li>
+</ul>
+<h4 id="变量存储"><a href="#变量存储" class="headerlink" title="变量存储"></a>变量存储</h4><ul>
+<li>可将.data中的变量存放在IMAGE_DOS_HEADER中，省去一个节表的内容</li>
+</ul>
+<h4 id="代码存储"><a href="#代码存储" class="headerlink" title="代码存储"></a>代码存储</h4><ul>
+<li>可存到IMAGE_DOS_HEADER中或数据目录表中</li>
+<li>如果空间不够也可将代码分开储存</li>
+</ul>
+<h3 id="数据压缩技术"><a href="#数据压缩技术" class="headerlink" title="数据压缩技术"></a>数据压缩技术</h3><ul>
+<li>先压缩代码，在PE头部找一块比较大的连续空间存放压缩用的代码，程序被PE加载器加载后，可通过头部解压程序将代码解压，解压后跳转到解压后的代码</li>
+</ul>
+<h2 id="变形技术可用的空间"><a href="#变形技术可用的空间" class="headerlink" title="变形技术可用的空间"></a>变形技术可用的空间</h2><h3 id="文件头部未用的字段"><a href="#文件头部未用的字段" class="headerlink" title="文件头部未用的字段"></a>文件头部未用的字段</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gitee.com/know_the_emperor/picture/raw/master/pictures/10.14.1.png" alt="10.14.1" title>
+                </div>
+                <div class="image-caption">10.14.1</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gitee.com/know_the_emperor/picture/raw/master/pictures/10.14.2.png" alt="10.14.2" title>
+                </div>
+                <div class="image-caption">10.14.2</div>
+            </figure>
+<ul>
+<li>不连续的空间可用来存放数据</li>
+<li>连续但字节数不多的空间可用来存放代码</li>
+<li>相对较大的连续空间可用来存放较长的指令字节码<ul>
+<li>IMAGE_DOS_HEADER中的54个字节</li>
+<li>标准头12个字节</li>
+<li>扩展头14个字节</li>
+<li>数据目录52个字节</li>
+<li>每个节表项20个字节</li>
+</ul>
+</li>
+</ul>
+<h3 id="大小不固定的数据块"><a href="#大小不固定的数据块" class="headerlink" title="大小不固定的数据块"></a>大小不固定的数据块</h3><ul>
+<li>DOS STUB</li>
+<li>数据目录项  NumberOfRvaAndSizes修改数据目录项的项数</li>
+<li>节表  SizeOfRawData修改节在文件对齐后的尺寸<ul>
+<li>若修改一个节的尺寸，后续节的起始地址也需要修改</li>
+</ul>
+</li>
+</ul>
+<h3 id="因对齐产生的补足空间"><a href="#因对齐产生的补足空间" class="headerlink" title="因对齐产生的补足空间"></a>因对齐产生的补足空间</h3><ul>
+<li>主要可参考数据压缩技术将0压缩</li>
+</ul>
+<h2 id="PE文件变形原则"><a href="#PE文件变形原则" class="headerlink" title="PE文件变形原则"></a>PE文件变形原则</h2><ul>
+<li>数据目录表的个数必须大于等于2</li>
+<li>PE头文件中可以没有节的定义，但一定要将IMAGE_FILE_HEADER.NumberOfSections设置为1</li>
+<li>节的对齐尺寸必须大于等于文件的对齐尺寸</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191014154208.png" alt="20191014154208" title>
+                </div>
+                <div class="image-caption">20191014154208</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gitee.com/know_the_emperor/picture/raw/master/pictures/20191014154409.png" alt="20191014154409" title>
+                </div>
+                <div class="image-caption">20191014154409</div>
+            </figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2019/10/13/PE变形技术/" target="_blank" rel="external">https://liuyi12138.github.io/2019/10/13/PE变形技术/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PE/">PE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/10/13/PE变形技术/&title=《PE变形技术》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/10/13/PE变形技术/&title=《PE变形技术》 — 知君的博客&source=网安组新人任务Week2笔记" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/10/13/PE变形技术/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PE变形技术》 — 知君的博客&url=https://liuyi12138.github.io/2019/10/13/PE变形技术/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/10/13/PE变形技术/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/15/PE导入表/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">PE导入表</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/10/12/PE文件操作实践/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">PE文件操作实践</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/10/13/PE变形技术/&title=《PE变形技术》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/10/13/PE变形技术/&title=《PE变形技术》 — 知君的博客&source=网安组新人任务Week2笔记" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/10/13/PE变形技术/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PE变形技术》 — 知君的博客&url=https://liuyi12138.github.io/2019/10/13/PE变形技术/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/10/13/PE变形技术/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACQElEQVR42u3awW4DIQxF0fn/n55ssogUDb3PJpWAy6rKNAOHSq6NuS487o/x9Pnn06dPvr/7NNf1iyFDhoxlGfdwjBkd6nh2vjYZMmScwxgHvvHvkPCablkclGXIkCFjGARJ6CRLSbdDhgwZMgij9h5e7sqQIUNGP12rlZ1z3yZDhowTGPzU/f9//kl/Q4YMGUsx7nCQgpYXov31vN8sQ4aMrRl8mlp6V0vyauuRIUPG3gweRidM07h8hqgyZMjYmjEOlzyw1mCdlFSGDBl7M3hoS0Nh2vIMWpXfT2XIkHEYIy1ia5ckyNaQp0HVK0OGjGUZtSYlD53pNpGSFZWvMmTI2IiRLqh2AMdDKk80gwxXhgwZizM6aRw5aOMJJT+Mi/NcGTJkLM6oFaL8gIxftuBB/PHvIEOGjE0Z/bZlrQ3AE8GgGJYhQ8amjP6hPE8WW8f9tcsWMmTI2IKRti3JYRkvUIvL6vw/kSFDxoKMWYdoPHGsXbn4YxNlyJCxNYPXgDwpTANr7ZJHcOVChgwZWzN4LpmGVN6KCOaVIUPGAYz0okPnWkY/xAcZqwwZMjZipDDe5uSt0PSkMChiZciQsSzjDgdpAHSulPGNuHi0liFDxuKMtFk4q0mZfmtWy1OGDBnrMmoFZNBcbDQveWktQ4aMExhB1VsqNTupZPGyhQwZMg5m8EyzA5jQGJAhQ8bxDFKC8qDJk8VpqaEMGTIWZPBmAG898rO9ThNUhgwZJzBmFaWk9CVL4e0HGTJkHMB4Ab8H0T/3zMBMAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

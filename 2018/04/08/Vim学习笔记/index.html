@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Vim学习笔记 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Vim">
+    <meta name="description" content="Vim 常规操作总结">
+<meta name="keywords" content="Vim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim学习笔记">
+<meta property="og:url" content="https://liuyi12138.github.io/2018/04/08/Vim学习笔记/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="Vim 常规操作总结">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T06:34:31.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vim学习笔记">
+<meta name="twitter:description" content="Vim 常规操作总结">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Vim学习笔记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Vim学习笔记</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-08T09:54:11.000Z" itemprop="datePublished" class="page-time">
+  2018-04-08
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/工具使用/">工具使用</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Vim-常规操作总结"><span class="post-toc-number">1.</span> <span class="post-toc-text">Vim 常规操作总结</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一讲小结"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">第一讲小结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第二讲小结"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">第二讲小结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第三讲小结"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">第三讲小结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第四讲小结"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">第四讲小结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第五讲小结"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">第五讲小结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第六讲小结"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">第六讲小结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第七讲小结"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">第七讲小结</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Vim学习笔记"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Vim学习笔记</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-08 17:54:11" datetime="2018-04-08T09:54:11.000Z"  itemprop="datePublished">2018-04-08</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/工具使用/">工具使用</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="Vim-常规操作总结"><a href="#Vim-常规操作总结" class="headerlink" title="Vim 常规操作总结"></a>Vim 常规操作总结</h2><a id="more"></a> 
+<h3 id="第一讲小结"><a href="#第一讲小结" class="headerlink" title="第一讲小结"></a>第一讲小结</h3><ol>
+<li><p>光标在屏幕文本中的移动既可以用箭头键，也可以使用 hjkl 字母键。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h (左移)       j (下行)       k (上行)     l (右移)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>欲进入 Vim 编辑器(从命令行提示符)，请输入：vim 文件名 &lt;回车&gt;</p>
+</li>
+<li><p>欲退出 Vim 编辑器，请输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> &lt;ESC&gt;   :q!   &lt;回车&gt; 放弃所有改动。</span><br><span class="line">或者输入 &lt;ESC&gt;   :wq   &lt;回车&gt; 保存改动。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在正常模式下删除光标所在位置的字符，请按： x</p>
+</li>
+<li><p>欲插入或添加文本，请输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i   输入欲插入文本   &lt;ESC&gt;             在光标前插入文本</span><br><span class="line">A   输入欲添加文本   &lt;ESC&gt;             在一行后添加文本</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong> 特别提示：按下 <esc> 键会带您回到正常模式或者撤消一个不想输入或部分完整的命令。</esc></strong></p>
+<hr>
+<h3 id="第二讲小结"><a href="#第二讲小结" class="headerlink" title="第二讲小结"></a>第二讲小结</h3><ol>
+<li><p>欲从当前光标删除至下一个单词，请输入：dw</p>
+</li>
+<li><p>欲从当前光标删除至当前行末尾，请输入：d$</p>
+</li>
+<li><p>欲删除整行，请输入：dd</p>
+</li>
+<li><p>欲重复一个动作，请在它前面加上一个数字：2w</p>
+</li>
+<li><p>在正常模式下修改命令的格式是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">          operator   [number]   motion</span><br><span class="line">其中：</span><br><span class="line">  operator - 操作符，代表要做的事情，比如 d 代表删除</span><br><span class="line">  [number] - 可以附加的数字，代表动作重复的次数</span><br><span class="line">  motion   - 动作，代表在所操作的文本上的移动，例如 w 代表单词(word)，</span><br><span class="line">             $ 代表行末等等。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>欲移动光标到行首，请按数字0键：0</p>
+</li>
+<li><p>欲撤消以前的操作，请输入：u (小写的u)<br>欲撤消在一行中所做的改动，请输入：U (大写的U)<br>欲撤消以前的撤消命令，恢复以前的操作结果，请输入：CTRL-R</p>
+</li>
+</ol>
+<hr>
+<h3 id="第三讲小结"><a href="#第三讲小结" class="headerlink" title="第三讲小结"></a>第三讲小结</h3><ol>
+<li><p>要重新置入已经删除的文本内容，请按小写字母 p 键。该操作可以将已删除<br>的文本内容置于光标之后。如果最后一次删除的是一个整行，那么该行将置<br>于当前光标所在行的下一行。</p>
+</li>
+<li><p>要替换光标所在位置的字符，请输入小写的 r 和要替换掉原位置字符的新字<br>符即可。</p>
+</li>
+<li><p>更改类命令允许您改变从当前光标所在位置直到动作指示的位置中间的文本。<br>比如输入 ce 可以替换当前光标到单词的末尾的内容；输入 c$ 可以替换当<br>前光标到行末的内容。</p>
+</li>
+<li><p>更改类命令的格式是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c   [number]   motion</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="第四讲小结"><a href="#第四讲小结" class="headerlink" title="第四讲小结"></a>第四讲小结</h3><ol>
+<li><p>CTRL-G 用于显示当前光标所在位置和文件状态信息。<br>G 用于将光标跳转至文件最后一行。<br>先敲入一个行号然后输入大写 G 则是将光标移动至该行号代表的行。<br>gg 用于将光标跳转至文件第一行。</p>
+</li>
+<li><p>输入 / 然后紧随一个字符串是在当前所编辑的文档中正向查找该字符串。<br>输入 ? 然后紧随一个字符串则是在当前所编辑的文档中反向查找该字符串。<br>完成一次查找之后按 n 键是重复上一次的命令，可在同一方向上查<br>找下一个匹配字符串所在；或者按大写 N 向相反方向查找下一匹配字符串所在。<br>CTRL-O 带您跳转回较旧的位置，CTRL-I 则带您到较新的位置。</p>
+</li>
+<li><p>如果光标当前位置是括号(、)、[、]、{、}，按 % 会将光标移动到配对的括号上。</p>
+</li>
+<li><p>在一行内替换头一个字符串 old 为新的字符串 new，请输入  :s/old/new<br>在一行内替换所有的字符串 old 为新的字符串 new，请输入  :s/old/new/g<br>在两行内替换所有的字符串 old 为新的字符串 new，请输入  :#,#s/old/new/g<br>在文件内替换所有的字符串 old 为新的字符串 new，请输入  :%s/old/new/g<br>进行全文替换时询问用户确认每个替换需添加 c 标志        :%s/old/new/gc</p>
+</li>
+</ol>
+<hr>
+<h3 id="第五讲小结"><a href="#第五讲小结" class="headerlink" title="第五讲小结"></a>第五讲小结</h3><ol>
+<li><p>:!command 用于执行一个外部命令 command。</p>
+<p>请看一些实际例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(MS-DOS)         (Unix)</span><br><span class="line"> :!dir            :!ls            -  用于显示当前目录的内容。</span><br><span class="line"> :!del FILENAME   :!rm FILENAME   -  用于删除名为 FILENAME 的文件。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>:w FILENAME  可将当前 VIM 中正在编辑的文件保存到名为 FILENAME 的文<br>件中。</p>
+</li>
+<li><p>v motion :w FILENAME 可将当前编辑文件中可视模式下选中的内容保存到文件<br>FILENAME 中。</p>
+</li>
+<li><p>:r FILENAME 可提取磁盘文件 FILENAME 并将其插入到当前文件的光标位置<br>后面。</p>
+</li>
+<li><p>:r !dir 可以读取 dir 命令的输出并将其放置到当前文件的光标位置后面。</p>
+</li>
+</ol>
+<hr>
+<h3 id="第六讲小结"><a href="#第六讲小结" class="headerlink" title="第六讲小结"></a>第六讲小结</h3><ol>
+<li><p>输入小写的 o 可以在光标下方打开新的一行并进入插入模式。<br>输入大写的 O 可以在光标上方打开新的一行。</p>
+</li>
+<li><p>输入小写的 a 可以在光标所在位置之后插入文本。<br>输入大写的 A 可以在光标所在行的行末之后插入文本。</p>
+</li>
+<li><p>e 命令可以使光标移动到单词末尾。</p>
+</li>
+<li><p>操作符 y 复制文本，p 粘贴先前复制的文本。</p>
+</li>
+<li><p>输入大写的 R 将进入替换模式，直至按 <esc> 键回到正常模式。</esc></p>
+</li>
+<li><p>输入 :set xxx 可以设置 xxx 选项。一些有用的选项如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">   &apos;ic&apos; &apos;ignorecase&apos;       查找时忽略字母大小写</span><br><span class="line">   &apos;is&apos; &apos;incsearch&apos;        查找短语时显示部分匹配</span><br><span class="line">   &apos;hls&apos; &apos;hlsearch&apos;        高亮显示所有的匹配短语</span><br><span class="line">选项名可以用完整版本，也可以用缩略版本。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在选项前加上 no 可以关闭选项：  :set noic</p>
+</li>
+</ol>
+<hr>
+<h3 id="第七讲小结"><a href="#第七讲小结" class="headerlink" title="第七讲小结"></a>第七讲小结</h3><ol>
+<li><p>输入 :help 或者按 <f1> 键或 <help> 键可以打开帮助窗口。</help></f1></p>
+</li>
+<li><p>输入 :help cmd 可以找到关于 cmd 命令的帮助。</p>
+</li>
+<li><p>输入 CTRL-W CTRL-W  可以使您在窗口之间跳转。</p>
+</li>
+<li><p>输入 :q 以关闭帮助窗口</p>
+</li>
+<li><p>您可以创建一个 vimrc 启动脚本文件用来保存您偏好的设置。</p>
+</li>
+<li><p>当输入 : 命令时，按 CTRL-D 可以查看可能的补全结果。<br>按 <tab> 可以使用一个补全。</tab></p>
+</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2018/04/08/Vim学习笔记/" target="_blank" rel="external">https://liuyi12138.github.io/2018/04/08/Vim学习笔记/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vim/">Vim</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/04/08/Vim学习笔记/&title=《Vim学习笔记》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/04/08/Vim学习笔记/&title=《Vim学习笔记》 — 知君的博客&source=Vim 常规操作总结" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/04/08/Vim学习笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vim学习笔记》 — 知君的博客&url=https://liuyi12138.github.io/2018/04/08/Vim学习笔记/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/04/08/Vim学习笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/08/从现在出发/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">从现在出发</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/08/Python学习笔记5--面向对象编程/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Python学习笔记5--面向对象编程</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2018/04/08/Vim学习笔记/&title=《Vim学习笔记》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2018/04/08/Vim学习笔记/&title=《Vim学习笔记》 — 知君的博客&source=Vim 常规操作总结" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2018/04/08/Vim学习笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vim学习笔记》 — 知君的博客&url=https://liuyi12138.github.io/2018/04/08/Vim学习笔记/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2018/04/08/Vim学习笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3a3W6DMAwG0L7/S3e3lTrYZxsmJRyuqoqSHCZ5/snrFV/vj+v7m8/vz+//vudordcdFwYGxrKM9+mVb/r8+cnWk3WP9oCBgfEExnz5o2/y7VbXxcDAwDh/dL6VHIOBgYFxR8DNE7skccTAwMA4ZyRF7HlSmN+ZhPIba3EMDIwFGXnX/f8/3zLfwMDAWIrxLl7z1DBvwxV2hYGBsTUjD3A5LG/S5WloMpDAwMB4AmOewFUbbdHmgrUwMDD2ZlSbaJNGWPKymo05DAyMrRlXFZO9lllS+uYvBQMDY29Gr4zsFbq91lv0d8DAwNiakRei+QCgGl7zIjZ6xRgYGBsxJundeSjMg2Yegg8/Y2BgbM2obuKO4nbSqsPAwMDIE7gephfum/1CDAyMZRl5epeXu70St3rYopmlYmBgLMiYNP17m5i0+3uvBgMDY3VGL1Dmjfuc3Xu7GBgYz2FUA1wCro4z8xD8y68wMDC2ZvTa/fNDGL1R5Wh4iYGBsQXjqoFitUBNfpukpBgYGE9m5MlZ7yDFZMCJgYGBEbW6WiOBeYutkBpiYGAszuiVrJNhwCRZPHwmBgbG1owLovUg4PYGopedGcHAwFiKkbf+q4VuLynstfwwMDCewKgOFKsp5lUHwv44bIGBgYERH9hKjlYkqxdyWAwMDIw4Tew11KrHNS7+v4GBgbEIIyliq8niJFg3D1tgYGBsypjkXYWA2DqicfFQEwMDYz3GD0Njf63eK7VoAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

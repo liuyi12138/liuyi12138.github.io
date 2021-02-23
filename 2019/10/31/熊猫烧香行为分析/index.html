@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>熊猫烧香行为分析 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="逆向,病毒">
+    <meta name="description" content="网安组熊猫烧香病毒分析">
+<meta name="keywords" content="逆向,病毒">
+<meta property="og:type" content="article">
+<meta property="og:title" content="熊猫烧香行为分析">
+<meta property="og:url" content="https://liuyi12138.github.io/2019/10/31/熊猫烧香行为分析/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="网安组熊猫烧香病毒分析">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-23T06:34:31.925Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="熊猫烧香行为分析">
+<meta name="twitter:description" content="网安组熊猫烧香病毒分析">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">熊猫烧香行为分析</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">熊猫烧香行为分析</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-31T12:18:36.000Z" itemprop="datePublished" class="page-time">
+  2019-10-31
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用PEID进行查壳和语言分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">使用PEID进行查壳和语言分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用LordPE分析panda-vir文件头"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用LordPE分析panda.vir文件头</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用IDR获取敏感字符串信息"><span class="post-toc-number">3.</span> <span class="post-toc-text">使用IDR获取敏感字符串信息</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用火绒剑模拟运行"><span class="post-toc-number">4.</span> <span class="post-toc-text">使用火绒剑模拟运行</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#执行监控"><span class="post-toc-number">4.0.1.</span> <span class="post-toc-text">执行监控</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#文件监控"><span class="post-toc-number">4.0.2.</span> <span class="post-toc-text">文件监控</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注册表监控"><span class="post-toc-number">4.0.3.</span> <span class="post-toc-text">注册表监控</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#进程监控"><span class="post-toc-number">4.0.4.</span> <span class="post-toc-text">进程监控</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#网络监控"><span class="post-toc-number">4.0.5.</span> <span class="post-toc-text">网络监控</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#行为监控"><span class="post-toc-number">4.0.6.</span> <span class="post-toc-text">行为监控</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#观察病毒的行为"><span class="post-toc-number">5.</span> <span class="post-toc-text">观察病毒的行为</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-熊猫烧香行为分析"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">熊猫烧香行为分析</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-31 20:18:36" datetime="2019-10-31T12:18:36.000Z"  itemprop="datePublished">2019-10-31</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络安全/">网络安全</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>网安组熊猫烧香病毒分析<br><a id="more"></a> </p>
+<h2 id="使用PEID进行查壳和语言分析"><a href="#使用PEID进行查壳和语言分析" class="headerlink" title="使用PEID进行查壳和语言分析"></a>使用PEID进行查壳和语言分析</h2><ul>
+<li>该病毒无壳，可继续进行分析</li>
+<li>该病毒子系统为Win32 GUI 猜测可能有图形界面</li>
+<li>该病毒使用的语言为Borland Delphi 6.0 - 7.0，在静态调试时可加载相对应的签名</li>
+</ul>
+<h2 id="使用LordPE分析panda-vir文件头"><a href="#使用LordPE分析panda-vir文件头" class="headerlink" title="使用LordPE分析panda.vir文件头"></a>使用LordPE分析panda.vir文件头</h2><ul>
+<li>主要分析该执行文件的资源目录和导入导出表</li>
+<li>发现资源目录下为一些字符串声明和图片</li>
+<li>导出表中没有数据</li>
+<li>从导入表中整理出的调用的API接口如下<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">文件操作:</span><br><span class="line">CreateFileA</span><br><span class="line">DeleteFileA</span><br><span class="line">CopyFileA   //病毒可能进行自我拷贝</span><br><span class="line">WriteFile</span><br><span class="line">ReadFile</span><br><span class="line">FindNextFileA   //病毒在感染的过程中可能会遍历文件夹</span><br><span class="line"></span><br><span class="line">网络操作:</span><br><span class="line">socket</span><br><span class="line">connect</span><br><span class="line">closesocket</span><br><span class="line">InternetReadFile</span><br><span class="line">InternetOpenUrlA</span><br><span class="line">URLDownloadToFileA  //病毒会进行联网下载</span><br><span class="line"></span><br><span class="line">进程与线程操作:</span><br><span class="line">//病毒涉及到进程与线程的操作</span><br><span class="line">GetCurrentThreadId</span><br><span class="line">GetThreadLocale</span><br><span class="line">CreateThread</span><br><span class="line"></span><br><span class="line">注册表操作:</span><br><span class="line">//病毒会对注册表进行增删改查</span><br><span class="line">RegSetValueExA</span><br><span class="line">RegOpenKeyExA</span><br><span class="line">RegDeleteValueA</span><br><span class="line">RegCreateKeyExA</span><br><span class="line"></span><br><span class="line">其他操作:</span><br><span class="line">//病毒可能调用计时器来进行某些操作</span><br><span class="line">GetLocalTime</span><br><span class="line">SetTimer</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="使用IDR获取敏感字符串信息"><a href="#使用IDR获取敏感字符串信息" class="headerlink" title="使用IDR获取敏感字符串信息"></a>使用IDR获取敏感字符串信息</h2><ul>
+<li>部分敏感字符串整理如下<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">' 感染过,跳过!' //验证了之前的猜想，该病毒的确进行了文件夹扫描进行感染</span><br><span class="line"></span><br><span class="line">'\\Desktop<span class="emphasis">_.ini 没有找到,建立一个!' //该病毒会在桌面新建Desktop_</span>.ini文件，暂时不知道用处</span><br><span class="line"></span><br><span class="line">'fuckyou'   //病毒作者很是暴躁</span><br><span class="line"></span><br><span class="line">'<span class="strong">***武*汉*男*生*感*染*下*载*者**</span>*'  //病毒作者是武汉人</span><br><span class="line"></span><br><span class="line">'防火墙' '杀毒' '杀毒' '瑞星'   //该病毒对防火墙和一些杀毒软件进行了操作</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="使用火绒剑模拟运行"><a href="#使用火绒剑模拟运行" class="headerlink" title="使用火绒剑模拟运行"></a>使用火绒剑模拟运行</h2><h4 id="执行监控"><a href="#执行监控" class="headerlink" title="执行监控"></a>执行监控</h4><ul>
+<li>进行了进程启动和模块加载</li>
+</ul>
+<h4 id="文件监控"><a href="#文件监控" class="headerlink" title="文件监控"></a>文件监控</h4><ul>
+<li>似乎在所有的文件夹下都新建了一个Desktop_.ini</li>
+<li>修改了很多文件的属性</li>
+</ul>
+<h4 id="注册表监控"><a href="#注册表监控" class="headerlink" title="注册表监控"></a>注册表监控</h4><ul>
+<li>不用想肯定是修改了很多注册表项以及自己</li>
+</ul>
+<h4 id="进程监控"><a href="#进程监控" class="headerlink" title="进程监控"></a>进程监控</h4><ul>
+<li>主要动作为打开设备和查看窗口以及枚举进程</li>
+</ul>
+<h4 id="网络监控"><a href="#网络监控" class="headerlink" title="网络监控"></a>网络监控</h4><ul>
+<li>发现该病毒对局域网内139和445的很多端口都进行了网络连接</li>
+<li>查看资料后发现139和445端口用于局域网内共享文件，可以判断是该病毒在尝试在局域网内传播</li>
+</ul>
+<h4 id="行为监控"><a href="#行为监控" class="headerlink" title="行为监控"></a>行为监控</h4><ul>
+<li>火绒剑自动识别出了一些行为，可能已经包含了上述几个方面的内容</li>
+<li>病毒感染了C盘中的很多exe文件</li>
+<li>病毒对感染的文件进行覆写，将自己复制到这些可执行文件中</li>
+<li>病毒大量修改了注册表</li>
+<li>病毒释放了所有的Desktop_.ini隐藏文件使其可见(但发现还是看不到啊)<ul>
+<li>重新查看文件监控中的修改文件属性，发现每隔一段时间(呼应之前看到的计时器)都会修改一次Desktop_.ini的文件属性，猜测是又将其改成不可见</li>
+</ul>
+</li>
+</ul>
+<h2 id="观察病毒的行为"><a href="#观察病毒的行为" class="headerlink" title="观察病毒的行为"></a>观察病毒的行为</h2><ul>
+<li>熊猫烧香将所有的exe文件覆写为它本身，当你执行一次后会生成一个xxx.exe.exe文件，再执行一次这个文件后两个exe文都会被删除，不给人一点分析的机会，有点狠</li>
+</ul>
+<hr>
+<p><strong>至此我们大致分析了熊猫烧香的行为，下一阶段即是对熊猫烧香的源码进行细致的分析</strong></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2019/10/31/熊猫烧香行为分析/" target="_blank" rel="external">https://liuyi12138.github.io/2019/10/31/熊猫烧香行为分析/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/病毒/">病毒</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/10/31/熊猫烧香行为分析/&title=《熊猫烧香行为分析》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/10/31/熊猫烧香行为分析/&title=《熊猫烧香行为分析》 — 知君的博客&source=网安组熊猫烧香病毒分析" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/10/31/熊猫烧香行为分析/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《熊猫烧香行为分析》 — 知君的博客&url=https://liuyi12138.github.io/2019/10/31/熊猫烧香行为分析/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/10/31/熊猫烧香行为分析/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/11/02/熊猫烧香源码分析/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">熊猫烧香源码分析</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/10/29/vmware搭建小型局域网/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">vmware搭建小型局域网</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/10/31/熊猫烧香行为分析/&title=《熊猫烧香行为分析》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/10/31/熊猫烧香行为分析/&title=《熊猫烧香行为分析》 — 知君的博客&source=网安组熊猫烧香病毒分析" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/10/31/熊猫烧香行为分析/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《熊猫烧香行为分析》 — 知君的博客&url=https://liuyi12138.github.io/2019/10/31/熊猫烧香行为分析/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/10/31/熊猫烧香行为分析/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtUlEQVR42u3aS3LCQAwFQO5/6WSbVGLz9BlCqtorCrA97cVIlvR4xMfHl+PrNz//c/X/q7Puz72/49qBh4eHN1j6/aWvbnZ/bv7/5MjXjIeHh3eal2zW+ef7LT4POdUggYeHh/f+vGS5eZZbZePh4eH9L968rJAn7n8QGPDw8PACXvLyvwXIr5OzF2oteHh4eDEv7yK9z+cj/T08PDy8cVe9uuHutrgWroOHh4d3gJdvuEk5ICkuVB9NUjR5UkTGw8PDW+XNS6tJIfVj6UhS/G/f4OHh4R3jJVt8zuiVcZNKQjls4OHh4b2EV92mewME1aGEnPTLuwIeHh7eKq/Xwu89iEIq3Ercm9VlPDw8vBZvkhZXk+zqcEASVAqNOjw8PLwxb6t0W11or22WhIonkxF4eHh4B3h5JOmVaHtlhbzge9kAw8PDw1vlVVtf81ZWL4Tk41+P3qXx8PDw0rsXtuy8KFANHr1RrXysAQ8PD2+L12wjDdpmk0ZauUSCh4eH9xJe/k2+QecPsRfZLgMMHh4e3mFekv5WpxLKef34118aYHh4eHirvHmzqjekVR2imhRE8PDw8HZ5ySImCffkEVQT9CejA3h4eHgHeL3L9bby/KzJSvDw8PBO83rFiB61V1woPwg8PDy8A7xesSAZmeotNEnNk9Xi4eHhvZJXTbIni+tdpzw6hoeHh3eMlweAXok2HzJISHlAwsPDw3s9Lwkk1fR3a2wrCiF4eHh4q7x5a2oyQJA/rOqveHh4eOd4+dFD5qXhPJBUk348PDy8E7x5y7+aEE9CSzls4OHh4R3j9Rpjk6GBakq90N/Dw8PDewNeXuTdfQMoFCPw8PDw3oCXt7vKvbjiudF18PDw8I7xksQ3Hxropch5c6uQ4uPh4eEd4PVe+LeKCJPw8Ng68PDw8FLeJ9+02k8AqesBAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

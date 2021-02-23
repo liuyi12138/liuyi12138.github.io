@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Linux小系统外围文件系统定制 | 知君的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux">
+    <meta name="description" content="17级种子班Linux初步课程step1">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux小系统外围文件系统定制">
+<meta property="og:url" content="https://liuyi12138.github.io/2019/09/17/Linux小系统外围文件系统定制/index.html">
+<meta property="og:site_name" content="知君的博客">
+<meta property="og:description" content="17级种子班Linux初步课程step1">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/2019.9.17.1.png">
+<meta property="og:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/2019.9.17.2.png">
+<meta property="og:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/6UO0U37VMHX7RTRX349N_VO.png">
+<meta property="og:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/wvl3g0bbka.png">
+<meta property="og:updated_time" content="2021-02-23T06:34:31.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux小系统外围文件系统定制">
+<meta name="twitter:description" content="17级种子班Linux初步课程step1">
+<meta name="twitter:image" content="https://gitee.com/know_the_emperor/picture/raw/master/pictures/2019.9.17.1.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="知君的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">知君</h5>
+          <a href="mailto:852833062@qq.com" title="852833062@qq.com" class="mail">852833062@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/webs"  >
+                <i class="icon icon-lg icon-newspaper-o"></i>
+                网址收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuyi12138" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Linux小系统外围文件系统定制</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Linux小系统外围文件系统定制</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-17T01:23:36.000Z" itemprop="datePublished" class="page-time">
+  2019-09-17
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本思路"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#V0-5"><span class="post-toc-number">2.</span> <span class="post-toc-text">V0.5</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实验要求"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">实验要求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实验分析"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">实验分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实验实现"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">实验实现</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#V0-55"><span class="post-toc-number">3.</span> <span class="post-toc-text">V0.55</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实验要求-1"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">实验要求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实验分析-1"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">实验分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实验实现-1"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">实验实现</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#V0-6"><span class="post-toc-number">4.</span> <span class="post-toc-text">V0.6</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实验要求-2"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">实验要求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实验分析-2"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">实验分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实验实现-2"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">实验实现</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#V0-7"><span class="post-toc-number">5.</span> <span class="post-toc-text">V0.7</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实验要求-3"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">实验要求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实验分析-3"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">实验分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实验实现-3"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">实验实现</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#V0-9"><span class="post-toc-number">6.</span> <span class="post-toc-text">V0.9</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实验要求-4"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">实验要求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实验分析-4"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">实验分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实验实现-4"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">实验实现</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Linux小系统外围文件系统定制"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Linux小系统外围文件系统定制</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-17 09:23:36" datetime="2019-09-17T01:23:36.000Z"  itemprop="datePublished">2019-09-17</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>17级种子班Linux初步课程step1</strong><br><a id="more"></a> </p>
+<h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><ul>
+<li>从<a href="https://liuyi12138.github.io/2019/09/04/Linux%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/">Linux启动过程</a>这篇博客的叙述中我们了解到在Kernel内核启动后会解压/boot/initramfs.img到根目录下作为临时文件系统来装载一些模块，之后再重新挂载真正的文件系统</li>
+<li>我们需要做的则是自己重建一个initramfs.img镜像文件让操作系统启动我们的小系统，从而达到自己定制外围文件系统的目的，也为下一步定制内核打下基础</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gitee.com/know_the_emperor/picture/raw/master/pictures/2019.9.17.1.png" alt="基本思路" title>
+                </div>
+                <div class="image-caption">基本思路</div>
+            </figure>
+<h2 id="V0-5"><a href="#V0-5" class="headerlink" title="V0.5"></a>V0.5</h2><h3 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h3><ul>
+<li>利用initrd.img机制，建立一个简单文件系统（v0.5版本），使得内核用该文件系统启动后可以直接获得一个shell</li>
+</ul>
+<h3 id="实验分析"><a href="#实验分析" class="headerlink" title="实验分析"></a>实验分析</h3><ul>
+<li>方案1：直接修改系统的initrd.img解压出的目录下的init文件，在switch root之前先启动bash</li>
+<li>方案2：重新建立一个文件夹加入自己需要的模块</li>
+<li>个人推荐方案2，后期会有系统大小要求，方案1不便于裁剪</li>
+</ul>
+<h3 id="实验实现"><a href="#实验实现" class="headerlink" title="实验实现"></a>实验实现</h3><ul>
+<li>在/boot/grub/grub.conf文件中添加一个开机可选项</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gitee.com/know_the_emperor/picture/raw/master/pictures/2019.9.17.2.png" alt="grub.conf" title>
+                </div>
+                <div class="image-caption">grub.conf</div>
+            </figure>
+<ul>
+<li>方案1：如下图</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gitee.com/know_the_emperor/picture/raw/master/pictures/6UO0U37VMHX7RTRX349N_VO.png" alt="方案1" title>
+                </div>
+                <div class="image-caption">方案1</div>
+            </figure>
+<ul>
+<li>方案2：<ul>
+<li>文件结构：<ul>
+<li>bin/  常用命令目录</li>
+<li>init  启动脚本</li>
+<li>lib64/  依赖库</li>
+</ul>
+</li>
+<li>我们需要向bin/目录下添加bash、ls、rm、cp等等基础命令，并在lib64中添加相应的依赖库</li>
+<li>使用ldd命令可查询命令所需依赖</li>
+<li>建议自己写脚本来实现依赖添加</li>
+</ul>
+</li>
+<li><p>使用<code>find . | cpio -H newc -o | gzip &gt; /boot/initrd.img</code>命令来将我们自己的文件系统重新打包为镜像</p>
+</li>
+<li><p>自动添加依赖脚本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cp /bin/<span class="variable">$1</span> bin/</span><br><span class="line">ldd /bin/<span class="variable">$1</span> &gt; /boot/<span class="built_in">test</span>/lib.txt</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> `cat /boot/<span class="built_in">test</span>/lib.txt`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$&#123;line:0:6&#125;</span> == <span class="string">"/lib64"</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$line</span></span><br><span class="line">    cp <span class="variable">$line</span> lib64/</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="V0-55"><a href="#V0-55" class="headerlink" title="V0.55"></a>V0.55</h2><h3 id="实验要求-1"><a href="#实验要求-1" class="headerlink" title="实验要求"></a>实验要求</h3><ul>
+<li>拥有可以挂载原系统能力的(手动挂载)</li>
+</ul>
+<h3 id="实验分析-1"><a href="#实验分析-1" class="headerlink" title="实验分析"></a>实验分析</h3><ul>
+<li>我们需要挂载文件系统和读取硬盘因此需要加载一些moudles</li>
+<li>mod相关常用命令：<ul>
+<li>lsmod //查看系统中所有已经被加载了的所有的模块以及模块间的依赖关系</li>
+<li>modinfo //获取模块信息</li>
+<li>insmod / modprobe  //加载驱动</li>
+<li>rmmod   //卸载驱动</li>
+</ul>
+</li>
+<li>对照解压出的小系统目录加入我们需要的modules(/lib/modules)</li>
+</ul>
+<h3 id="实验实现-1"><a href="#实验实现-1" class="headerlink" title="实验实现"></a>实验实现</h3><ul>
+<li>加入mod常用的命令道bin并参照V0.5加入依赖(并不是所有的命令都在bin下，可用whereis命令查看命令所在地址)</li>
+<li>我加入的modules：<ul>
+<li>ext4</li>
+<li>jbd2</li>
+<li>mbcache</li>
+<li>sd_mod</li>
+<li>crc_t10dif</li>
+<li>sr_mod</li>
+<li>cdrom</li>
+<li>mptspi</li>
+<li>mptscsih</li>
+<li>mptbase</li>
+<li>scsi_transport_spi</li>
+</ul>
+</li>
+<li>insmod的时候注意依赖关系来决定加载顺序</li>
+<li>init文件内容</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gitee.com/know_the_emperor/picture/raw/master/pictures/wvl3g0bbka.png" alt="V0.55" title>
+                </div>
+                <div class="image-caption">V0.55</div>
+            </figure>
+<h2 id="V0-6"><a href="#V0-6" class="headerlink" title="V0.6"></a>V0.6</h2><h3 id="实验要求-2"><a href="#实验要求-2" class="headerlink" title="实验要求"></a>实验要求</h3><ul>
+<li>拥有管理设备能力（udev）</li>
+<li>自动挂载modules</li>
+</ul>
+<h3 id="实验分析-2"><a href="#实验分析-2" class="headerlink" title="实验分析"></a>实验分析</h3><ul>
+<li>udevd的规则文件在/lib/udev/目录下，配置文件在/etc/udev/目录下，同时还需要/etc/nsswitch.conf配置的名称服务交换，其依赖的库为/lib目录下以libnss开头的文件，将上述文件拷贝到我们的目录下，然后使用/sbin/start_udev命令可以启动udevd服务</li>
+</ul>
+<h3 id="实验实现-2"><a href="#实验实现-2" class="headerlink" title="实验实现"></a>实验实现</h3><ul>
+<li>注意modules文件夹下的规范，一定要完全按照系统原来的文件夹规范来，不然udev可能找不到</li>
+<li><p>还需要将/lib/modules/xxxx.x86_64目录下的各种配置文件拷贝到我们的目录下</p>
+</li>
+<li><p>init文件内容</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=/sbin:/bin:/usr/bin:/usr/sbin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># mount some important things</span></span><br><span class="line">mount -t proc proc /proc/ &gt;/dev/null 2&gt;&amp;1</span><br><span class="line">mount -t sysfs sysfs /sys/ &gt;/dev/null 2&gt;&amp;1</span><br><span class="line"></span><br><span class="line">mknod /dev/sda2 b 8 2</span><br><span class="line"></span><br><span class="line">/sbin/start_udev</span><br><span class="line"></span><br><span class="line">mount -t ext4 /dev/sda2 /root/</span><br><span class="line"></span><br><span class="line">/bin/bash</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="V0-7"><a href="#V0-7" class="headerlink" title="V0.7"></a>V0.7</h2><h3 id="实验要求-3"><a href="#实验要求-3" class="headerlink" title="实验要求"></a>实验要求</h3><ul>
+<li>拥有login登录能力（多窗口）</li>
+</ul>
+<h3 id="实验分析-3"><a href="#实验分析-3" class="headerlink" title="实验分析"></a>实验分析</h3><ul>
+<li>login程序基于认证体系PAM，配置文件在/etc/pam.d/目录下以及/etc下的security和securetty，相关库文件有/lib64/security/及其依赖的库文件；login还涉及用户组管理/bin/chgrp、/bin/chown、/bin/chmod等，保存用户名的文件/etc/passwd、/etc/group，用户密码文件为/etc/shadow。</li>
+</ul>
+<h3 id="实验实现-3"><a href="#实验实现-3" class="headerlink" title="实验实现"></a>实验实现</h3><ul>
+<li><p>自动循环添加/lib64/security/依赖库脚本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> /boot/<span class="built_in">test</span>/init1/lib64/security/*;<span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$file</span></span><br><span class="line"></span><br><span class="line">    ldd <span class="variable">$file</span> &gt; /boot/<span class="built_in">test</span>/lib.txt</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> `cat /boot/<span class="built_in">test</span>/lib.txt`</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> [ <span class="variable">$&#123;line:0:6&#125;</span> == <span class="string">"/lib64"</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">           <span class="built_in">echo</span> <span class="variable">$line</span></span><br><span class="line">            cp <span class="variable">$line</span> lib64/</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加完这些文件后调起login即可</p>
+</li>
+<li>跳转窗口使用<code>/sbin/mingetty /dev/ttyN &amp; login &gt; /dev/ttyN 2&gt; /dev/ttyN &lt; /dev/ttyN &amp;</code></li>
+</ul>
+<h2 id="V0-9"><a href="#V0-9" class="headerlink" title="V0.9"></a>V0.9</h2><h3 id="实验要求-4"><a href="#实验要求-4" class="headerlink" title="实验要求"></a>实验要求</h3><ul>
+<li>达到由/sbin/init管理的小系统原型</li>
+</ul>
+<h3 id="实验分析-4"><a href="#实验分析-4" class="headerlink" title="实验分析"></a>实验分析</h3><ul>
+<li>V0.9主要是前几个版本的集成，主要难点是将系统交给/sbin/init管理所以很难调试和发现错误</li>
+<li>而/sbin/init的加载过程详解可以参考<a href="https://blog.csdn.net/daniellee_ustb/article/details/50939622" target="_blank" rel="noopener">Linux启动过程详解</a></li>
+</ul>
+<h3 id="实验实现-4"><a href="#实验实现-4" class="headerlink" title="实验实现"></a>实验实现</h3><ul>
+<li><p>需要拷贝的配置文件有：</p>
+<ul>
+<li>/etc/inittab  //配置默认运行级别</li>
+<li>/etc/init/rcS.conf    加载rc.sysinit脚本，//完成系统初始化任务</li>
+<li>/etc/init/rc.conf //兼容脚本，负责各运行级别的调用处理</li>
+<li>/etc/init/rcS-sulogin.conf    //为单用户模式启动/sbin/sushell环境</li>
+<li>/etc/init/control-alt-delete.conf //控制终端下的Ctrl+Alt+Del热键操作</li>
+<li>/etc/init/start-ttys.conf //配置tty终端的开启数量、设备文件</li>
+<li>/etc/sysconfig/init   //控制tty终端的开启数量、终端颜色方案</li>
+<li>/etc/init/tty.conf    //控制tty终端的开启</li>
+</ul>
+</li>
+<li><p>启动/etc/rc.sysinit后将remount_needed函数的调用注释掉，防止挂载主系统根目录</p>
+</li>
+<li>其他的问题根据报错信息一点点调试即可</li>
+<li>init文件内容<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">export</span> PATH=/sbin:/bin:/usr/bin:/usr/sbin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># mount some important things</span></span><br><span class="line">mount -t proc proc /proc/ &gt;/dev/null 2&gt;&amp;1</span><br><span class="line">mount -t sysfs sysfs /sys/ &gt;/dev/null 2&gt;&amp;1</span><br><span class="line"></span><br><span class="line"><span class="built_in">exec</span> /sbin/init</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p><strong>至此linux小系统的外围文件系统已经完成了，在此鸣谢某不知名学长(应该是)留下的<a href="http://www.likecs.com/show-49915.html" target="_blank" rel="noopener">参考资料</a>，接下来定制内核也要好好加油嗷</strong></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/2019/09/17/Linux小系统外围文件系统定制/" target="_blank" rel="external">https://liuyi12138.github.io/2019/09/17/Linux小系统外围文件系统定制/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://liuyi12138.github.io">
+            <img src="/img/avatar.jpg" alt="知君">
+            知君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/09/17/Linux小系统外围文件系统定制/&title=《Linux小系统外围文件系统定制》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/09/17/Linux小系统外围文件系统定制/&title=《Linux小系统外围文件系统定制》 — 知君的博客&source=17级种子班Linux初步课程step1" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/09/17/Linux小系统外围文件系统定制/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux小系统外围文件系统定制》 — 知君的博客&url=https://liuyi12138.github.io/2019/09/17/Linux小系统外围文件系统定制/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/09/17/Linux小系统外围文件系统定制/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/21/软件逆向工程初识/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Win32汇编入门</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/04/Linux启动过程/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Linux启动过程</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "A6zyVYj5tSFDN6ytDQdnWFow-gzGzoHsz",
+            appKey: "Ljr0Q3Lqw8WGe1GbH77GnjPW",
+            avatar: "mm",
+            placeholder: "要不要说点什么呢？（支持Markdown的哦亲）",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>知君 &copy; 2017 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyi12138.github.io/2019/09/17/Linux小系统外围文件系统定制/&title=《Linux小系统外围文件系统定制》 — 知君的博客&pic=https://liuyi12138.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyi12138.github.io/2019/09/17/Linux小系统外围文件系统定制/&title=《Linux小系统外围文件系统定制》 — 知君的博客&source=17级种子班Linux初步课程step1" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyi12138.github.io/2019/09/17/Linux小系统外围文件系统定制/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux小系统外围文件系统定制》 — 知君的博客&url=https://liuyi12138.github.io/2019/09/17/Linux小系统外围文件系统定制/&via=https://liuyi12138.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyi12138.github.io/2019/09/17/Linux小系统外围文件系统定制/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrElEQVR42u3aS44bMQwFQN//0sk2wIzt90jJMILqVQPuj0qLJk3y8YiPPz+O5Mr213+vae9aHXh4eHjrpf983LMX5C9O7k3WkK8ZDw8P7zbv9YJm58nrk018/a43Fjw8PLwv4CV3JYEkZ+Ph4eH9T7w81W7PX78FDw8P7xt4eSEgZ8zS7iTVvlJrwcPDw4t5eRfpe86v9Pfw8PDw1l31pBnWlgw2DbZ6tXh4eHgXePkHN6e2ifi+MfZmlAEPDw/vAm/ToGqvnI1h7Qe88PDw8E7x9sXZnF18vj/T2cPDw8Mb8WZjAclG7Ftix0q9eHh4eBd47aM3Zdm83JDfWzfD8PDw8Ba8tom1Kea2z2mf/Mua8fDw8C7wkpS3nWhqP/1tSBhWpvHw8PAO8dpeWZtYt6ElD05RURgPDw/vI7xTS0zaVG1AykcQ8PDw8O7x2lbW5uOeJ+KzJlnU5cPDw8M7xJu1rzZlgrxMfGCECw8PD+8oL284tc2qpEjRps51eo2Hh4d3mbeJLbNW1qlfn24xHh4e3gXe7DOdh4rN4jaDVnh4eHi3eQea9OU2zQat8rJvsZd4eHh4Ja8tRiRbM3tm/qEvmmp4eHh4F3hJQWE2CjCjbhpgRZDAw8PDW/PaJtYsIZ6l5i3pl+vx8PDwLvPyMkRbtoiiU9kGq2steHh4eNd4p5Ls9jntkFa0Kjw8PLxrvCRF3lyZDwo8Rseb0QE8PDy8Q7x98XS2Ee1A1fBXPDw8vAu8s4XXWdKcN7fyUsgwquDh4eHFvFMtrvz6vMjbhg08PDy8T/Ly5batrHbj2rT49egDHh4e3jfw2s/9qeHX2dbj4eHhfQMvBxQN/tEmRiEEDw8P7xovSXzbevBsiGpTyHgaGPDw8PCO8mZ/+PMAsMHvSxV4eHh4R3l/ASp3FttWmuMBAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
